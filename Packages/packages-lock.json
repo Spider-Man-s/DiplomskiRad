@@ -335,13 +335,14 @@
       "url": "https://packages.unity.com"
     },
     "com.xreal.xr": {
-      "version": "file:C:/Users/IoT Lab/Downloads/UnityPacks/com.xreal.xr.tar.gz",
+      "version": "https://github.com/Spider-Man-s/XrealSDK3.1.git#master",
       "depth": 0,
-      "source": "local-tarball",
+      "source": "git",
       "dependencies": {
         "com.unity.xr.management": "4.4.1",
         "com.unity.xr.core-utils": "2.2.0"
-      }
+      },
+      "hash": "179c5383268daa8c956594a6eb258726a8281722"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
