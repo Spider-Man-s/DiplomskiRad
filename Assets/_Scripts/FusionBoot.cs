@@ -11,65 +11,52 @@ using UnityEngine.UI;
 public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbacks
 {
     [Header("Boot")]
-    [SerializeField] private GameObject menuRigRoot;     // Boot XR rig root (disable after connect)
-    [SerializeField] private Button joinButton;          // optional (can be null)
+    [SerializeField] private GameObject menuRigRoot;
+    [SerializeField] private Button joinButton;
     [SerializeField] private string sessionName = "testroom";
 
     [Header("Fusion")]
-    [SerializeField] private NetworkObject metaPlayerPrefab;
-    [SerializeField] private NetworkObject xrealPlayerPrefab;
+    [SerializeField] private NetworkObject playerPrefab;
+
+    private SpawnPoint[] spawnPoints;
 
     private NetworkRunner _runner;
-    private NetworkObject _selectedPlayerPrefab;
 
     private void Awake()
     {
-        base.Awake(); // from your SingletonPersistent (keep if required)
+        base.Awake();
+
         if (joinButton != null)
-            joinButton.interactable = true;
-    }
-
-    // Hook this to the button in MetaBoot scene
-    public void OnClick_Meta()
-    {
-        _selectedPlayerPrefab = metaPlayerPrefab;
-        _ = StartGame();
-    }
-
-    // Hook this to the button in XrealBoot scene
-    public void OnClick_Xreal()
-    {
-        _selectedPlayerPrefab = xrealPlayerPrefab;
-        _ = StartGame();
-    }
-
-    private async Task StartGame()
-    {
-        if (_selectedPlayerPrefab == null)
         {
-            Debug.LogError("FusionBoot: Selected player prefab is null. Assign prefabs in inspector.");
+            joinButton.interactable = true;
+            joinButton.onClick.AddListener(OnJoinClicked);
+        }
+    }
+
+    private void OnJoinClicked()
+    {
+        joinButton.interactable = false;
+        StartGame();
+    }
+
+    private async void StartGame()
+    {
+        if (playerPrefab == null)
+        {
+            Debug.LogError("FusionBoot: playerPrefab not assigned.");
             return;
         }
 
         if (_runner != null && _runner.IsRunning)
-        {
-            Debug.Log("FusionBoot: Runner already running.");
             return;
-        }
 
-        if (joinButton != null)
-            joinButton.interactable = false;
-
-        // Create runner
         _runner = new GameObject("NetworkRunner").AddComponent<NetworkRunner>();
         _runner.ProvideInput = true;
         _runner.AddCallbacks(this);
 
-        // Scene manager required for Fusion scene loading
         var sceneManager = _runner.gameObject.AddComponent<NetworkSceneManagerDefault>();
         DontDestroyOnLoad(_runner.gameObject);
 
-        // Load the next scene in build order (Boot -> Shared)
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
         var result = await _runner.StartGame(new StartGameArgs
@@ -83,26 +70,28 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         if (!result.Ok)
         {
             Debug.LogError($"FusionBoot: StartGame failed: {result.ShutdownReason}");
-            if (joinButton != null)
-                joinButton.interactable = true;
+            joinButton.interactable = true;
             return;
         }
 
-        // Disable Boot XR rig so we don't have two cameras/rigs active
         if (menuRigRoot != null)
             menuRigRoot.SetActive(false);
     }
 
-    // ---- Fusion Callbacks ----
-
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        if (!runner.IsServer)
-            return;
+        if (!runner.IsServer) return;
 
-        // Spawn the selected prefab for this server instance.
-        // NOTE: This assumes the prefab exists in BOTH builds if Meta and Xreal clients connect together.
-        runner.Spawn(_selectedPlayerPrefab, Vector3.zero, Quaternion.identity, player);
+        int index = player.RawEncoded % spawnPoints.Length;
+
+        Transform spawn = spawnPoints[index].transform;
+
+        runner.Spawn(
+            playerPrefab,
+            spawn.position,
+            spawn.rotation,
+            player
+        );
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
@@ -110,15 +99,18 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         if (runner.IsServer && runner.TryGetPlayerObject(player, out var obj))
             runner.Despawn(obj);
     }
-
+    public void OnSceneLoadDone(NetworkRunner runner)
+    {
+        spawnPoints = FindObjectsOfType<SpawnPoint>();
+    }
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {
-        Debug.Log($"FusionBoot: Shutdown: {shutdownReason}");
+        Debug.Log($"FusionBoot: Shutdown {shutdownReason}");
         if (joinButton != null)
             joinButton.interactable = true;
     }
 
-    // Required but unused:
+    // Unused callbacks
     public void OnConnectedToServer(NetworkRunner runner) { }
     public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) { }
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
@@ -126,7 +118,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
     public void OnInput(NetworkRunner runner, NetworkInput input) { }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data) { }
-    public void OnSceneLoadDone(NetworkRunner runner) { }
+
     public void OnSceneLoadStart(NetworkRunner runner) { }
     public void OnSessionListUpdated(NetworkRunner runner, System.Collections.Generic.List<SessionInfo> sessionList) { }
     public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message) { }

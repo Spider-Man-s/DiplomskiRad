@@ -22,7 +22,10 @@ MonoBehaviour:
   m_Scenes:
   - m_enabled: 1
     m_path: Assets/_Scenes/XREALSpace.unity
-  m_ScriptingDefines: []
+  - m_enabled: 1
+    m_path: Assets/_Scenes/MRSpace.unity
+  m_ScriptingDefines:
+  - XREAL_BUILD
   m_PlayerSettingsYaml:
     m_Settings:
     - line: '| PlayerSettings:'
@@ -32,7 +35,7 @@ MonoBehaviour:
     - line: '|   AndroidProfiler: 0'
     - line: '|   AndroidFilterTouchesWhenObscured: 0'
     - line: '|   AndroidEnableSustainedPerformanceMode: 0'
-    - line: '|   defaultScreenOrientation: 3'
+    - line: '|   defaultScreenOrientation: 0'
     - line: '|   targetDevice: 2'
     - line: '|   useOnDemandResources: 0'
     - line: '|   accelerometerFrequency: 60'
@@ -171,6 +174,14 @@ MonoBehaviour:
         type: 3}'
     - line: '|   - {fileID: 11400000, guid: ae382b67ff8296645b7a2636b4838e49, type:
         2}'
+    - line: '|   - {fileID: 11400000, guid: 140ee1005e951224a86fdab81d280d3a, type:
+        2}'
+    - line: '|   - {fileID: 7923946338316257356, guid: 6f479c6edfef7e545b7fe10834dfe430,
+        type: 2}'
+    - line: '|   - {fileID: 11400000, guid: 98cb777ea5f8f8d42a04a3807cd9f221, type:
+        2}'
+    - line: '|   - {fileID: 1513077798143829932, guid: b548ed905e7e44c488d22540c084eb29,
+        type: 2}'
     - line: '|   metroInputSource: 0'
     - line: '|   wsaTransparentSwapchain: 0'
     - line: '|   m_HolographicPauseOnTrackingLoss: 1'
