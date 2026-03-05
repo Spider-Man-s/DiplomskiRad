@@ -24,6 +24,8 @@ MonoBehaviour:
     m_path: Assets/_Scenes/METASpace.unity
   - m_enabled: 1
     m_path: Assets/_Scenes/MRSpace.unity
+  - m_enabled: 1
+    m_path: Assets/Samples/Meta XR Core SDK/85.0.0/Sample Scenes/ControllerDrivenHandPoses.unity
   m_ScriptingDefines:
   - META_BUILD
   m_PlayerSettingsYaml:
@@ -107,7 +109,7 @@ MonoBehaviour:
     - line: '|   androidFullscreenMode: 1'
     - line: '|   androidAutoRotationBehavior: 1'
     - line: '|   androidPredictiveBackSupport: 1'
-    - line: '|   androidApplicationEntry: 1'
+    - line: '|   androidApplicationEntry: 2'
     - line: '|   defaultIsNativeResolution: 1'
     - line: '|   macRetinaSupport: 1'
     - line: '|   runInBackground: 1'
@@ -174,6 +176,14 @@ MonoBehaviour:
         type: 3}'
     - line: '|   - {fileID: 11400000, guid: ae382b67ff8296645b7a2636b4838e49, type:
         2}'
+    - line: '|   - {fileID: 11400000, guid: 140ee1005e951224a86fdab81d280d3a, type:
+        2}'
+    - line: '|   - {fileID: 7923946338316257356, guid: 6f479c6edfef7e545b7fe10834dfe430,
+        type: 2}'
+    - line: '|   - {fileID: 11400000, guid: 98cb777ea5f8f8d42a04a3807cd9f221, type:
+        2}'
+    - line: '|   - {fileID: 1513077798143829932, guid: b548ed905e7e44c488d22540c084eb29,
+        type: 2}'
     - line: '|   metroInputSource: 0'
     - line: '|   wsaTransparentSwapchain: 0'
     - line: '|   m_HolographicPauseOnTrackingLoss: 1'
