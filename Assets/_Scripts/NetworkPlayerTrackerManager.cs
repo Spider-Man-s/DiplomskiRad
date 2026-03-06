@@ -45,6 +45,10 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
             return;
         }
 
+        netHead.GetComponent<MeshRenderer>().enabled = false;
+        netLeftHand.GetComponent<MeshRenderer>().enabled = false;
+        netRightHand.GetComponent<MeshRenderer>().enabled = false;
+
 #if META_BUILD
         ActivateMeta();
 #elif XREAL_BUILD
