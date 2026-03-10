@@ -24,8 +24,6 @@ MonoBehaviour:
     m_path: Assets/_Scenes/METASpace.unity
   - m_enabled: 1
     m_path: Assets/_Scenes/MRSpace.unity
-  - m_enabled: 1
-    m_path: Assets/Samples/Meta XR Core SDK/85.0.0/Sample Scenes/ControllerDrivenHandPoses.unity
   m_ScriptingDefines:
   - META_BUILD
   m_PlayerSettingsYaml:
@@ -176,14 +174,6 @@ MonoBehaviour:
         type: 3}'
     - line: '|   - {fileID: 11400000, guid: ae382b67ff8296645b7a2636b4838e49, type:
         2}'
-    - line: '|   - {fileID: 11400000, guid: 140ee1005e951224a86fdab81d280d3a, type:
-        2}'
-    - line: '|   - {fileID: 7923946338316257356, guid: 6f479c6edfef7e545b7fe10834dfe430,
-        type: 2}'
-    - line: '|   - {fileID: 11400000, guid: 98cb777ea5f8f8d42a04a3807cd9f221, type:
-        2}'
-    - line: '|   - {fileID: 1513077798143829932, guid: b548ed905e7e44c488d22540c084eb29,
-        type: 2}'
     - line: '|   metroInputSource: 0'
     - line: '|   wsaTransparentSwapchain: 0'
     - line: '|   m_HolographicPauseOnTrackingLoss: 1'
@@ -216,14 +206,14 @@ MonoBehaviour:
     - line: '|   overrideDefaultApplicationIdentifier: 1'
     - line: '|   AndroidBundleVersionCode: 1'
     - line: '|   AndroidMinSdkVersion: 32'
-    - line: '|   AndroidTargetSdkVersion: 34'
+    - line: '|   AndroidTargetSdkVersion: 0'
     - line: '|   AndroidPreferredInstallLocation: 0'
     - line: '|   aotOptions: '
     - line: '|   stripEngineCode: 1'
     - line: '|   iPhoneStrippingLevel: 0'
     - line: '|   iPhoneScriptCallOptimization: 0'
     - line: '|   ForceInternetPermission: 0'
-    - line: '|   ForceSDCardPermission: 1'
+    - line: '|   ForceSDCardPermission: 0'
     - line: '|   CreateWallpaper: 0'
     - line: '|   androidSplitApplicationBinary: 0'
     - line: '|   keepLoadedShadersAlive: 0'
