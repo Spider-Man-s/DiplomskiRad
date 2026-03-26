@@ -2428,6 +2428,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 746354363959644094, guid: ca7af7f42daeaaf46b6cbd0f60c5c0f1, type: 3}
+      propertyPath: _enableDynamicResolution
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 746354363959644094, guid: ca7af7f42daeaaf46b6cbd0f60c5c0f1, type: 3}
+      propertyPath: requestScenePermissionOnStartup
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 746354363966645882, guid: ca7af7f42daeaaf46b6cbd0f60c5c0f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
