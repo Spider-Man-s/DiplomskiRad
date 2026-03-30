@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handSkeletonVersion: 1
   colorSpace: 7
-  requestsVisualFaceTracking: 1
-  requestsAudioFaceTracking: 1
+  requestsVisualFaceTracking: 0
+  requestsAudioFaceTracking: 0
   enableFaceTrackingVisemesOutput: 0
   telemetryProjectGuid: e7afef8f-a4b3-4b4e-bee4-283db7769fc3
   bodyTrackingFidelity: 1
