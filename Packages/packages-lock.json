@@ -12,13 +12,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.meta.xr.runtimeoptimizer": {
-      "version": "0.2.2",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
     "com.meta.xr.sdk.all": {
       "version": "85.0.0",
       "depth": 0,
