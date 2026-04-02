@@ -75,7 +75,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         }
 
         if (menuRigRoot != null)
-            menuRigRoot.SetActive(false);
+            Destroy(menuRigRoot);
     }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)

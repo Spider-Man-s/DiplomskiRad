@@ -511,6 +511,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3022135604127508791, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
+      propertyPath: m_ActionAssets.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022135604127508791, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
+      propertyPath: 'm_ActionAssets.Array.data[1]'
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 188091d269e60234386f93c9a74e511d, type: 3}
     - target: {fileID: 7093114770212112165, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
       propertyPath: m_Name
       value: Right Hand (NetTran)
@@ -528,7 +536,10 @@ PrefabInstance:
       value: Main Camera (NetTran)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6650529744701054809, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
+    - {fileID: 7930851801373771819, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
+    - {fileID: 5977652861693102641, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
