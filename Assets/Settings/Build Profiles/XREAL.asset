@@ -24,7 +24,7 @@ MonoBehaviour:
     m_path: Assets/_Scenes/XREALSpace.unity
   - m_enabled: 1
     m_path: Assets/_Scenes/MRSpace.unity
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Scenes/HandsDemoScene 1.unity
   m_ScriptingDefines:
   - XREAL_BUILD
