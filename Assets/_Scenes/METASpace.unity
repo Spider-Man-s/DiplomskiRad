@@ -1476,14 +1476,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7502022186072890205, guid: ca7af7f42daeaaf46b6cbd0f60c5c0f1, type: 3}
-      propertyPath: _enableDynamicResolution
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7502022186072890205, guid: ca7af7f42daeaaf46b6cbd0f60c5c0f1, type: 3}
-      propertyPath: isInsightPassthroughEnabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7673699130670279000, guid: ca7af7f42daeaaf46b6cbd0f60c5c0f1, type: 3}
       propertyPath: m_Name
       value: Meta Player
