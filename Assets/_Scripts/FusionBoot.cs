@@ -61,7 +61,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
         var result = await _runner.StartGame(new StartGameArgs
         {
-            GameMode = GameMode.AutoHostOrClient,
+            GameMode = GameMode.Shared,
             SessionName = sessionName,
             Scene = SceneRef.FromIndex(nextSceneIndex),
             SceneManager = sceneManager
@@ -80,23 +80,23 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        if (!runner.IsServer) return;
+        if (!runner.IsSharedModeMasterClient) return;
 
         int index = player.RawEncoded % spawnPoints.Length;
 
         Transform spawn = spawnPoints[index].transform;
 
         runner.Spawn(
-            playerPrefab,
-            spawn.position,
-            spawn.rotation,
-            player
-        );
+         playerPrefab,
+         spawn.position,
+         spawn.rotation,
+         player
+     );
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
-        if (runner.IsServer && runner.TryGetPlayerObject(player, out var obj))
+        if (runner.IsSharedModeMasterClient && runner.TryGetPlayerObject(player, out var obj))
             runner.Despawn(obj);
     }
     public void OnSceneLoadDone(NetworkRunner runner)
