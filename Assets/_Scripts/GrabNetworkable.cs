@@ -1,82 +1,127 @@
 using Fusion;
 using UnityEngine;
 
+using Oculus.Interaction; // Meta SDK
+
 public class GrabNetworkable : NetworkBehaviour
 {
-    [Networked] private PlayerRef Grabber { get; set; }
-    [Networked] private Vector3 TargetPosition { get; set; }
+    [Header("XR Components")]
+    [SerializeField] private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable xriGrab;
+    [SerializeField] private Grabbable metaGrab; // Meta
 
-    [SerializeField] private float followSpeed = 20f;
+    private bool isGrabbed = false;
+    private bool wasGrabbed = false;
 
-    // Called by local player when they start grabbing
-    public void TryBeginGrab(Vector3 hitPoint)
+    private bool hadAuthorityLastTick = false;
+
+    private void Awake()
+    {
+        // Auto-detect components
+        if (xriGrab == null)
+            xriGrab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+
+        if (metaGrab == null)
+            metaGrab = GetComponent<Grabbable>();
+    }
+
+    // =========================
+    // GRAB DETECTION (META + XRI)
+    // =========================
+
+    private void Update()
+    {
+        bool xri = xriGrab != null && xriGrab.isSelected;
+        bool meta = metaGrab != null && metaGrab.SelectingPointsCount > 0;
+
+        isGrabbed = xri || meta;
+
+        // Grab START
+        if (isGrabbed && !wasGrabbed)
+        {
+            TryBeginGrab();
+        }
+        // Grab END
+        else if (!isGrabbed && wasGrabbed)
+        {
+            EndGrab();
+        }
+
+        wasGrabbed = isGrabbed;
+    }
+
+    // =========================
+    // NETWORK CONTROL
+    // =========================
+
+    private void TryBeginGrab()
     {
         if (Runner == null || !Runner.IsRunning)
             return;
 
-        RPC_RequestGrab(Runner.LocalPlayer, hitPoint);
+        if (!Object.HasStateAuthority)
+        {
+            Object.RequestStateAuthority(); // 🔥 race resolved by Fusion
+        }
+        else
+        {
+            EnableControl();
+        }
     }
 
-    // Called by local player while dragging
-    public void SendDragPosition(Vector3 worldPos)
+    private void EndGrab()
     {
-        if (Runner == null || !Runner.IsRunning)
+        if (!Object.HasStateAuthority)
             return;
 
-        RPC_SendDragPosition(Runner.LocalPlayer, worldPos);
+        DisableControl();
+        Object.ReleaseStateAuthority();
     }
 
-    // Called by local player when they release
-    public void EndGrab()
-    {
-        if (Runner == null || !Runner.IsRunning)
-            return;
-
-        RPC_EndGrab(Runner.LocalPlayer);
-    }
-
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    private void RPC_RequestGrab(PlayerRef player, Vector3 hitPoint)
-    {
-        // Host decides who can control it
-        if (Grabber == PlayerRef.None)
-        {
-            Grabber = player;
-            TargetPosition = transform.position;
-        }
-    }
-
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    private void RPC_SendDragPosition(PlayerRef player, Vector3 worldPos)
-    {
-        // Only current grabber may update the target
-        if (Grabber == player)
-        {
-            TargetPosition = worldPos;
-        }
-    }
-
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    private void RPC_EndGrab(PlayerRef player)
-    {
-        if (Grabber == player)
-        {
-            Grabber = PlayerRef.None;
-        }
-    }
+    // =========================
+    // AUTHORITY TRACKING
+    // =========================
 
     public override void FixedUpdateNetwork()
     {
-        if (!HasStateAuthority)
-            return;
+        bool hasAuthority = Object.HasStateAuthority;
 
-        if (Grabber != PlayerRef.None)
+        if (hasAuthority != hadAuthorityLastTick)
         {
-            transform.position = Vector3.Lerp(
-                transform.position,
-                TargetPosition,
-                followSpeed * Runner.DeltaTime
-            );
+            if (hasAuthority && isGrabbed)
+            {
+                EnableControl();
+            }
+            else
+            {
+                DisableControl();
+            }
+
+            hadAuthorityLastTick = hasAuthority;
         }
+    }
+
+    // =========================
+    // CONTROL GATING
+    // =========================
+
+    private void EnableControl()
+    {
+        // Allow XR systems to move object
+        SetGrabEnabled(true);
+    }
+
+    private void DisableControl()
+    {
+        // Prevent movement if not owner
+        SetGrabEnabled(false);
+    }
+
+    private void SetGrabEnabled(bool enabled)
+    {
+        if (xriGrab != null)
+            xriGrab.enabled = enabled;
+
+        if (metaGrab != null)
+            metaGrab.enabled = enabled;
     }
 }
