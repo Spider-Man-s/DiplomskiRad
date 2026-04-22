@@ -22,6 +22,7 @@ public class GrabNetworkable : NetworkBehaviour
 
         if (metaGrab == null)
             metaGrab = GetComponent<Grabbable>();
+        metaGrab.InjectOptionalVelocityCalculator(null);
     }
 
     // =========================
