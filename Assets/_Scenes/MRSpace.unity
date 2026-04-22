@@ -2458,6 +2458,7 @@ MonoBehaviour:
   Flags: 524289
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 345255265}
   - {fileID: 345255259}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &345255265
@@ -4033,19 +4034,19 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1080980411}
-  - component: {fileID: 1080980410}
   - component: {fileID: 1080980409}
   - component: {fileID: 1080980408}
   - component: {fileID: 1080980407}
   - component: {fileID: 1080980406}
   - component: {fileID: 1080980405}
   - component: {fileID: 1080980404}
+  - component: {fileID: 1080980413}
+  - component: {fileID: 1080980412}
   - component: {fileID: 1080980403}
   - component: {fileID: 1080980402}
   - component: {fileID: 1080980401}
-  - component: {fileID: 1080980412}
   m_Layer: 0
-  m_Name: '[BuildingBlock] Cube'
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4237,28 +4238,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080980400}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1080980410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1080980400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: e9b4b64f-1c7e-4dff-8f3c-ce409bdc3951
-  instanceId: b62458b2-d998-4660-ae17-b6d6cce95f9d
-  version: 1
-  installationRoutineCheckpoint:
-    _installationRoutineId: 54548176-30f4-4a4a-8057-340a383c6102
-    _installationVariants:
-    - _memberName: _useGravity
-      _value: '{}'
-    - _memberName: installMatchmaking
-      _value: '{"value__":2}'
 --- !u!4 &1080980411
 Transform:
   m_ObjectHideFlags: 0
@@ -4288,7 +4267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 1080980407}
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -4397,6 +4377,18 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
+--- !u!114 &1080980413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080980400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0409d709d4934624c9e8889f920bc2d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1478209451
 PrefabInstance:
   m_ObjectHideFlags: 0
