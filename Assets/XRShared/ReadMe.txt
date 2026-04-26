@@ -1,0 +1,74 @@
+# XR Shared Core
+
+## Documentation
+
+https://doc.photonengine.com/fusion/current/industries-samples/industries-addons/fusion-industries-addons-xrshared
+
+
+## Version & Changelog
+
+- Version 2.1.14:
+	- Support AndroidXR hand tracking permission requirements
+- Version 2.1.13:
+	- Add ObjectTip to track object ends (for pens, ...)
+	- Allow to change during runtime NetworkRigPart.hideRenderersForStateAuthority
+- Version 2.1.12:
+	- Add IWrist to define wrist position in a rig
+	- Add AddObjectContentToAdapt/RemoveObjectContentToAdapt to RigPartVisualizer to handle at runtime a new game object in its hierarchy
+	- Add ITouchableListener/IRegisterableTouchable support to TouchableButton, to send touch event through this interface instead of only through events
+- Version 2.1.11:
+    - Add new PermissionsRequester/PermissionWaiter permission system, to ensure that permission are not requested at the same time on Android
+	- Changes for Unity 6.3 Compatibility
+	- Fix on Grabbable.pauseGrabbability usage to work in a network context
+	- Add non networked visibility group handling in Visibility class
+	- Add TouchingSetup to add Toucher automatically to an hardware rig
+	- Add SimulatedHandSetup to add simulated hand to controllers in an hardware rig
+- Version 2.1.10:
+    - Add DisableForDesktop
+	- Add new icon in shared design
+- Version 2.1.9:
+    - Fix bug in XRHandCollectableSkeletonDriverHelper when searching for the root transform
+	- Add helper method to TransformManipulation to compute position offset without scale
+	- Add OrientedBounds to compute a bounds with an orientation
+	- UI interaction: fix toogle prefab (enable raycast target on images)
+- Version 2.1.8:
+	- add automatic locomotion setup options on RigLocomotion
+	- fix typo in IFeedbackHandler
+- Version 2.1.7:
+	- add verification on HideForLocalUser
+	- add material
+- Version 2.1.6:
+	- Compatibility with Fusion 2.1
+	- Fix for AsyncTask on WebGL
+	- Allow for other kind of rig part position modifiers (grabbed objects, ...)
+	- Add AuthorityVisualization to debug state authority visualy with a material
+	- Add physics grabbable and authority transfer on collision for 2.1 forecast physics
+	- Add new UI prefabs
+- Version 2.1.5: Add canvasesToIgnore option to RigPartVisualizer
+- Version 2.1.4: Add IColocalizationRoomProvider to add interoperability between addons in colocalization scenario
+- Version 2.1.3: Various assembly tooling fixes, to handle edge cases (first install, ...)
+- Version 2.1.2: Improve Fader shader presence in builds detection and warning message
+- Version 2.1.1:
+	- Add way to position automaticaly transforms to match wrist and index positions
+	- Add method in LocalInputTracker to check if a button is pressed no matter on which controller
+	- Fix to handle properly hardware rig detection when the build scene list is not properly configured
+	- Allow RigPartVisualizer to adapt game objects active status alongside changing renderers visibility
+	- Add RayPointer and NetworkedRayPointer to provide synchronized rays
+- Version 2.1.0:
+	- Add new locomotion system by grabbing the world
+	- Add new DetermineNewRigPositionToMovePositionToTargetPosition() method to TransformManipulation class
+	- Add some utility classes (NetworkVisibilty, RingHistory, DebugTools)
+	- Grabbable : add pauseGrabbabilty option
+	- Update & improve the automatic weaving of XR addons
+	- Fix TouchableButton status not reinitialized OnDisable()
+	- bug fixes to UI interaction (XSCInputModule)
+
+- Version 2.0.1: Add shared design & UI prefabs
+- Version 2.0.0: First release
+
+## Third party components
+- CC0 Icons by Jonas Höbenreich:
+    - https://cc0-icons.jonh.eu/eye
+- OculusSampleFrameworkHands	
+	- See XRShared\Runtime\SimpleHands\ThirdParty\OculusSampleFrameworkHands\OculusSampleFramework_License.txt for license
+
