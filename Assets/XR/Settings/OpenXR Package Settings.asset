@@ -20,6 +20,26 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &-9120674452213200390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec7ac3a07bc448fbb43bbcff14d5b12, type: 3}
+  m_Name: ARRaycastFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Meta Quest: Raycasts'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-raycast
+  openxrExtensionStrings: XR_EXT_future XR_META_environment_raycast
+  company: Unity Technologies
+  priority: 0
+  required: 0
 --- !u!114 &-8548557593455830090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41,6 +61,28 @@ MonoBehaviour:
   company: Meta
   priority: 0
   required: 0
+--- !u!114 &-8436771164857091620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00bb9c182ae8406ca03773119fa07ea, type: 3}
+  m_Name: ARPlaneFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Meta Quest: Planes'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-plane
+  openxrExtensionStrings: XR_FB_scene XR_FB_spatial_entity XR_FB_spatial_entity_container
+    XR_META_spatial_entity_discovery XR_META_spatial_entity_semantic_label XR_META_spatial_entity_room_mesh
+  company: Unity Technologies
+  priority: 0
+  required: 0
+  m_PlaneProviderType: 1
 --- !u!114 &-8339566375347183469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +161,28 @@ MonoBehaviour:
   featureIdInternal: com.meta.openxr.feature.spacewarp
   openxrExtensionStrings: XR_FB_space_warp
   company: Meta
+  priority: 0
+  required: 0
+--- !u!114 &-7883755557153298979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6096094d69d82cc40947df806f66ab34, type: 3}
+  m_Name: OpenXRCompositionLayersFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Composition Layers Support
+  version: 1.0.0
+  featureIdInternal: com.unity.openxr.feature.compositionlayers
+  openxrExtensionStrings: XR_KHR_composition_layer_cylinder XR_KHR_composition_layer_equirect
+    XR_KHR_composition_layer_equirect2 XR_KHR_composition_layer_cube XR_KHR_composition_layer_color_scale_bias
+    XR_KHR_android_surface_swapchain
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &-7757733935631135925
@@ -411,6 +475,7 @@ MonoBehaviour:
   m_Name: Metro
   m_EditorClassIdentifier: 
   features:
+  - {fileID: 5395302374525247887}
   - {fileID: 113325096204590359}
   - {fileID: -6264728093906364271}
   - {fileID: 4379708894061751252}
@@ -431,6 +496,7 @@ MonoBehaviour:
   - {fileID: 6387157321983262768}
   - {fileID: 1182517188295937690}
   m_renderMode: 1
+  m_latencyOptimization: 0
   m_autoColorSubmissionMode: 1
   m_colorSubmissionModes:
     m_List: 00000000
@@ -541,6 +607,26 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &-3232870460608858191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076937beb8763d94790d2e9cc1248ac8, type: 3}
+  m_Name: ARSessionFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: 'Meta Quest: Session'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-session
+  openxrExtensionStrings: XR_FB_scene_capture
+  company: Unity Technologies
+  priority: 0
+  required: 0
 --- !u!114 &-3139861315925369827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,6 +640,8 @@ MonoBehaviour:
   m_Name: Standalone
   m_EditorClassIdentifier: 
   features:
+  - {fileID: 2749158418591684562}
+  - {fileID: -7883755557153298979}
   - {fileID: 9170088337321780680}
   - {fileID: 6835787620950390699}
   - {fileID: -645621444344676923}
@@ -566,6 +654,17 @@ MonoBehaviour:
   - {fileID: -7455469227429039379}
   - {fileID: 1238193610288002589}
   - {fileID: -7499846019788102943}
+  - {fileID: 3321975515678205485}
+  - {fileID: 7719415051547806632}
+  - {fileID: 7373521354302898641}
+  - {fileID: -1314530376173567089}
+  - {fileID: -3134003927946670852}
+  - {fileID: -226772197482963713}
+  - {fileID: -2380912067238615766}
+  - {fileID: 8977168274300029209}
+  - {fileID: -8436771164857091620}
+  - {fileID: -9120674452213200390}
+  - {fileID: 2338987368407250944}
   - {fileID: -8548557593455830090}
   - {fileID: 6349324727627271193}
   - {fileID: 1499409785169962998}
@@ -580,6 +679,7 @@ MonoBehaviour:
   - {fileID: -6888586991122780074}
   - {fileID: -2491811801568971503}
   m_renderMode: 0
+  m_latencyOptimization: 0
   m_autoColorSubmissionMode: 1
   m_colorSubmissionModes:
     m_List: 00000000
@@ -588,6 +688,26 @@ MonoBehaviour:
   m_optimizeBufferDiscards: 0
   m_symmetricProjection: 0
   m_foveatedRenderingApi: 0
+--- !u!114 &-3134003927946670852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 651d103057d74c4d8e51d0b368d3d98b, type: 3}
+  m_Name: ColocationDiscoveryFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Meta Quest: Colocation Discovery'
+  version: 1.0.0
+  featureIdInternal: com.unity.openxr.feature.meta-colocation-discovery
+  openxrExtensionStrings: XR_META_colocation_discovery
+  company: Unity Technologies
+  priority: 0
+  required: 0
 --- !u!114 &-2694008543817498468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,6 +748,47 @@ MonoBehaviour:
   company: Unity
   priority: -100
   required: 0
+--- !u!114 &-2479636423485305177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfde4033cbc8045a69c465b226fd4284, type: 3}
+  m_Name: DisplayUtilitiesFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: 'Meta Quest: Display Utilities'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.meta-display-utilities
+  openxrExtensionStrings: XR_FB_display_refresh_rate
+  company: Unity Technologies
+  priority: 0
+  required: 0
+--- !u!114 &-2380912067238615766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a13300a9e14cacbb01ed5d6ae84e69, type: 3}
+  m_Name: ARMeshFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Meta Quest: Meshing'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-mesh
+  openxrExtensionStrings: XR_FB_scene XR_FB_spatial_entity XR_META_spatial_entity_discovery
+    XR_META_spatial_entity_mesh
+  company: Unity Technologies
+  priority: 0
+  required: 0
 --- !u!114 &-2287364837303184947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,6 +811,49 @@ MonoBehaviour:
   required: 0
   cacheSize: 1048576
   perThreadCacheSize: 51200
+--- !u!114 &-2030057930927551530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f61610f95074135a9fd060fc37c4788, type: 3}
+  m_Name: BoundaryVisibilityFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: 'Meta Quest: Boundary Visibility'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.meta-boundary-visibility
+  openxrExtensionStrings: XR_META_boundary_visibility
+  company: Unity Technologies
+  priority: 0
+  required: 0
+  m_SuppressVisibility: 0
+--- !u!114 &-1314530376173567089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e567abbf4d944210acb6315178bb015, type: 3}
+  m_Name: ARCameraFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Meta Quest: Camera (Passthrough)'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-camera
+  openxrExtensionStrings: XR_FB_passthrough
+  company: Unity Technologies
+  priority: 0
+  required: 0
+  m_CameraImageSupport: 0
+  m_PassthroughPreSplashScreen: 0
 --- !u!114 &-1003935976815976623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,6 +874,27 @@ MonoBehaviour:
   company: Unity
   priority: -100
   required: 0
+--- !u!114 &-860026537028459738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9b8cd1fcf8499eb57f194da9698fcd, type: 3}
+  m_Name: AROcclusionFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Meta Quest: Occlusion'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-occlusion
+  openxrExtensionStrings: XR_META_environment_depth
+  company: Unity Technologies
+  priority: 0
+  required: 0
+  m_EnableHandRemoval: 0
 --- !u!114 &-792637064517154017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,6 +957,26 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &-226772197482963713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfde4033cbc8045a69c465b226fd4284, type: 3}
+  m_Name: DisplayUtilitiesFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Meta Quest: Display Utilities'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.meta-display-utilities
+  openxrExtensionStrings: XR_FB_display_refresh_rate
+  company: Unity Technologies
+  priority: 0
+  required: 0
 --- !u!114 &-218499361116909110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,6 +995,26 @@ MonoBehaviour:
   featureIdInternal: com.meta.openxr.feature.subsampledLayout
   openxrExtensionStrings: XR_META_vulkan_swapchain_create_info
   company: Meta
+  priority: 0
+  required: 0
+--- !u!114 &-168746530859065588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec7ac3a07bc448fbb43bbcff14d5b12, type: 3}
+  m_Name: ARRaycastFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: 'Meta Quest: Raycasts'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-raycast
+  openxrExtensionStrings: XR_EXT_future XR_META_environment_raycast
+  company: Unity Technologies
   priority: 0
   required: 0
 --- !u!114 &-122706247250839755
@@ -1116,6 +1381,26 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &2338987368407250944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076937beb8763d94790d2e9cc1248ac8, type: 3}
+  m_Name: ARSessionFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Meta Quest: Session'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-session
+  openxrExtensionStrings: XR_FB_scene_capture
+  company: Unity Technologies
+  priority: 0
+  required: 0
 --- !u!114 &2371348993817334022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1136,6 +1421,26 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &2749158418591684562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323d71788dcf5ca4b9cb3c4a90e38335, type: 3}
+  m_Name: OpenXRLifeCycleFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 
+  version: 0.1.0
+  featureIdInternal: MetaOpenXR-OpenXRLifeCycle
+  openxrExtensionStrings: 
+  company: Unity Technologies
+  priority: 2147483647
+  required: 0
 --- !u!114 &3255909955326049702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,6 +1459,27 @@ MonoBehaviour:
   featureIdInternal: com.unity.openxr.feature.input.metahandtrackingaim
   openxrExtensionStrings: XR_FB_hand_tracking_aim
   company: Unity
+  priority: 0
+  required: 0
+--- !u!114 &3321975515678205485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fd4a84074c74cb183c18e803dabb9e, type: 3}
+  m_Name: ARAnchorFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Meta Quest: Anchors'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-anchor
+  openxrExtensionStrings: XR_FB_spatial_entity XR_META_spatial_entity_discovery XR_META_spatial_entity_persistence
+    XR_META_spatial_entity_sharing XR_META_spatial_entity_group_sharing XR_FB_spatial_entity_query
+  company: Unity Technologies
   priority: 0
   required: 0
 --- !u!114 &3348129550449342880
@@ -1204,6 +1530,28 @@ MonoBehaviour:
   company: Meta
   priority: 0
   required: 0
+--- !u!114 &3584828996508989967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e567abbf4d944210acb6315178bb015, type: 3}
+  m_Name: ARCameraFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: 'Meta Quest: Camera (Passthrough)'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-camera
+  openxrExtensionStrings: XR_FB_passthrough
+  company: Unity Technologies
+  priority: 0
+  required: 0
+  m_CameraImageSupport: 0
+  m_PassthroughPreSplashScreen: 0
 --- !u!114 &3693788862873512877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1224,6 +1572,28 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &4185431973744070061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00bb9c182ae8406ca03773119fa07ea, type: 3}
+  m_Name: ARPlaneFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: 'Meta Quest: Planes'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-plane
+  openxrExtensionStrings: XR_FB_scene XR_FB_spatial_entity XR_FB_spatial_entity_container
+    XR_META_spatial_entity_discovery XR_META_spatial_entity_semantic_label XR_META_spatial_entity_room_mesh
+  company: Unity Technologies
+  priority: 0
+  required: 0
+  m_PlaneProviderType: 1
 --- !u!114 &4379708894061751252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1243,6 +1613,26 @@ MonoBehaviour:
   openxrExtensionStrings: XR_EXT_eye_gaze_interaction
   company: Unity
   priority: 0
+  required: 0
+--- !u!114 &4571131252137051185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323d71788dcf5ca4b9cb3c4a90e38335, type: 3}
+  m_Name: OpenXRLifeCycleFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: 
+  version: 0.1.0
+  featureIdInternal: MetaOpenXR-OpenXRLifeCycle
+  openxrExtensionStrings: 
+  company: Unity Technologies
+  priority: 2147483647
   required: 0
 --- !u!114 &4816677177104201840
 MonoBehaviour:
@@ -1265,6 +1655,28 @@ MonoBehaviour:
   priority: 0
   required: 0
   ignoreValidationErrors: 0
+--- !u!114 &4825913176875458018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6096094d69d82cc40947df806f66ab34, type: 3}
+  m_Name: OpenXRCompositionLayersFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: Composition Layers Support
+  version: 1.0.0
+  featureIdInternal: com.unity.openxr.feature.compositionlayers
+  openxrExtensionStrings: XR_KHR_composition_layer_cylinder XR_KHR_composition_layer_equirect
+    XR_KHR_composition_layer_equirect2 XR_KHR_composition_layer_cube XR_KHR_composition_layer_color_scale_bias
+    XR_KHR_android_surface_swapchain
+  company: Unity
+  priority: 0
+  required: 0
 --- !u!114 &5158289495093182779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1286,6 +1698,49 @@ MonoBehaviour:
   priority: 0
   required: 0
   ignoreValidationErrors: 0
+--- !u!114 &5395302374525247887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6096094d69d82cc40947df806f66ab34, type: 3}
+  m_Name: OpenXRCompositionLayersFeature Metro
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Composition Layers Support
+  version: 1.0.0
+  featureIdInternal: com.unity.openxr.feature.compositionlayers
+  openxrExtensionStrings: XR_KHR_composition_layer_cylinder XR_KHR_composition_layer_equirect
+    XR_KHR_composition_layer_equirect2 XR_KHR_composition_layer_cube XR_KHR_composition_layer_color_scale_bias
+    XR_KHR_android_surface_swapchain
+  company: Unity
+  priority: 0
+  required: 0
+--- !u!114 &5414553479723094720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc65ec7c51504536bd51a47e3cb8fb6a, type: 3}
+  m_Name: ARBoundingBoxFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: 'Meta Quest: Bounding Boxes'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-bounding-boxes
+  openxrExtensionStrings: XR_FB_scene XR_FB_spatial_entity XR_FB_spatial_entity_container
+    XR_META_spatial_entity_discovery
+  company: Unity Technologies
+  priority: 0
+  required: 0
 --- !u!114 &5438154425380407811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1436,6 +1891,26 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &6414068599673048716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 651d103057d74c4d8e51d0b368d3d98b, type: 3}
+  m_Name: ColocationDiscoveryFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: 'Meta Quest: Colocation Discovery'
+  version: 1.0.0
+  featureIdInternal: com.unity.openxr.feature.meta-colocation-discovery
+  openxrExtensionStrings: XR_META_colocation_discovery
+  company: Unity Technologies
+  priority: 0
+  required: 0
 --- !u!114 &6835787620950390699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1469,6 +1944,69 @@ MonoBehaviour:
   extensionStrings:
   - XR_KHR_binding_modification
   - XR_EXT_dpad_binding
+--- !u!114 &7373521354302898641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc65ec7c51504536bd51a47e3cb8fb6a, type: 3}
+  m_Name: ARBoundingBoxFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Meta Quest: Bounding Boxes'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-bounding-boxes
+  openxrExtensionStrings: XR_FB_scene XR_FB_spatial_entity XR_FB_spatial_entity_container
+    XR_META_spatial_entity_discovery
+  company: Unity Technologies
+  priority: 0
+  required: 0
+--- !u!114 &7633826130922057259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a13300a9e14cacbb01ed5d6ae84e69, type: 3}
+  m_Name: ARMeshFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: 'Meta Quest: Meshing'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-mesh
+  openxrExtensionStrings: XR_FB_scene XR_FB_spatial_entity XR_META_spatial_entity_discovery
+    XR_META_spatial_entity_mesh
+  company: Unity Technologies
+  priority: 0
+  required: 0
+--- !u!114 &7719415051547806632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f61610f95074135a9fd060fc37c4788, type: 3}
+  m_Name: BoundaryVisibilityFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Meta Quest: Boundary Visibility'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.meta-boundary-visibility
+  openxrExtensionStrings: XR_META_boundary_visibility
+  company: Unity Technologies
+  priority: 0
+  required: 0
+  m_SuppressVisibility: 0
 --- !u!114 &7833374199018423094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1502,6 +2040,27 @@ MonoBehaviour:
   extensionStrings:
   - XR_KHR_binding_modification
   - XR_EXT_dpad_binding
+--- !u!114 &7911140300648734046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fd4a84074c74cb183c18e803dabb9e, type: 3}
+  m_Name: ARAnchorFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: 'Meta Quest: Anchors'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-anchor
+  openxrExtensionStrings: XR_FB_spatial_entity XR_META_spatial_entity_discovery XR_META_spatial_entity_persistence
+    XR_META_spatial_entity_sharing XR_META_spatial_entity_group_sharing XR_FB_spatial_entity_query
+  company: Unity Technologies
+  priority: 0
+  required: 0
 --- !u!114 &7923946338316257356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1515,6 +2074,8 @@ MonoBehaviour:
   m_Name: Android
   m_EditorClassIdentifier: 
   features:
+  - {fileID: 4571131252137051185}
+  - {fileID: 4825913176875458018}
   - {fileID: -7757733935631135925}
   - {fileID: 7833374199018423094}
   - {fileID: -6492022230698662920}
@@ -1526,6 +2087,17 @@ MonoBehaviour:
   - {fileID: 132831834492529661}
   - {fileID: -8215728296810968559}
   - {fileID: 3693788862873512877}
+  - {fileID: 7911140300648734046}
+  - {fileID: -2030057930927551530}
+  - {fileID: 5414553479723094720}
+  - {fileID: 3584828996508989967}
+  - {fileID: 6414068599673048716}
+  - {fileID: -2479636423485305177}
+  - {fileID: 7633826130922057259}
+  - {fileID: -860026537028459738}
+  - {fileID: 4185431973744070061}
+  - {fileID: -168746530859065588}
+  - {fileID: -3232870460608858191}
   - {fileID: 8854554682354863472}
   - {fileID: 3348129550449342880}
   - {fileID: 1199100021331793216}
@@ -1540,6 +2112,7 @@ MonoBehaviour:
   - {fileID: -5677446770662701727}
   - {fileID: -1003935976815976623}
   m_renderMode: 0
+  m_latencyOptimization: 0
   m_autoColorSubmissionMode: 1
   m_colorSubmissionModes:
     m_List: 00000000
@@ -1609,6 +2182,27 @@ MonoBehaviour:
   company: Meta
   priority: 0
   required: 0
+--- !u!114 &8977168274300029209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9b8cd1fcf8499eb57f194da9698fcd, type: 3}
+  m_Name: AROcclusionFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Meta Quest: Occlusion'
+  version: 0.1.0
+  featureIdInternal: com.unity.openxr.feature.arfoundation-meta-occlusion
+  openxrExtensionStrings: XR_META_environment_depth
+  company: Unity Technologies
+  priority: 0
+  required: 0
+  m_EnableHandRemoval: 0
 --- !u!114 &9097417923000500924
 MonoBehaviour:
   m_ObjectHideFlags: 0

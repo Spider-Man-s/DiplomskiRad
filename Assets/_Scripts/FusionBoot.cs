@@ -100,7 +100,6 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        // In Shared Mode, spawn only for YOURSELF.
         if (player == runner.LocalPlayer)
         {
             TrySpawnLocalPlayer(runner);
