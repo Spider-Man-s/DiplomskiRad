@@ -5,8 +5,10 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
 {
     [Header("Network Visual Targets")]
     [SerializeField] private Transform netHead;
-    [SerializeField] private Transform netLeftHand;
-    [SerializeField] private Transform netRightHand;
+    [SerializeField] private Transform netLeftHandMeta;
+    [SerializeField] private Transform netRightHandMeta;
+    [SerializeField] private Transform netLeftHandXreal;
+    [SerializeField] private Transform netRightHandXreal;
 
     [Header("Rigs")]
     [SerializeField] private GameObject metaRig;
@@ -45,8 +47,10 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
         }
 
         netHead.GetComponent<MeshRenderer>().enabled = false;
-        netLeftHand.GetComponent<MeshRenderer>().enabled = false;
-        netRightHand.GetComponent<MeshRenderer>().enabled = false;
+        netLeftHandMeta.GetComponent<SkinnedMeshRenderer>().enabled = false;
+        netRightHandMeta.GetComponent<SkinnedMeshRenderer>().enabled = false;
+        netLeftHandXreal.GetComponent<SkinnedMeshRenderer>().enabled = false;
+        netRightHandXreal.GetComponent<SkinnedMeshRenderer>().enabled = false;
 
 #if META_BUILD
         ActivateMeta();
@@ -105,16 +109,28 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
             netHead.rotation = HeadRot;
         }
 
-        if (netLeftHand)
+        if (netLeftHandMeta)
         {
-            netLeftHand.position = LeftPos;
-            netLeftHand.rotation = LeftRot;
+            netLeftHandMeta.position = LeftPos;
+            netLeftHandMeta.rotation = LeftRot;
         }
 
-        if (netRightHand)
+        if (netRightHandMeta)
         {
-            netRightHand.position = RightPos;
-            netRightHand.rotation = RightRot;
+            netRightHandMeta.position = RightPos;
+            netRightHandMeta.rotation = RightRot;
+        }
+
+        if (netLeftHandXreal)
+        {
+            netLeftHandXreal.position = LeftPos;
+            netLeftHandXreal.rotation = LeftRot;
+        }
+
+        if (netRightHandXreal)
+        {
+            netRightHandXreal.position = RightPos;
+            netRightHandXreal.rotation = RightRot;
         }
     }
 }

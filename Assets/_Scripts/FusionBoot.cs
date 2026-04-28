@@ -9,7 +9,8 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 {
     [Header("Boot")]
     [SerializeField] private GameObject menuRigRoot;
-    [SerializeField] private Button joinButton;
+    [SerializeField] private Button joinButtonRemote;
+    [SerializeField] private Button joinButtonColocation;
     [SerializeField] private string sessionName = "testroom";
 
     [Header("Fusion")]
@@ -25,28 +26,51 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
     {
         base.Awake();
 
-        if (joinButton != null)
+        if (joinButtonRemote != null)
         {
-            joinButton.interactable = true;
-            joinButton.onClick.RemoveListener(OnJoinClicked);
-            joinButton.onClick.AddListener(OnJoinClicked);
+            joinButtonRemote.interactable = true;
+            joinButtonRemote.onClick.RemoveListener(OnRemoteJoinClicked);
+            joinButtonRemote.onClick.AddListener(OnRemoteJoinClicked);
+        }
+
+        if (joinButtonColocation != null)
+        {
+            joinButtonColocation.interactable = true;
+            joinButtonColocation.onClick.RemoveListener(OnColocationJoinClicked);
+            joinButtonColocation.onClick.AddListener(OnColocationJoinClicked);
         }
     }
 
-    private void OnJoinClicked()
+    private void OnRemoteJoinClicked()
     {
-        if (joinButton != null)
-            joinButton.interactable = false;
+        if (joinButtonRemote != null)
+            joinButtonRemote.interactable = false;
 
-        StartGame();
+        if (joinButtonColocation != null)
+            joinButtonColocation.interactable = false;
+        StartGame(1);
     }
 
-    private async void StartGame()
+    private void OnColocationJoinClicked()
+    {
+        if (joinButtonRemote != null)
+            joinButtonRemote.interactable = false;
+
+        if (joinButtonColocation != null)
+            joinButtonColocation.interactable = false;
+        StartGame(2);
+    }
+
+
+
+
+    private async void StartGame(int sceneIndex = -1)
     {
         if (playerPrefab == null)
         {
             Debug.LogError("FusionBoot: playerPrefab not assigned.");
-            if (joinButton != null) joinButton.interactable = true;
+            if (joinButtonRemote != null) joinButtonRemote.interactable = true;
+            if (joinButtonColocation != null) joinButtonColocation.interactable = true;
             return;
         }
 
@@ -63,20 +87,19 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         var sceneManager = _runner.gameObject.AddComponent<NetworkSceneManagerDefault>();
         DontDestroyOnLoad(_runner.gameObject);
 
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
         var result = await _runner.StartGame(new StartGameArgs
         {
             GameMode = GameMode.Shared,
             SessionName = sessionName,
-            Scene = SceneRef.FromIndex(nextSceneIndex),
+            Scene = SceneRef.FromIndex(sceneIndex),
             SceneManager = sceneManager
         });
 
         if (!result.Ok)
         {
             Debug.LogError($"FusionBoot: StartGame failed: {result.ShutdownReason}");
-            if (joinButton != null) joinButton.interactable = true;
+            if (joinButtonRemote != null) joinButtonRemote.interactable = true;
+            if (joinButtonColocation != null) joinButtonColocation.interactable = true;
             return;
         }
 
@@ -88,22 +111,16 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
     {
         spawnPoints = FindObjectsOfType<SpawnPoint>(true);
         _sceneReady = spawnPoints != null && spawnPoints.Length > 0;
-
-        if (!_sceneReady)
-        {
-            Debug.LogError("FusionBoot: No SpawnPoint found in loaded scene.");
-            return;
-        }
-
-        TrySpawnLocalPlayer(runner);
     }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        if (player == runner.LocalPlayer)
-        {
-            TrySpawnLocalPlayer(runner);
-        }
+        if (player != runner.LocalPlayer) return;
+
+        if (_spawnedLocalPlayer) return;
+        if (!_sceneReady) return;
+
+        TrySpawnLocalPlayer(runner);
     }
 
     private void TrySpawnLocalPlayer(NetworkRunner runner)
@@ -147,8 +164,11 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {
         Debug.Log($"FusionBoot: Shutdown {shutdownReason}");
-        if (joinButton != null)
-            joinButton.interactable = true;
+        if (joinButtonRemote != null)
+            joinButtonRemote.interactable = true;
+
+        if (joinButtonColocation != null)
+            joinButtonColocation.interactable = true;
 
         _runner = null;
         _sceneReady = false;
@@ -158,7 +178,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
     public void OnConnectedToServer(NetworkRunner runner) { }
     public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) { }
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
-    public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason) { }
+    public void OnConnectFailed(NetworkRunner runner, NetAddress joinButtonRemoteAddress, NetConnectFailedReason reason) { }
     public void OnInput(NetworkRunner runner, NetworkInput input) { }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data) { }
