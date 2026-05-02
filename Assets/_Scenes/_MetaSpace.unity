@@ -808,6 +808,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 916613440003744429, guid: 55fe118f63c55e540923112274c06b39, type: 3}
+      propertyPath: SortKey
+      value: 1722565525
+      objectReference: {fileID: 0}
     - target: {fileID: 3811596598756183297, guid: 55fe118f63c55e540923112274c06b39, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -851,6 +855,10 @@ PrefabInstance:
     - target: {fileID: 3811596598756183298, guid: 55fe118f63c55e540923112274c06b39, type: 3}
       propertyPath: m_Name
       value: MetaQuestPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450870268311063081, guid: 55fe118f63c55e540923112274c06b39, type: 3}
+      propertyPath: SortKey
+      value: 2455605814
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
