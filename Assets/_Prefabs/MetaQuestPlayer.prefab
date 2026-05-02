@@ -117,6 +117,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 657184242118504721, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       insertIndex: -1
       addedObject: {fileID: 837410408513039803}
+    - targetCorrespondingSourceObject: {fileID: 4399806423645351520, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 5242159787506688164}
+    - targetCorrespondingSourceObject: {fileID: 2062385652673493497, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1836647982008913762}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2218496723442559054, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       insertIndex: -1
@@ -178,6 +184,11 @@ Transform:
 --- !u!4 &1613176946821594575 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4345703227744589955, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+  m_PrefabInstance: {fileID: 3038854346643760460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1667296464235563820 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4399806423645351520, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
   m_PrefabInstance: {fileID: 3038854346643760460}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1678082229623999072 stripped
@@ -485,7 +496,7 @@ MonoBehaviour:
   _runner: {fileID: 0}
   autodetectandConfigureRigParts: 1
   controllerVisualizationMode: 2
-  handVisualizationMode: -1
+  handVisualizationMode: 2
   simulateHandForControllers: 1
   leftHandPrefab: {fileID: 8490401482382555088, guid: 656355804d0b8e34981ab05ad0cd939c, type: 3}
   rightHandPrefab: {fileID: 8198313923795646882, guid: cdb05a6cc51c5f945923c13211a57294, type: 3}
@@ -499,6 +510,11 @@ Transform:
 --- !u!4 &3903772864076477554 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2017842782656008510, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+  m_PrefabInstance: {fileID: 3038854346643760460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3941561441931058357 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2062385652673493497, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
   m_PrefabInstance: {fileID: 3038854346643760460}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &4262534724810978177 stripped
@@ -944,6 +960,142 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7867665511630110825, guid: c1e6a92e093341743b2bec59b45bb6e4, type: 3}
   m_PrefabInstance: {fileID: 3839823517842966338}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5597977930937559062
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1667296464235563820}
+    m_Modifications:
+    - target: {fileID: 364764948069222578, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 364764948069222578, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.36144
+      objectReference: {fileID: 0}
+    - target: {fileID: 364764948069222578, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1386
+      objectReference: {fileID: 0}
+    - target: {fileID: 364764948069222578, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 364764948069222578, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 364764948069222578, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 364764948069222578, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 364764948069222578, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 364764948069222578, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 364764948069222578, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 939218087275462869, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: SortKey
+      value: 1863136939
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028007522929103368, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: m_Name
+      value: Left Hand Remote Net
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028007522929103368, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b83e6351a279b224394fd409db914d65, type: 3}
+--- !u!4 &5242159787506688164 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 364764948069222578, guid: b83e6351a279b224394fd409db914d65, type: 3}
+  m_PrefabInstance: {fileID: 5597977930937559062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6003299825096974840
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3941561441931058357}
+    m_Modifications:
+    - target: {fileID: 3166032408792633158, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+      propertyPath: SortKey
+      value: 956161757
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712669929855644704, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+      propertyPath: m_Name
+      value: Right Hand Remote Net
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344951394619469466, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344951394619469466, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.36144
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344951394619469466, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344951394619469466, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344951394619469466, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344951394619469466, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344951394619469466, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344951394619469466, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344951394619469466, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344951394619469466, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+--- !u!4 &1836647982008913762 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5344951394619469466, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+  m_PrefabInstance: {fileID: 6003299825096974840}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7399559655274081746
 PrefabInstance:

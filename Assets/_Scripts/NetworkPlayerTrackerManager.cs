@@ -46,7 +46,7 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
             return;
         }
 
-        netHead.GetComponent<MeshRenderer>().enabled = false;
+        netHead.GetComponentInChildren<MeshRenderer>().enabled = false;
         netLeftHandMeta.GetComponent<SkinnedMeshRenderer>().enabled = false;
         netRightHandMeta.GetComponent<SkinnedMeshRenderer>().enabled = false;
         netLeftHandXreal.GetComponent<SkinnedMeshRenderer>().enabled = false;
