@@ -8,14 +8,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1150967932602138315, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
-      propertyPath: handRoot
-      value: 
-      objectReference: {fileID: 3802617726260350565}
-    - target: {fileID: 1150967932602138315, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
-      propertyPath: isFingerTrackingAvailable
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2218496723442559053, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -60,26 +52,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: MetaQuestPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 8055008406965272897, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
-      propertyPath: handRoot
-      value: 
-      objectReference: {fileID: 5141703672639967889}
-    - target: {fileID: 8055008406965272897, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
-      propertyPath: isFingerTrackingAvailable
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
---- !u!4 &3802617726260350565 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2227506386554612521, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
-  m_PrefabInstance: {fileID: 3038854346643760460}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &5141703672639967889 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7887823656286205917, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
-  m_PrefabInstance: {fileID: 3038854346643760460}
-  m_PrefabAsset: {fileID: 0}
