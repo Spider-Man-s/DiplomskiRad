@@ -856,6 +856,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MetaQuestPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 8173904757923992707, guid: 55fe118f63c55e540923112274c06b39, type: 3}
+      propertyPath: handVisualizationMode
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 8450870268311063081, guid: 55fe118f63c55e540923112274c06b39, type: 3}
       propertyPath: SortKey
       value: 2455605814
