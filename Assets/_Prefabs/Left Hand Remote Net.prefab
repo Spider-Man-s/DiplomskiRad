@@ -168,7 +168,7 @@ MonoBehaviour:
   positionOffsetHapticDuration: 0.05
   localHardwareRigPartGameObject: {fileID: 0}
   _TrackingStatus: 0
-  _side: 0
+  _side: 1
 --- !u!1 &1057797649794894102
 GameObject:
   m_ObjectHideFlags: 0
