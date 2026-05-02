@@ -52,7 +52,8 @@ namespace Fusion.Addons.HandsSync
                         foreach (var boneIdValue in System.Enum.GetValues(typeof(HandSynchronizationBoneId)))
                         {
                             var boneId = (HandSynchronizationBoneId)boneIdValue;
-                            _compressionBonesInfo.Add(new HandBoneInfo { 
+                            _compressionBonesInfo.Add(new HandBoneInfo
+                            {
                                 boneId = boneId,
                                 axisCompressionMode = BoneAxisCompressionMode.XYZ,
                             });
@@ -79,7 +80,7 @@ namespace Fusion.Addons.HandsSync
         CompressedHandState compressedHandState;
         HandState cacheHandState;
 
-#region Interpolation
+        #region Interpolation
         public bool useRotationsInterpolation = true;
         #endregion
 
@@ -165,7 +166,7 @@ namespace Fusion.Addons.HandsSync
             compressedHandState.currentHandTrackingMode = currentHandtrackingMode;
             compressedHandState.isDataHighConfidence = isDataHighConfidence;
             compressedHandState.handScale = handScale;
-            
+
             if (currentHandtrackingMode == HandTrackingMode.FingerTracking)
             {
                 if (compressedHandState.bonesRotationBytes == null || compressedHandState.bonesRotationBytes.Length != compressedBoneRotations.Length)
@@ -198,13 +199,13 @@ namespace Fusion.Addons.HandsSync
                     position = defaultBonePositions.bonePositionsByBoneId[boneId];
                 posesByBoneId[boneId] = new Pose { position = position, rotation = boneRotations[boneId] };
             }
-            foreach(var boneId in defaultBonePositions.bonePositionsByBoneId.Keys)
+            foreach (var boneId in defaultBonePositions.bonePositionsByBoneId.Keys)
             {
                 if (posesByBoneId.ContainsKey(boneId))
                 {
                     continue;
                 }
-                Debug.LogError("Missing rotation: "+ boneId);
+                Debug.LogError("Missing rotation: " + boneId);
                 var position = defaultBonePositions.bonePositionsByBoneId[boneId];
                 posesByBoneId[boneId] = new Pose { position = position, rotation = Quaternion.identity };
             }
@@ -247,7 +248,7 @@ namespace Fusion.Addons.HandsSync
                                 }
                             }
                         }
-                    }                        
+                    }
                     ApplyPoses(poses);
 
                 }
@@ -260,7 +261,7 @@ namespace Fusion.Addons.HandsSync
                             Debug.Log("CurrentBonesPoses not yet initialized: skipping this frame");
                         else
                             ApplyPoses(localBoneCollecter.CurrentBonesPoses);
-                    } 
+                    }
                     else
                     {
                         var poses = PosesWithDefaultPositions(localBoneCollecter.CurrentBoneRotations);

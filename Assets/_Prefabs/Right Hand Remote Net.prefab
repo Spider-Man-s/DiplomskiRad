@@ -315,7 +315,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6049409751459164330}
   - component: {fileID: 8670521581283319299}
-  - component: {fileID: 491407030878382397}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -421,18 +420,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.013066735, y: -0.015430748, z: 0.0781125}
     m_Extent: {x: 0.0867995, y: 0.05515723, z: 0.10162346}
   m_DirtyAABB: 0
---- !u!210 &491407030878382397
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2826342094511908883}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 32000
-  m_SortAtRoot: 0
 --- !u!1 &3062933738430141687
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +589,7 @@ GameObject:
   - component: {fileID: 8853310012331236324}
   - component: {fileID: 2492475578223398963}
   - component: {fileID: 3166032408792633158}
+  - component: {fileID: 2270847079674525312}
   m_Layer: 0
   m_Name: Right Hand Remote Net
   m_TagString: Untagged
@@ -734,7 +722,30 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 2492475578223398963}
+  - {fileID: 2270847079674525312}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &2270847079674525312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4712669929855644704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbadae3d5e5bed42ab90157442156f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adaptRenderersToTrackingStatus: 1
+  hideRenderersForStateAuthority: 0
+  allowPositionModifiers: 1
+  addHapticFeedbackOnPositionModifications: 1
+  positionOffsetForMaxHapticFeedback: 0.3
+  positionOffsetHapticAmplitude: 1
+  positionOffsetHapticDuration: 0.05
+  localHardwareRigPartGameObject: {fileID: 0}
+  _TrackingStatus: 0
+  _side: 0
 --- !u!1 &5321205030050034558
 GameObject:
   m_ObjectHideFlags: 0

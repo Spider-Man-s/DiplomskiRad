@@ -1013,16 +1013,19 @@ PrefabInstance:
       propertyPath: SortKey
       value: 1489960885
       objectReference: {fileID: 0}
+    - target: {fileID: 939218087275462869, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: NetworkedBehaviours.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1028007522929103368, guid: b83e6351a279b224394fd409db914d65, type: 3}
       propertyPath: m_Name
       value: Left Hand Remote Net
       objectReference: {fileID: 0}
-    - target: {fileID: 1028007522929103368, guid: b83e6351a279b224394fd409db914d65, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7301437208444558410, guid: b83e6351a279b224394fd409db914d65, type: 3}
+    - target: {fileID: 1550842736410784776, guid: b83e6351a279b224394fd409db914d65, type: 3}
+      propertyPath: localHardwareRigPartGameObject
+      value: 
+      objectReference: {fileID: 2047094802368352662}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1040,9 +1043,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9059473234448542174}
     m_Modifications:
+    - target: {fileID: 2270847079674525312, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+      propertyPath: localHardwareRigPartGameObject
+      value: 
+      objectReference: {fileID: 4465580246625486351}
     - target: {fileID: 3166032408792633158, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
       propertyPath: SortKey
       value: 1104066057
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166032408792633158, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+      propertyPath: NetworkedBehaviours.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4712669929855644704, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
       propertyPath: m_Name
@@ -1088,8 +1099,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 491407030878382397, guid: 6a97bd32a90cd3d43a5e8a68ff0f5803, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
