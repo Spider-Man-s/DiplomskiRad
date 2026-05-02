@@ -5,37 +5,19 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
 {
     [Header("Network Visual Targets")]
     [SerializeField] private Transform netHead;
-    [SerializeField] private Transform netLeftHandMeta;
-    [SerializeField] private Transform netRightHandMeta;
-    [SerializeField] private Transform netLeftHandXreal;
-    [SerializeField] private Transform netRightHandXreal;
 
     [Header("Rigs")]
     [SerializeField] private GameObject metaRig;
     [SerializeField] private GameObject xrealRig;
 
-    [Header("Meta Tracked Transforms")]
+    [Header("Tracked Head")]
     [SerializeField] private Transform metaHead;
-    [SerializeField] private Transform metaLeftHand;
-    [SerializeField] private Transform metaRightHand;
-
-    [Header("Xreal Tracked Transforms")]
     [SerializeField] private Transform xrealHead;
-    [SerializeField] private Transform xrealLeftHand;
-    [SerializeField] private Transform xrealRightHand;
 
     private Transform srcHead;
-    private Transform srcLeft;
-    private Transform srcRight;
 
     [Networked] private Vector3 HeadPos { get; set; }
     [Networked] private Quaternion HeadRot { get; set; }
-
-    [Networked] private Vector3 LeftPos { get; set; }
-    [Networked] private Quaternion LeftRot { get; set; }
-
-    [Networked] private Vector3 RightPos { get; set; }
-    [Networked] private Quaternion RightRot { get; set; }
 
     public override void Spawned()
     {
@@ -47,19 +29,11 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
         }
 
         netHead.GetComponentInChildren<MeshRenderer>().enabled = false;
-        netLeftHandMeta.GetComponent<SkinnedMeshRenderer>().enabled = false;
-        netRightHandMeta.GetComponent<SkinnedMeshRenderer>().enabled = false;
-        netLeftHandXreal.GetComponent<SkinnedMeshRenderer>().enabled = false;
-        netRightHandXreal.GetComponent<SkinnedMeshRenderer>().enabled = false;
 
 #if META_BUILD
         ActivateMeta();
 #elif XREAL_BUILD
         ActivateXreal();
-#else
-        metaRig.SetActive(false);
-        xrealRig.SetActive(false);
-        Debug.LogError("No build symbol defined. Define META_BUILD or XREAL_BUILD.");
 #endif
     }
 
@@ -67,38 +41,23 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
     {
         metaRig.SetActive(true);
         xrealRig.SetActive(false);
-
         srcHead = metaHead;
-        srcLeft = metaLeftHand;
-        srcRight = metaRightHand;
     }
 
     private void ActivateXreal()
     {
         metaRig.SetActive(false);
         xrealRig.SetActive(true);
-
         srcHead = xrealHead;
-        srcLeft = xrealLeftHand;
-        srcRight = xrealRightHand;
     }
 
     public override void FixedUpdateNetwork()
     {
-        if (!Object.HasStateAuthority)
-            return;
-
-        if (!srcHead || !srcLeft || !srcRight)
+        if (!Object.HasStateAuthority || !srcHead)
             return;
 
         HeadPos = srcHead.position;
         HeadRot = srcHead.rotation;
-
-        LeftPos = srcLeft.position;
-        LeftRot = srcLeft.rotation;
-
-        RightPos = srcRight.position;
-        RightRot = srcRight.rotation;
     }
 
     public override void Render()
@@ -107,30 +66,6 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
         {
             netHead.position = HeadPos;
             netHead.rotation = HeadRot;
-        }
-
-        if (netLeftHandMeta)
-        {
-            netLeftHandMeta.position = LeftPos;
-            netLeftHandMeta.rotation = LeftRot;
-        }
-
-        if (netRightHandMeta)
-        {
-            netRightHandMeta.position = RightPos;
-            netRightHandMeta.rotation = RightRot;
-        }
-
-        if (netLeftHandXreal)
-        {
-            netLeftHandXreal.position = LeftPos;
-            netLeftHandXreal.rotation = LeftRot;
-        }
-
-        if (netRightHandXreal)
-        {
-            netRightHandXreal.position = RightPos;
-            netRightHandXreal.rotation = RightRot;
         }
     }
 }
