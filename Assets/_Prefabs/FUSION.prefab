@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c6e0cc21ef29754d878d054efc4dff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedSceneBuildIndex: 1
-  roomInput: {fileID: 0}
-  statusText: {fileID: 0}
   menuRigRoot: {fileID: 0}
-  playerPrefab: {fileID: 0}
+  joinButtonRemote: {fileID: 0}
+  joinButtonColocation: {fileID: 0}
+  sessionName: testroom
+  runnerPrefab: {fileID: 6521473073086378394, guid: 55bee6763e8ad724caf062031506a3dc, type: 3}
+  playerPrefab: {fileID: 4364963782872640799, guid: acdef8605bbc7a14f9dd603199f589d6, type: 3}
