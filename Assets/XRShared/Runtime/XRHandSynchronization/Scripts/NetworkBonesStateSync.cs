@@ -97,18 +97,33 @@ namespace Fusion.Addons.HandsSync
         public bool debugDisplayCompressionImprovements = false;
         Dictionary<HandSynchronizationBoneId, Quaternion> debugStoredRotations = new Dictionary<HandSynchronizationBoneId, Quaternion>();
 
+        float _initDelay = 0.5f;
+        float _startTime;
+        bool _canDetect = false;
         private void Awake()
         {
             networkHand = GetComponentInParent<INetworkHand>();
             bonesReader = GetComponentInChildren<IBonesReader>();
+            _startTime = Time.time;
         }
 
         void DetectLocalBoneCollector()
         {
 
-            if (networkHand.Object.HasStateAuthority && networkHand.LocalHardwareRigPart != null && localBoneCollecter == null)
+            if (!_canDetect)
             {
-                localBoneCollecter = networkHand.LocalHardwareRigPart.gameObject.GetComponentInChildren<IBonesCollecter>();
+                if (Time.time - _startTime < _initDelay)
+                    return;
+
+                _canDetect = true;
+            }
+
+            if (networkHand.Object.HasStateAuthority &&
+                networkHand.LocalHardwareRigPart != null &&
+                localBoneCollecter == null)
+            {
+                localBoneCollecter = networkHand.LocalHardwareRigPart
+                    .gameObject.GetComponentInChildren<IBonesCollecter>();
             }
         }
 
