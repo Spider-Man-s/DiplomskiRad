@@ -12,6 +12,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
     [SerializeField] private Button joinButtonRemote;
     [SerializeField] private Button joinButtonColocation;
     [SerializeField] private string sessionName = "testroom";
+    [SerializeField] private GameObject runnerPrefab;
 
     [Header("Fusion")]
     [SerializeField] private NetworkObject playerPrefab;
@@ -41,6 +42,25 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         }
     }
 
+    private void EnsureRunner()
+    {
+        if (_runner != null)
+            return;
+
+        var go = Instantiate(runnerPrefab);
+        DontDestroyOnLoad(go);
+
+        _runner = go.GetComponent<NetworkRunner>();
+
+        if (_runner == null)
+        {
+            Debug.LogError("RunnerPrefab missing NetworkRunner");
+            return;
+        }
+
+        _runner.ProvideInput = true;
+        _runner.AddCallbacks(this);
+    }
     private void OnRemoteJoinClicked()
     {
         if (joinButtonRemote != null)
@@ -80,13 +100,9 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         _sceneReady = false;
         _spawnedLocalPlayer = false;
 
-        _runner = new GameObject("NetworkRunner").AddComponent<NetworkRunner>();
-        _runner.ProvideInput = true;
-        _runner.AddCallbacks(this);
+        EnsureRunner();
 
-        var sceneManager = _runner.gameObject.AddComponent<NetworkSceneManagerDefault>();
-        DontDestroyOnLoad(_runner.gameObject);
-
+        var sceneManager = _runner.GetComponent<NetworkSceneManagerDefault>();
         var result = await _runner.StartGame(new StartGameArgs
         {
             GameMode = GameMode.Shared,
