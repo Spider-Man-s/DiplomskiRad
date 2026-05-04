@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 4433665354640431641}
   - component: {fileID: 6173901485241373105}
   - component: {fileID: 1526170001526604414}
+  - component: {fileID: 4161749482556525207}
   m_Layer: 0
   m_Name: Right Hand Remote Net
   m_TagString: Untagged
@@ -184,6 +185,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 3114334112716418776}
+  - {fileID: 4161749482556525207}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &3114334112716418776
 MonoBehaviour:
@@ -445,6 +447,27 @@ MonoBehaviour:
     m_JointTransform: {fileID: 3543390220174475129}
   - m_XRHandJointID: 2
     m_JointTransform: {fileID: 7546678397395019961}
+--- !u!114 &4161749482556525207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614620008565977477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b949dbf89921a42bb29d85b7c43d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultBonePositions: {fileID: 11400000, guid: 5601f7bacce04d34b8daf65b68bf34b2, type: 2}
+  handSynchronizationScriptable: {fileID: 11400000, guid: 41ad88f621d56a14d948ebc97c2278a0, type: 2}
+  _CurrentHandTrackingMode: 0
+  _IsDataHighConfidence:
+    _value: 0
+  _HandScale: 0
+  useRotationsInterpolation: 1
+  debugDisplayNetworkStateForLocaluser: 0
+  debugDisplayCompressionImprovements: 0
 --- !u!1 &1719310147377784981
 GameObject:
   m_ObjectHideFlags: 0
