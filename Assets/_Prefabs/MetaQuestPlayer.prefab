@@ -87,7 +87,7 @@ PrefabInstance:
     - target: {fileID: 2611838667314529355, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 2b3e7f7d0a39e374c8e3d5230e431f69, type: 2}
+      objectReference: {fileID: 2100000, guid: 61d033f3a51f40647a5458ea14f3b4af, type: 2}
     - target: {fileID: 3046488865984072218, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       propertyPath: SortKey
       value: 1329651083
@@ -103,7 +103,7 @@ PrefabInstance:
     - target: {fileID: 3378233378514045280, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 2b3e7f7d0a39e374c8e3d5230e431f69, type: 2}
+      objectReference: {fileID: 2100000, guid: 61d033f3a51f40647a5458ea14f3b4af, type: 2}
     - target: {fileID: 3813501434158139429, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       propertyPath: m_XRHandTrackingEvents
       value: 

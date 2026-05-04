@@ -554,6 +554,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Left Hand Remote Net
       objectReference: {fileID: 0}
+    - target: {fileID: 5100313851884712433, guid: 827365180285f0247b4f34fd2cd8f2c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6135445563119255639, guid: 827365180285f0247b4f34fd2cd8f2c0, type: 3}
       propertyPath: SortKey
       value: 3976531758
