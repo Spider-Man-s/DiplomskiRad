@@ -139,6 +139,7 @@ namespace Fusion.Addons.HandsSync
 
         void StoreRotations(Dictionary<HandSynchronizationBoneId, Quaternion> rotations)
         {
+            Debug.Log("Storing rotations");
             if (debugDisplayNetworkStateForLocaluser)
             {
                 debugStoredRotations.Clear();
