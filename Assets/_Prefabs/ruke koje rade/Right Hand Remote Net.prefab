@@ -141,8 +141,8 @@ GameObject:
   - component: {fileID: 1689806957972122465}
   - component: {fileID: 4433665354640431641}
   - component: {fileID: 6173901485241373105}
-  - component: {fileID: 1526170001526604414}
   - component: {fileID: 4161749482556525207}
+  - component: {fileID: 7910949589353298178}
   m_Layer: 0
   m_Name: Right Hand Remote Net
   m_TagString: Untagged
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_HandMeshRenderer: {fileID: 7595974090082845558}
   m_ShowMeshWhenTrackingIsAcquired: 1
   m_HideMeshWhenTrackingIsLost: 1
---- !u!114 &1526170001526604414
+--- !u!114 &4161749482556525207
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,7 +389,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1614620008565977477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07aaccfa1bc2417d8fbd0d9e2e102c2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 25b949dbf89921a42bb29d85b7c43d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultBonePositions: {fileID: 11400000, guid: 5601f7bacce04d34b8daf65b68bf34b2, type: 2}
+  handSynchronizationScriptable: {fileID: 11400000, guid: 41ad88f621d56a14d948ebc97c2278a0, type: 2}
+  _CurrentHandTrackingMode: 0
+  _IsDataHighConfidence:
+    _value: 0
+  _HandScale: 0
+  useRotationsInterpolation: 1
+  debugDisplayNetworkStateForLocaluser: 0
+  debugDisplayCompressionImprovements: 0
+--- !u!114 &7910949589353298178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614620008565977477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eadb23de7fc4dc4a9cea0f597add098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_XRHandTrackingEvents: {fileID: 716629782385767581}
@@ -447,27 +468,8 @@ MonoBehaviour:
     m_JointTransform: {fileID: 3543390220174475129}
   - m_XRHandJointID: 2
     m_JointTransform: {fileID: 7546678397395019961}
---- !u!114 &4161749482556525207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614620008565977477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25b949dbf89921a42bb29d85b7c43d25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultBonePositions: {fileID: 11400000, guid: 5601f7bacce04d34b8daf65b68bf34b2, type: 2}
-  handSynchronizationScriptable: {fileID: 11400000, guid: 41ad88f621d56a14d948ebc97c2278a0, type: 2}
-  _CurrentHandTrackingMode: 0
-  _IsDataHighConfidence:
-    _value: 0
-  _HandScale: 0
-  useRotationsInterpolation: 1
-  debugDisplayNetworkStateForLocaluser: 0
-  debugDisplayCompressionImprovements: 0
+  debugAppliedPoses: 0
+  appliedPoses: []
 --- !u!1 &1719310147377784981
 GameObject:
   m_ObjectHideFlags: 0

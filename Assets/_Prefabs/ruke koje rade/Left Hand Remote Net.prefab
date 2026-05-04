@@ -528,9 +528,9 @@ GameObject:
   - component: {fileID: 291250824085121338}
   - component: {fileID: 1451702249570872395}
   - component: {fileID: 4097204679821497031}
-  - component: {fileID: 206216346794534344}
   - component: {fileID: 1943254712289420327}
   - component: {fileID: 918784169774476178}
+  - component: {fileID: 1831261136151492197}
   m_Layer: 0
   m_Name: Left Hand Remote Net
   m_TagString: Untagged
@@ -752,7 +752,7 @@ MonoBehaviour:
   adaptRenderersDuringUpdate: 1
   lastAppliedShouldDisplay: 0
   mode: 1
---- !u!114 &206216346794534344
+--- !u!114 &1943254712289420327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -761,7 +761,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 5100313851884712433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07aaccfa1bc2417d8fbd0d9e2e102c2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 21096d6d8059a5343a1f2b4d050e4789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_XRHandTrackingEvents: {fileID: 291250824085121338}
+  m_HandMeshRenderer: {fileID: 5739019889604807468}
+  m_ShowMeshWhenTrackingIsAcquired: 1
+  m_HideMeshWhenTrackingIsLost: 1
+--- !u!114 &918784169774476178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100313851884712433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b949dbf89921a42bb29d85b7c43d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultBonePositions: {fileID: 11400000, guid: 54e70084d2847414fa910ef03a48db90, type: 2}
+  handSynchronizationScriptable: {fileID: 11400000, guid: c29ecd19ae3de684aaef251a082fd1a3, type: 2}
+  _CurrentHandTrackingMode: 0
+  _IsDataHighConfidence:
+    _value: 0
+  _HandScale: 0
+  useRotationsInterpolation: 1
+  debugDisplayNetworkStateForLocaluser: 0
+  debugDisplayCompressionImprovements: 0
+--- !u!114 &1831261136151492197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100313851884712433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eadb23de7fc4dc4a9cea0f597add098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_XRHandTrackingEvents: {fileID: 291250824085121338}
@@ -819,43 +856,8 @@ MonoBehaviour:
     m_JointTransform: {fileID: 7948657315170315528}
   - m_XRHandJointID: 2
     m_JointTransform: {fileID: 616818663859737807}
---- !u!114 &1943254712289420327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5100313851884712433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21096d6d8059a5343a1f2b4d050e4789, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_XRHandTrackingEvents: {fileID: 291250824085121338}
-  m_HandMeshRenderer: {fileID: 5739019889604807468}
-  m_ShowMeshWhenTrackingIsAcquired: 1
-  m_HideMeshWhenTrackingIsLost: 1
---- !u!114 &918784169774476178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5100313851884712433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25b949dbf89921a42bb29d85b7c43d25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultBonePositions: {fileID: 11400000, guid: 54e70084d2847414fa910ef03a48db90, type: 2}
-  handSynchronizationScriptable: {fileID: 11400000, guid: c29ecd19ae3de684aaef251a082fd1a3, type: 2}
-  _CurrentHandTrackingMode: 0
-  _IsDataHighConfidence:
-    _value: 0
-  _HandScale: 0
-  useRotationsInterpolation: 1
-  debugDisplayNetworkStateForLocaluser: 0
-  debugDisplayCompressionImprovements: 0
+  debugAppliedPoses: 0
+  appliedPoses: []
 --- !u!1 &5100356907061126161
 GameObject:
   m_ObjectHideFlags: 0
