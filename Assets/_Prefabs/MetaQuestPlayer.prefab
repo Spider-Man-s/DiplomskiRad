@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MetaQuestPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 2218496723442559054, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2611838667314529355, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -175,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trackingStatus: 0
-  disabledGameObjectWhenNotTracked: 1
+  disabledGameObjectWhenNotTracked: 0
   _side: 1
   indexTipFollowerTransform: {fileID: 0}
   wristFollowerTransform: {fileID: 0}
@@ -221,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trackingStatus: 0
-  disabledGameObjectWhenNotTracked: 1
+  disabledGameObjectWhenNotTracked: 0
   _side: 2
   indexTipFollowerTransform: {fileID: 0}
   wristFollowerTransform: {fileID: 0}
@@ -291,7 +295,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1464583645205850118, guid: 529449d69b776ef4bbbb9422cdac0895, type: 3}
       propertyPath: SortKey
-      value: 1121972963
+      value: 3563957300
       objectReference: {fileID: 0}
     - target: {fileID: 1614620008565977477, guid: 529449d69b776ef4bbbb9422cdac0895, type: 3}
       propertyPath: m_Name
@@ -369,7 +373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6135445563119255639, guid: 827365180285f0247b4f34fd2cd8f2c0, type: 3}
       propertyPath: SortKey
-      value: 3456863546
+      value: 1603880587
       objectReference: {fileID: 0}
     - target: {fileID: 8065304496457682516, guid: 827365180285f0247b4f34fd2cd8f2c0, type: 3}
       propertyPath: m_LocalPosition.x
