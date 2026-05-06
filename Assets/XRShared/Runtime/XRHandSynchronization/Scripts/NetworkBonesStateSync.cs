@@ -141,8 +141,19 @@ namespace Fusion.Addons.HandsSync
 
                 if (localBoneCollecter == null)
                 {
-                    Debug.LogError("[FUN] Collector NULL");
-                    return;
+                    if (networkHand.LocalHardwareRigPart != null)
+                    {
+                        localBoneCollecter = networkHand.LocalHardwareRigPart.gameObject
+                            .GetComponentInChildren<IBonesCollecter>();
+                    }
+
+                    if (localBoneCollecter == null)
+                    {
+                        Debug.LogError("[FUN] Collector STILL NULL");
+                        return;
+                    }
+
+                    Debug.Log("[FUN] Collector assigned in FixedUpdateNetwork");
                 }
 
                 Debug.Log($"[FUN] TrackingMode: {localBoneCollecter.CurrentHandTrackingMode}");
