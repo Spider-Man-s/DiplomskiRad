@@ -872,6 +872,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: MetaQuestPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 3811596598756183298, guid: 55fe118f63c55e540923112274c06b39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042151612763063677, guid: 55fe118f63c55e540923112274c06b39, type: 3}
+      propertyPath: SortKey
+      value: 3456863546
+      objectReference: {fileID: 0}
+    - target: {fileID: 6677628318809179165, guid: 55fe118f63c55e540923112274c06b39, type: 3}
+      propertyPath: SortKey
+      value: 1121972963
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835773007674199274, guid: 55fe118f63c55e540923112274c06b39, type: 3}
+      propertyPath: SortKey
+      value: 1261478637
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034563709942263070, guid: 55fe118f63c55e540923112274c06b39, type: 3}
+      propertyPath: SortKey
+      value: 270841685
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
