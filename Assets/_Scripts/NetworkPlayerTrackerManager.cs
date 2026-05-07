@@ -33,9 +33,11 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
 
     [Networked] private Vector3 RightHandPos { get; set; }
     [Networked] private Quaternion RightHandRot { get; set; }
+    [Networked] private NetworkBool RightHandTracked { get; set; }
 
     [Networked] private Vector3 LeftHandPos { get; set; }
     [Networked] private Quaternion LeftHandRot { get; set; }
+    [Networked] private NetworkBool LeftHandTracked { get; set; }
 
     public override void Spawned()
     {
@@ -45,6 +47,8 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
             xrealRig.SetActive(false);
             return;
         }
+
+        // Hide local head mesh
         if (netHead)
         {
             var renderer = netHead.GetComponentInChildren<MeshRenderer>();
@@ -83,45 +87,76 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
         if (!Object.HasStateAuthority)
             return;
 
+        // HEAD
         if (srcHead)
         {
             HeadPos = srcHead.position;
             HeadRot = srcHead.rotation;
         }
 
+        // RIGHT HAND
         if (srcRightHand)
         {
-            RightHandPos = srcRightHand.position;
-            RightHandRot = srcRightHand.rotation;
+            bool isTracked = srcRightHand.gameObject.activeInHierarchy;
+
+            RightHandTracked = isTracked;
+
+            if (isTracked)
+            {
+                RightHandPos = srcRightHand.position;
+                RightHandRot = srcRightHand.rotation;
+            }
         }
 
+        // LEFT HAND
         if (srcLeftHand)
         {
-            LeftHandPos = srcLeftHand.position;
-            LeftHandRot = srcLeftHand.rotation;
+            bool isTracked = srcLeftHand.gameObject.activeInHierarchy;
+
+            LeftHandTracked = isTracked;
+
+            if (isTracked)
+            {
+                LeftHandPos = srcLeftHand.position;
+                LeftHandRot = srcLeftHand.rotation;
+            }
         }
+
     }
 
     public override void Render()
     {
         float t = 20f * Time.deltaTime;
 
+        // HEAD
         if (netHead)
         {
             netHead.position = Vector3.Lerp(netHead.position, HeadPos, t);
             netHead.rotation = Quaternion.Slerp(netHead.rotation, HeadRot, t);
         }
 
+        // RIGHT HAND
         if (netRightHand)
         {
-            netRightHand.position = Vector3.Lerp(netRightHand.position, RightHandPos, t);
-            netRightHand.rotation = Quaternion.Slerp(netRightHand.rotation, RightHandRot, t);
+            netRightHand.gameObject.SetActive(RightHandTracked);
+
+            if (RightHandTracked)
+            {
+                netRightHand.position = Vector3.Lerp(netRightHand.position, RightHandPos, t);
+                netRightHand.rotation = Quaternion.Slerp(netRightHand.rotation, RightHandRot, t);
+            }
         }
 
+        // LEFT HAND
         if (netLeftHand)
         {
-            netLeftHand.position = Vector3.Lerp(netLeftHand.position, LeftHandPos, t);
-            netLeftHand.rotation = Quaternion.Slerp(netLeftHand.rotation, LeftHandRot, t);
+            netLeftHand.gameObject.SetActive(LeftHandTracked);
+
+            if (LeftHandTracked)
+            {
+                netLeftHand.position = Vector3.Lerp(netLeftHand.position, LeftHandPos, t);
+                netLeftHand.rotation = Quaternion.Slerp(netLeftHand.rotation, LeftHandRot, t);
+            }
         }
     }
 }

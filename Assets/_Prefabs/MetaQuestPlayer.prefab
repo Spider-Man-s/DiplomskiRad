@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1150967932602138315, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+      propertyPath: forceWristPoseToIdentity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2218496723442559053, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -75,6 +79,10 @@ PrefabInstance:
     - target: {fileID: 7684189731761661686, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       propertyPath: indexTipFollowerTransform
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8055008406965272897, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+      propertyPath: forceWristPoseToIdentity
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

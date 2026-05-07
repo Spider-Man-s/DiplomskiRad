@@ -137,6 +137,7 @@ namespace Fusion.XR.Shared.Core
 
         protected virtual void UpdateWithLocalHardwareRigPart()
         {
+
             if (_localHardwareRigPart == null) return;
             _localHardwareRigPart.UpdateTrackingStatus();
             TrackingStatus = _localHardwareRigPart.TrackingStatus;
@@ -147,6 +148,7 @@ namespace Fusion.XR.Shared.Core
 
         protected virtual void ExtrapolateWithLocalHardwareRigPart()
         {
+
             if (_localHardwareRigPart == null) return;
             var hardwareRigPartPose = _localHardwareRigPart.RigPartPose;
             transform.position = hardwareRigPartPose.position;
@@ -181,6 +183,7 @@ namespace Fusion.XR.Shared.Core
         /// </summary>
         bool TryApplyPositionModifiers(IRigPartPositionModifier positionModifier)
         {
+
             // Check if a modification of pose is required
             if (positionModifier == null)
             {
@@ -299,7 +302,8 @@ namespace Fusion.XR.Shared.Core
             AdaptRenderers();
         }
 
-        void AdaptRenderers() { 
+        void AdaptRenderers()
+        {
             if (adaptRenderersToTrackingStatus && rigPartVisualizer)
             {
                 var shouldDisplay = rigPartVisualizer.ShouldDisplay();

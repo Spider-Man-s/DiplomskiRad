@@ -30,7 +30,9 @@ namespace Fusion.XR.Shared.Base
         }
 
         protected virtual void PositionHandBoneFollowers()
+
         {
+
             if (indexTipFollowerTransform != null)
             {
                 var indexTipPose = WorldIndexTipPose;
@@ -43,5 +45,5 @@ namespace Fusion.XR.Shared.Base
             }
         }
     }
-} 
+}
 
