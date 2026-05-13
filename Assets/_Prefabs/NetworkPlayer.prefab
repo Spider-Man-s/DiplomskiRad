@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 83200895019499089}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.151, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -284,6 +284,10 @@ PrefabInstance:
       propertyPath: indexTipFollowerTransform
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2726123434467122055, guid: 55fe118f63c55e540923112274c06b39, type: 3}
+      propertyPath: applyWristPoseToHandRoot
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3811596598756183297, guid: 55fe118f63c55e540923112274c06b39, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -483,6 +487,10 @@ PrefabInstance:
     - target: {fileID: 7226081159945717266, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
       propertyPath: m_Name
       value: XREAL Player Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226081159945717266, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7365587244918426977, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
       propertyPath: SortKey
