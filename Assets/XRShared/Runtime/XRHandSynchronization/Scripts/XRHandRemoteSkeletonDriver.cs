@@ -27,7 +27,7 @@ namespace Fusion.Addons.XRHandsSync
         {
             int posesCount = m_JointLocalPoses.Length;
             if (debugAppliedPoses && (appliedPoses == null || appliedPoses.Length != posesCount)) appliedPoses = new Pose[posesCount];
-            for (int i = 0; i < posesCount; i++)
+            for (int i = 1; i < posesCount; i++)
             {
                 var jointId = XRHandJointIDUtility.FromIndex(i);
                 var boneId = jointId.AsHandSynchronizationBoneId();
@@ -38,11 +38,11 @@ namespace Fusion.Addons.XRHandsSync
                 }
                 else
                 {
-                    Debug.LogError("Missing bone: "+jointId);
+                    Debug.LogError("Missing bone: " + jointId);
                 }
 
                 m_JointLocalPoses[i] = pose;
-                if(debugAppliedPoses) appliedPoses[i] = pose;
+                if (debugAppliedPoses) appliedPoses[i] = pose;
             }
             ApplyUpdatedTransformPoses();
         }
