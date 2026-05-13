@@ -4,6 +4,7 @@ using Fusion.Sockets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Voice.Unity;
 
 public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbacks
 {
@@ -14,6 +15,9 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
     [SerializeField] private string sessionName = "testroom";
     [SerializeField] private GameObject runnerPrefab;
 
+    [Header("Voice Chat")]
+    [SerializeField] private Toggle voiceChatToggle;
+
     [Header("Fusion")]
     [SerializeField] private NetworkObject playerPrefab;
 
@@ -23,10 +27,27 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
     private bool _sceneReady;
     private bool _spawnedLocalPlayer;
 
+    // TRUE = VC enabled
+    private static bool VoiceChatEnabled = true;
+
     private void Awake()
     {
         base.Awake();
 
+        // ---------------- VOICE TOGGLE ----------------
+        if (voiceChatToggle != null)
+        {
+            voiceChatToggle.isOn = VoiceChatEnabled;
+
+            voiceChatToggle.onValueChanged.RemoveAllListeners();
+            voiceChatToggle.onValueChanged.AddListener((value) =>
+            {
+                VoiceChatEnabled = value;
+                ApplyVoiceSettings();
+            });
+        }
+
+        // ---------------- BUTTONS ----------------
         if (joinButtonRemote != null)
         {
             joinButtonRemote.interactable = true;
@@ -60,7 +81,29 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
         _runner.ProvideInput = true;
         _runner.AddCallbacks(this);
+
+        ApplyVoiceSettings();
     }
+
+    private void ApplyVoiceSettings()
+    {
+        if (_runner == null)
+            return;
+
+        Recorder recorder = _runner.GetComponentInChildren<Recorder>(true);
+
+        if (recorder == null)
+        {
+            Debug.LogWarning("No Photon Voice Recorder found.");
+            return;
+        }
+
+        recorder.TransmitEnabled = VoiceChatEnabled;
+        recorder.RecordingEnabled = VoiceChatEnabled;
+
+        Debug.Log($"Voice Chat Enabled: {VoiceChatEnabled}");
+    }
+
     private void OnRemoteJoinClicked()
     {
         if (joinButtonRemote != null)
@@ -68,6 +111,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
         if (joinButtonColocation != null)
             joinButtonColocation.interactable = false;
+
         StartGame(1);
     }
 
@@ -78,19 +122,22 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
         if (joinButtonColocation != null)
             joinButtonColocation.interactable = false;
+
         StartGame(2);
     }
-
-
-
 
     private async void StartGame(int sceneIndex = -1)
     {
         if (playerPrefab == null)
         {
             Debug.LogError("FusionBoot: playerPrefab not assigned.");
-            if (joinButtonRemote != null) joinButtonRemote.interactable = true;
-            if (joinButtonColocation != null) joinButtonColocation.interactable = true;
+
+            if (joinButtonRemote != null)
+                joinButtonRemote.interactable = true;
+
+            if (joinButtonColocation != null)
+                joinButtonColocation.interactable = true;
+
             return;
         }
 
@@ -103,6 +150,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         EnsureRunner();
 
         var sceneManager = _runner.GetComponent<NetworkSceneManagerDefault>();
+
         var result = await _runner.StartGame(new StartGameArgs
         {
             GameMode = GameMode.Shared,
@@ -114,27 +162,40 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         if (!result.Ok)
         {
             Debug.LogError($"FusionBoot: StartGame failed: {result.ShutdownReason}");
-            if (joinButtonRemote != null) joinButtonRemote.interactable = true;
-            if (joinButtonColocation != null) joinButtonColocation.interactable = true;
+
+            if (joinButtonRemote != null)
+                joinButtonRemote.interactable = true;
+
+            if (joinButtonColocation != null)
+                joinButtonColocation.interactable = true;
+
             return;
         }
 
         if (menuRigRoot != null)
             Destroy(menuRigRoot);
+
+        ApplyVoiceSettings();
     }
 
     public void OnSceneLoadDone(NetworkRunner runner)
     {
         spawnPoints = FindObjectsOfType<SpawnPoint>(true);
         _sceneReady = spawnPoints != null && spawnPoints.Length > 0;
+
+        ApplyVoiceSettings();
     }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        if (player != runner.LocalPlayer) return;
+        if (player != runner.LocalPlayer)
+            return;
 
-        if (_spawnedLocalPlayer) return;
-        if (!_sceneReady) return;
+        if (_spawnedLocalPlayer)
+            return;
+
+        if (!_sceneReady)
+            return;
 
         TrySpawnLocalPlayer(runner);
     }
@@ -160,14 +221,16 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         );
 
         runner.SetPlayerObject(runner.LocalPlayer, playerObj);
+
         _spawnedLocalPlayer = true;
 
         Debug.Log($"FusionBoot: Spawned local player at spawn index {index}");
+
+        ApplyVoiceSettings();
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
-        // Player object association lets us find/despawn the leaving player's avatar.
         if (runner.TryGetPlayerObject(player, out var obj))
         {
             if (obj != null && obj.HasStateAuthority)
@@ -180,6 +243,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {
         Debug.Log($"FusionBoot: Shutdown {shutdownReason}");
+
         if (joinButtonRemote != null)
             joinButtonRemote.interactable = true;
 
