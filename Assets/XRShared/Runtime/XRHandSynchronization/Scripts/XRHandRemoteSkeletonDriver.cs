@@ -40,8 +40,8 @@ namespace Fusion.Addons.XRHandsSync
                 {
                     Debug.LogError("Missing bone: " + jointId);
                 }
-                //     if (jointId == XRHandJointID.Wrist)
-                //       continue;
+                // if (jointId == XRHandJointID.BeginMarker)
+                //   continue;
                 m_JointLocalPoses[i] = pose;
                 if (debugAppliedPoses) appliedPoses[i] = pose;
             }
