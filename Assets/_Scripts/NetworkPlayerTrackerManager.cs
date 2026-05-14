@@ -82,49 +82,43 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
         srcLeftHand = xrealLeftHand;
     }
 
-    private void OnEnable()
+    private void LateUpdate()
     {
-        Application.onBeforeRender += ForceHandTransforms;
-    }
-
-    private void OnDisable()
-    {
-        Application.onBeforeRender -= ForceHandTransforms;
-    }
-
-    private void ForceHandTransforms()
-    {
-        if (!Object)
+        if (!Object || !Object.HasStateAuthority)
             return;
 
         // HEAD
-        if (netHead)
+        if (srcHead)
         {
-            netHead.position = HeadPos;
-            netHead.rotation = HeadRot;
+            HeadPos = srcHead.position;
+            HeadRot = srcHead.rotation;
         }
 
-        // RIGHT
-        if (netRightHand)
+        // RIGHT HAND
+        if (srcRightHand)
         {
-            netRightHand.gameObject.SetActive(RightHandTracked);
+            bool isTracked = srcRightHand.gameObject.activeInHierarchy;
 
-            if (RightHandTracked)
+            RightHandTracked = isTracked;
+
+            if (isTracked)
             {
-                netRightHand.position = RightHandPos;
-                netRightHand.rotation = RightHandRot;
+                RightHandPos = srcRightHand.position;
+                RightHandRot = srcRightHand.rotation;
             }
         }
 
-        // LEFT
-        if (netLeftHand)
+        // LEFT HAND
+        if (srcLeftHand)
         {
-            netLeftHand.gameObject.SetActive(LeftHandTracked);
+            bool isTracked = srcLeftHand.gameObject.activeInHierarchy;
 
-            if (LeftHandTracked)
+            LeftHandTracked = isTracked;
+
+            if (isTracked)
             {
-                netLeftHand.position = LeftHandPos;
-                netLeftHand.rotation = LeftHandRot;
+                LeftHandPos = srcLeftHand.position;
+                LeftHandRot = srcLeftHand.rotation;
             }
         }
     }

@@ -764,6 +764,10 @@ PrefabInstance:
       propertyPath: SortKey
       value: 3976531758
       objectReference: {fileID: 0}
+    - target: {fileID: 7615339908622557654, guid: 827365180285f0247b4f34fd2cd8f2c0, type: 3}
+      propertyPath: m_RootTransform
+      value: 
+      objectReference: {fileID: 5945681266610374079}
     - target: {fileID: 8065304496457682516, guid: 827365180285f0247b4f34fd2cd8f2c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -876,6 +880,10 @@ PrefabInstance:
       propertyPath: adaptRenderersToTrackingStatus
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3909069144037259432, guid: 529449d69b776ef4bbbb9422cdac0895, type: 3}
+      propertyPath: m_RootTransform
+      value: 
+      objectReference: {fileID: 1506837216265177523}
     - target: {fileID: 6248242846905531826, guid: 529449d69b776ef4bbbb9422cdac0895, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
