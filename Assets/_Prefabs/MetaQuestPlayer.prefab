@@ -228,7 +228,7 @@ MonoBehaviour:
   disabledGameObjectWhenNotTracked: 0
   _side: 2
   indexTipFollowerTransform: {fileID: 0}
-  wristFollowerTransform: {fileID: 0}
+  wristFollowerTransform: {fileID: 3802617726260350565}
 --- !u!114 &3966235833572739474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,7 +406,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 0}
   handRoot: {fileID: 3802617726260350565}
-  applyWristPoseToHandRoot: 0
+  applyWristPoseToHandRoot: 1
   forceWristPoseToIdentity: 0
   isFingerTrackingAvailable: 1
   isControllerTrackingAvailable: 0
@@ -688,7 +688,7 @@ MonoBehaviour:
   disabledGameObjectWhenNotTracked: 0
   _side: 1
   indexTipFollowerTransform: {fileID: 0}
-  wristFollowerTransform: {fileID: 0}
+  wristFollowerTransform: {fileID: 5141703672639967889}
 --- !u!114 &4424054850255892917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,7 +866,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 0}
   handRoot: {fileID: 5141703672639967889}
-  applyWristPoseToHandRoot: 0
+  applyWristPoseToHandRoot: 1
   forceWristPoseToIdentity: 0
   isFingerTrackingAvailable: 1
   isControllerTrackingAvailable: 0
