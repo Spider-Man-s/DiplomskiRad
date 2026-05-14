@@ -82,9 +82,9 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
         srcLeftHand = xrealLeftHand;
     }
 
-    public override void FixedUpdateNetwork()
+    private void LateUpdate()
     {
-        if (!Object.HasStateAuthority)
+        if (!Object || !Object.HasStateAuthority)
             return;
 
         // HEAD
@@ -121,7 +121,6 @@ public class NetworkPlayerTrackerManager : NetworkBehaviour
                 LeftHandRot = srcLeftHand.rotation;
             }
         }
-
     }
 
     public override void Render()
