@@ -136,7 +136,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6248242846905531826}
   - component: {fileID: 1464583645205850118}
-  - component: {fileID: 3114334112716418776}
   - component: {fileID: 4161749482556525207}
   - component: {fileID: 7910949589353298178}
   m_Layer: 0
@@ -180,31 +179,9 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 3114334112716418776}
   - {fileID: 4161749482556525207}
+  - {fileID: 6301002821247524252}
   ForceRemoteRenderTimeframe: 0
---- !u!114 &3114334112716418776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614620008565977477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dbadae3d5e5bed42ab90157442156f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  adaptRenderersToTrackingStatus: 1
-  hideRenderersForStateAuthority: 0
-  allowPositionModifiers: 1
-  addHapticFeedbackOnPositionModifications: 1
-  positionOffsetForMaxHapticFeedback: 0.3
-  positionOffsetHapticAmplitude: 1
-  positionOffsetHapticDuration: 0.05
-  localHardwareRigPartGameObject: {fileID: 0}
-  _TrackingStatus: 0
-  _side: 2
 --- !u!114 &4161749482556525207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,6 +409,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6143986853475649751}
+  - component: {fileID: 6301002821247524252}
   m_Layer: 0
   m_Name: R_Wrist
   m_TagString: Untagged
@@ -460,6 +438,28 @@ Transform:
   - {fileID: 951182132117287906}
   m_Father: {fileID: 6248242846905531826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6301002821247524252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3047048072007722651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbadae3d5e5bed42ab90157442156f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adaptRenderersToTrackingStatus: 1
+  hideRenderersForStateAuthority: 0
+  allowPositionModifiers: 1
+  addHapticFeedbackOnPositionModifications: 1
+  positionOffsetForMaxHapticFeedback: 0.3
+  positionOffsetHapticAmplitude: 1
+  positionOffsetHapticDuration: 0.05
+  localHardwareRigPartGameObject: {fileID: 0}
+  _TrackingStatus: 0
+  _side: 2
 --- !u!1 &3083338854935392809
 GameObject:
   m_ObjectHideFlags: 0
