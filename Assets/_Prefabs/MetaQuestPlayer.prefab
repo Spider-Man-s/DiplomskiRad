@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MetaQuestPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 2227506386554612521, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2611838667314529355, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
@@ -227,7 +231,7 @@ MonoBehaviour:
   _trackingStatus: 0
   disabledGameObjectWhenNotTracked: 0
   _side: 2
-  indexTipFollowerTransform: {fileID: 0}
+  indexTipFollowerTransform: {fileID: 4262534724810978177}
   wristFollowerTransform: {fileID: 3802617726260350565}
 --- !u!114 &3966235833572739474
 MonoBehaviour:
@@ -687,7 +691,7 @@ MonoBehaviour:
   _trackingStatus: 0
   disabledGameObjectWhenNotTracked: 0
   _side: 1
-  indexTipFollowerTransform: {fileID: 0}
+  indexTipFollowerTransform: {fileID: 8968677849358441588}
   wristFollowerTransform: {fileID: 5141703672639967889}
 --- !u!114 &4424054850255892917
 MonoBehaviour:
