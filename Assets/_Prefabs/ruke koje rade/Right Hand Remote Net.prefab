@@ -135,9 +135,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6248242846905531826}
-  - component: {fileID: 1464583645205850118}
-  - component: {fileID: 4161749482556525207}
-  - component: {fileID: 7910949589353298178}
   m_Layer: 0
   m_Name: Right Hand Remote Net
   m_TagString: Untagged
@@ -162,116 +159,6 @@ Transform:
   - {fileID: 4228609639653086795}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1464583645205850118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614620008565977477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SortKey: 701321609
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 4161749482556525207}
-  - {fileID: 6301002821247524252}
-  ForceRemoteRenderTimeframe: 0
---- !u!114 &4161749482556525207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614620008565977477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25b949dbf89921a42bb29d85b7c43d25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultBonePositions: {fileID: 11400000, guid: 5601f7bacce04d34b8daf65b68bf34b2, type: 2}
-  handSynchronizationScriptable: {fileID: 11400000, guid: 41ad88f621d56a14d948ebc97c2278a0, type: 2}
-  _CurrentHandTrackingMode: 0
-  _IsDataHighConfidence:
-    _value: 0
-  _HandScale: 0
-  useRotationsInterpolation: 1
-  debugDisplayNetworkStateForLocaluser: 0
-  debugDisplayCompressionImprovements: 0
---- !u!114 &7910949589353298178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614620008565977477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eadb23de7fc4dc4a9cea0f597add098, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_XRHandTrackingEvents: {fileID: 0}
-  m_RootTransform: {fileID: 6143986853475649751}
-  m_JointTransformReferences:
-  - m_XRHandJointID: 1
-    m_JointTransform: {fileID: 6143986853475649751}
-  - m_XRHandJointID: 7
-    m_JointTransform: {fileID: 4172417328697671727}
-  - m_XRHandJointID: 8
-    m_JointTransform: {fileID: 4896392476267397034}
-  - m_XRHandJointID: 9
-    m_JointTransform: {fileID: 5796504089152526601}
-  - m_XRHandJointID: 10
-    m_JointTransform: {fileID: 7543752545118472118}
-  - m_XRHandJointID: 11
-    m_JointTransform: {fileID: 3016131308626481163}
-  - m_XRHandJointID: 22
-    m_JointTransform: {fileID: 4618161313669403493}
-  - m_XRHandJointID: 23
-    m_JointTransform: {fileID: 3238328520296794145}
-  - m_XRHandJointID: 24
-    m_JointTransform: {fileID: 6073856224104757542}
-  - m_XRHandJointID: 25
-    m_JointTransform: {fileID: 1963670343434438530}
-  - m_XRHandJointID: 26
-    m_JointTransform: {fileID: 1229029993244736752}
-  - m_XRHandJointID: 12
-    m_JointTransform: {fileID: 3706993099750054071}
-  - m_XRHandJointID: 13
-    m_JointTransform: {fileID: 5029029394000487224}
-  - m_XRHandJointID: 14
-    m_JointTransform: {fileID: 4801330119751944001}
-  - m_XRHandJointID: 15
-    m_JointTransform: {fileID: 7932324228679240855}
-  - m_XRHandJointID: 16
-    m_JointTransform: {fileID: 5935274723783849986}
-  - m_XRHandJointID: 17
-    m_JointTransform: {fileID: 51199680073144473}
-  - m_XRHandJointID: 18
-    m_JointTransform: {fileID: 6598954251480002902}
-  - m_XRHandJointID: 19
-    m_JointTransform: {fileID: 6763945159666632933}
-  - m_XRHandJointID: 20
-    m_JointTransform: {fileID: 1323491908817763951}
-  - m_XRHandJointID: 21
-    m_JointTransform: {fileID: 2579089596820998786}
-  - m_XRHandJointID: 3
-    m_JointTransform: {fileID: 951182132117287906}
-  - m_XRHandJointID: 4
-    m_JointTransform: {fileID: 3838046503846861852}
-  - m_XRHandJointID: 5
-    m_JointTransform: {fileID: 8087727576878844742}
-  - m_XRHandJointID: 6
-    m_JointTransform: {fileID: 3543390220174475129}
-  - m_XRHandJointID: 2
-    m_JointTransform: {fileID: 7546678397395019961}
-  debugAppliedPoses: 0
-  appliedPoses: []
 --- !u!1 &1719310147377784981
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,6 +297,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6143986853475649751}
   - component: {fileID: 6301002821247524252}
+  - component: {fileID: 5620787115441319278}
+  - component: {fileID: 3909069144037259432}
+  - component: {fileID: 8546456021985064018}
   m_Layer: 0
   m_Name: R_Wrist
   m_TagString: Untagged
@@ -450,9 +340,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dbadae3d5e5bed42ab90157442156f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adaptRenderersToTrackingStatus: 1
+  adaptRenderersToTrackingStatus: 0
   hideRenderersForStateAuthority: 0
-  allowPositionModifiers: 1
+  allowPositionModifiers: 0
   addHapticFeedbackOnPositionModifications: 1
   positionOffsetForMaxHapticFeedback: 0.3
   positionOffsetHapticAmplitude: 1
@@ -460,6 +350,116 @@ MonoBehaviour:
   localHardwareRigPartGameObject: {fileID: 0}
   _TrackingStatus: 0
   _side: 2
+--- !u!114 &5620787115441319278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3047048072007722651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b949dbf89921a42bb29d85b7c43d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultBonePositions: {fileID: 11400000, guid: 5601f7bacce04d34b8daf65b68bf34b2, type: 2}
+  handSynchronizationScriptable: {fileID: 11400000, guid: 41ad88f621d56a14d948ebc97c2278a0, type: 2}
+  _CurrentHandTrackingMode: 0
+  _IsDataHighConfidence:
+    _value: 0
+  _HandScale: 0
+  useRotationsInterpolation: 1
+  debugDisplayNetworkStateForLocaluser: 0
+  debugDisplayCompressionImprovements: 0
+--- !u!114 &3909069144037259432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3047048072007722651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eadb23de7fc4dc4a9cea0f597add098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_XRHandTrackingEvents: {fileID: 0}
+  m_RootTransform: {fileID: 6143986853475649751}
+  m_JointTransformReferences:
+  - m_XRHandJointID: 1
+    m_JointTransform: {fileID: 6143986853475649751}
+  - m_XRHandJointID: 7
+    m_JointTransform: {fileID: 4172417328697671727}
+  - m_XRHandJointID: 8
+    m_JointTransform: {fileID: 4896392476267397034}
+  - m_XRHandJointID: 9
+    m_JointTransform: {fileID: 5796504089152526601}
+  - m_XRHandJointID: 10
+    m_JointTransform: {fileID: 7543752545118472118}
+  - m_XRHandJointID: 11
+    m_JointTransform: {fileID: 3016131308626481163}
+  - m_XRHandJointID: 22
+    m_JointTransform: {fileID: 4618161313669403493}
+  - m_XRHandJointID: 23
+    m_JointTransform: {fileID: 3238328520296794145}
+  - m_XRHandJointID: 24
+    m_JointTransform: {fileID: 6073856224104757542}
+  - m_XRHandJointID: 25
+    m_JointTransform: {fileID: 1963670343434438530}
+  - m_XRHandJointID: 26
+    m_JointTransform: {fileID: 1229029993244736752}
+  - m_XRHandJointID: 12
+    m_JointTransform: {fileID: 3706993099750054071}
+  - m_XRHandJointID: 13
+    m_JointTransform: {fileID: 5029029394000487224}
+  - m_XRHandJointID: 14
+    m_JointTransform: {fileID: 4801330119751944001}
+  - m_XRHandJointID: 15
+    m_JointTransform: {fileID: 7932324228679240855}
+  - m_XRHandJointID: 16
+    m_JointTransform: {fileID: 5935274723783849986}
+  - m_XRHandJointID: 17
+    m_JointTransform: {fileID: 51199680073144473}
+  - m_XRHandJointID: 18
+    m_JointTransform: {fileID: 6598954251480002902}
+  - m_XRHandJointID: 19
+    m_JointTransform: {fileID: 6763945159666632933}
+  - m_XRHandJointID: 20
+    m_JointTransform: {fileID: 1323491908817763951}
+  - m_XRHandJointID: 21
+    m_JointTransform: {fileID: 2579089596820998786}
+  - m_XRHandJointID: 3
+    m_JointTransform: {fileID: 951182132117287906}
+  - m_XRHandJointID: 4
+    m_JointTransform: {fileID: 3838046503846861852}
+  - m_XRHandJointID: 5
+    m_JointTransform: {fileID: 8087727576878844742}
+  - m_XRHandJointID: 6
+    m_JointTransform: {fileID: 3543390220174475129}
+  - m_XRHandJointID: 2
+    m_JointTransform: {fileID: 7546678397395019961}
+  debugAppliedPoses: 0
+  appliedPoses: []
+--- !u!114 &8546456021985064018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3047048072007722651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 701321609
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 0}
+  - {fileID: 6301002821247524252}
+  ForceRemoteRenderTimeframe: 0
 --- !u!1 &3083338854935392809
 GameObject:
   m_ObjectHideFlags: 0
