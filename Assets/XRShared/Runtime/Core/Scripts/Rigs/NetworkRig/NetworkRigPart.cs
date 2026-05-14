@@ -137,7 +137,8 @@ namespace Fusion.XR.Shared.Core
 
         protected virtual void UpdateWithLocalHardwareRigPart()
         {
-            return;
+            if (!Object.HasStateAuthority)
+                return;
             if (_localHardwareRigPart == null) return;
             _localHardwareRigPart.UpdateTrackingStatus();
             TrackingStatus = _localHardwareRigPart.TrackingStatus;
@@ -148,7 +149,9 @@ namespace Fusion.XR.Shared.Core
 
         protected virtual void ExtrapolateWithLocalHardwareRigPart()
         {
-            return;
+            if (!Object.HasStateAuthority)
+                return;
+
             if (_localHardwareRigPart == null) return;
             var hardwareRigPartPose = _localHardwareRigPart.RigPartPose;
             transform.position = hardwareRigPartPose.position;

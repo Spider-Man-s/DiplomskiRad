@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1150967932602138315, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       propertyPath: applyWristPoseToHandRoot
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1150967932602138315, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       propertyPath: forceWristPoseToIdentity
@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8055008406965272897, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       propertyPath: applyWristPoseToHandRoot
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8055008406965272897, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       propertyPath: forceWristPoseToIdentity
