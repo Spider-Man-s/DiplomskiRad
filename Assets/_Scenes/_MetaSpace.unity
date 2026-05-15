@@ -566,6 +566,10 @@ PrefabInstance:
       propertyPath: joinButtonColocation
       value: 
       objectReference: {fileID: 1613358373}
+    - target: {fileID: 5007510422871024335, guid: e9601ec709cc17a45a75b900843d0dbb, type: 3}
+      propertyPath: colocationAvatarToggle
+      value: 
+      objectReference: {fileID: 3417881270272812149}
     - target: {fileID: 6950459243841775738, guid: e9601ec709cc17a45a75b900843d0dbb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.6881403
@@ -683,6 +687,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d205c6227eada95469bc5acae97632d4, type: 3}
+--- !u!114 &3417881270272812149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6940147969055374940, guid: d205c6227eada95469bc5acae97632d4, type: 3}
+  m_PrefabInstance: {fileID: 3417881270272812148}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5715416335952834192 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7787556508086200299, guid: d205c6227eada95469bc5acae97632d4, type: 3}

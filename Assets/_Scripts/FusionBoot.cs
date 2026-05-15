@@ -18,6 +18,9 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
     [Header("Voice Chat")]
     [SerializeField] private Toggle voiceChatToggle;
 
+    [Header("Colocation Avatar Visuals")]
+    [SerializeField] private Toggle colocationAvatarToggle;
+
     [Header("Fusion")]
     [SerializeField] private NetworkObject playerPrefab;
 
@@ -29,6 +32,9 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
     // TRUE = VC enabled
     private static bool VoiceChatEnabled = true;
+
+    // TRUE = avatars visible in Colocation
+    public static bool ColocationAvatarsVisible = false;
 
     private void Awake()
     {
@@ -44,6 +50,18 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
             {
                 VoiceChatEnabled = value;
                 ApplyVoiceSettings();
+            });
+        }
+
+        // ---------------- COLOCATION AVATAR TOGGLE ----------------
+        if (colocationAvatarToggle != null)
+        {
+            colocationAvatarToggle.isOn = ColocationAvatarsVisible;
+
+            colocationAvatarToggle.onValueChanged.RemoveAllListeners();
+            colocationAvatarToggle.onValueChanged.AddListener((value) =>
+            {
+                ColocationAvatarsVisible = value;
             });
         }
 

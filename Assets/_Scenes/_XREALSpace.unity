@@ -537,6 +537,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &820866605 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6940147969055374940, guid: d205c6227eada95469bc5acae97632d4, type: 3}
+  m_PrefabInstance: {fileID: 820866601}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +737,10 @@ PrefabInstance:
       propertyPath: joinButtonColocation
       value: 
       objectReference: {fileID: 820866603}
+    - target: {fileID: 5007510422871024335, guid: e9601ec709cc17a45a75b900843d0dbb, type: 3}
+      propertyPath: colocationAvatarToggle
+      value: 
+      objectReference: {fileID: 820866605}
     - target: {fileID: 6950459243841775738, guid: e9601ec709cc17a45a75b900843d0dbb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.6881403
@@ -783,6 +798,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 270744635265193369, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
+      propertyPath: SortKey
+      value: 3616899934
+      objectReference: {fileID: 0}
     - target: {fileID: 2594579203632379755, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.18
@@ -822,6 +841,10 @@ PrefabInstance:
     - target: {fileID: 2594579203632379755, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878803259122319427, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
+      propertyPath: SortKey
+      value: 2459347568
       objectReference: {fileID: 0}
     - target: {fileID: 6558273966950147170, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
       propertyPath: SortKey
