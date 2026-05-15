@@ -24,8 +24,17 @@ public class ColocationMesh : MonoBehaviour
 
         foreach (Renderer r in renderersToChange)
         {
-            if (r != null)
-                r.material = materialToApply;
+            if (r == null)
+                continue;
+
+            Material[] mats = r.materials;
+
+            for (int i = 0; i < mats.Length; i++)
+            {
+                mats[i] = materialToApply;
+            }
+
+            r.materials = mats;
         }
     }
 }
