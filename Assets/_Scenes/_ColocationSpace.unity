@@ -472,6 +472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BOX 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1902119716997305347, guid: e249f757711715a42a123891a98b1be7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5730117747177472319, guid: e249f757711715a42a123891a98b1be7, type: 3}
       propertyPath: SortKey
       value: 1272447479

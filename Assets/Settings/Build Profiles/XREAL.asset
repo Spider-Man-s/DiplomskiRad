@@ -21,11 +21,11 @@ MonoBehaviour:
   m_OverrideGlobalSceneList: 1
   m_Scenes:
   - m_enabled: 1
-    m_path: Assets/_Scenes/XREALSpace.unity
+    m_path: Assets/_Scenes/_XREALSpace.unity
   - m_enabled: 1
-    m_path: Assets/_Scenes/MRSpace.unity
-  - m_enabled: 0
-    m_path: Assets/_Scenes/HandsDemoScene 1.unity
+    m_path: Assets/_Scenes/_RemoteSpace.unity
+  - m_enabled: 1
+    m_path: Assets/_Scenes/_ColocationSpace.unity
   m_ScriptingDefines:
   - XREAL_BUILD
   m_PlayerSettingsYaml:
@@ -855,7 +855,7 @@ MonoBehaviour:
     - line: '|   webGLCloseOnQuit: 0'
     - line: '|   webWasm2023: 0'
     - line: '|   scriptingDefineSymbols:'
-    - line: '|     Android: OVR_DISABLE_HAND_PINCH_BUTTON_MAPPING;USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS;FUSION_LOGLEVEL_INFO;FUSION_WEAVER;FUSION2;FUSION_2;FUSION_2_0;FUSION_2_0_9;FUSION_2_OR_NEWER;FUSION_2_0_OR_NEWER;PHOTON_VOICE_DEFINED'
+    - line: '|     Android: OVR_DISABLE_HAND_PINCH_BUTTON_MAPPING;USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS;FUSION_LOGLEVEL_INFO;FUSION_WEAVER;FUSION2;FUSION_2;FUSION_2_0;FUSION_2_0_9;FUSION_2_OR_NEWER;FUSION_2_0_OR_NEWER;PHOTON_VOICE_DEFINED;PHOTON_VOICE_AVAILABLE;XRHANDS_SYNCHRONIZATION_ADDON_AVAILABLE;XRSHARED_CORE_ADDON_AVAILABLE'
     - line: '|     EmbeddedLinux: PHOTON_VOICE_DEFINED'
     - line: '|     GameCoreScarlett: PHOTON_VOICE_DEFINED'
     - line: '|     GameCoreXboxOne: PHOTON_VOICE_DEFINED'

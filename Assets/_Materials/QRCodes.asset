@@ -27,3 +27,23 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: 1
     m_Texture: {fileID: 2800000, guid: de1d567953eec5a4e94ad13b91f7105a, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5599734263736051905
+      m_GuidHigh: 986735867996534191
+    m_SerializedTextureGuid:
+      m_GuidLow: 18344487680802465625
+      m_GuidHigh: 2542398530884000634
+    m_Size: {x: 0.175, y: 0.175}
+    m_SpecifySize: 1
+    m_Name: XREALImage
+    m_Texture: {fileID: 2800000, guid: 38c2a759b65afe947adbd05efe694823, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5104160843367415012
+      m_GuidHigh: 15161413891670483852
+    m_SerializedTextureGuid:
+      m_GuidLow: 5522803865597345725
+      m_GuidHigh: 13222339525500067769
+    m_Size: {x: 0.175, y: 0.175}
+    m_SpecifySize: 1
+    m_Name: Merged marker
+    m_Texture: {fileID: 2800000, guid: cd157fbdf0da4ca4b9df0955be2f7fb7, type: 3}

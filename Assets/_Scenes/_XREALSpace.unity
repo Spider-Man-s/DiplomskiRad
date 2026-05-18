@@ -846,6 +846,10 @@ PrefabInstance:
       propertyPath: SortKey
       value: 2459347568
       objectReference: {fileID: 0}
+    - target: {fileID: 3457921745677069015, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
+      propertyPath: m_TrackedImagePrefab
+      value: 
+      objectReference: {fileID: 100000, guid: 1ccf6afbbd77e9c47bc68cee3f4dfbbd, type: 3}
     - target: {fileID: 6558273966950147170, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
       propertyPath: SortKey
       value: 137663556
@@ -862,7 +866,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 658506834530875626, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
