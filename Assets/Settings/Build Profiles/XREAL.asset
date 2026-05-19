@@ -21,6 +21,10 @@ MonoBehaviour:
   m_OverrideGlobalSceneList: 1
   m_Scenes:
   - m_enabled: 1
+    m_path: Assets/Samples/XREAL XR Plugin/3.1.0/MarkerTracking/MarkerTracking.unity
+  - m_enabled: 1
+    m_path: Assets/Samples/XREAL XR Plugin/3.1.0/AR Features/ImageTracking/BasicImageTracking.unity
+  - m_enabled: 1
     m_path: Assets/_Scenes/_XREALSpace.unity
   - m_enabled: 1
     m_path: Assets/_Scenes/_RemoteSpace.unity
