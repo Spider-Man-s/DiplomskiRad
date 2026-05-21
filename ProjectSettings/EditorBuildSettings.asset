@@ -6,13 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/_XREALSpace.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/SamplesResources/Scenes/0-Main.unity
+    guid: a09cb257d566c489595b16ab37547666
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 5de985cd9e915494ea3d86154fad8483, type: 2}
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 140ee1005e951224a86fdab81d280d3a, type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b548ed905e7e44c488d22540c084eb29, type: 2}
-    com.unity.xr.management.xrealsettings: {fileID: 11400000, guid: 98cb777ea5f8f8d42a04a3807cd9f221, type: 2}
-    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 6f479c6edfef7e545b7fe10834dfe430, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 676ab4280246a4f4aa7946d73ba9056c,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b548ed905e7e44c488d22540c084eb29,
+      type: 2}
+    com.unity.xr.management.xrealsettings: {fileID: 11400000, guid: 98cb777ea5f8f8d42a04a3807cd9f221,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 6f479c6edfef7e545b7fe10834dfe430,
+      type: 2}
   m_UseUCBPForAssetBundles: 0
