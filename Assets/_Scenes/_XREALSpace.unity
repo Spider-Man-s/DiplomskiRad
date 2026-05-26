@@ -861,7 +861,7 @@ PrefabInstance:
     - target: {fileID: 3457921745677069015, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
       propertyPath: m_TrackedImagePrefab
       value: 
-      objectReference: {fileID: 100000, guid: d734e0f1e8152164f912667b484f1bb9, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3787335438667409531, guid: 82c92a8b41f180546b4f15cd065faaa8, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
