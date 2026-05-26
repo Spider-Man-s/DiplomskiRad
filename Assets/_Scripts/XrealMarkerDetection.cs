@@ -9,7 +9,8 @@ public class XrealMarkerDetection : MonoBehaviour
     private ARTrackedImageManager trackedImageManager;
 
     [SerializeField]
-    private GameObject boxPrefab;
+    private GameObject ballPrefab;
+    private bool locked;
 
     private readonly Dictionary<string, GameObject> spawnedObjects =
         new Dictionary<string, GameObject>();
@@ -54,7 +55,7 @@ public class XrealMarkerDetection : MonoBehaviour
         Debug.Log($"Rotation: {image.transform.rotation.eulerAngles}");
 
         GameObject obj = Instantiate(
-            boxPrefab,
+            ballPrefab,
             image.transform.position - image.transform.up * 0.1f,
             image.transform.rotation
         );
@@ -67,6 +68,13 @@ public class XrealMarkerDetection : MonoBehaviour
 
     private void UpdateMarkerObject(ARTrackedImage image)
     {
+        if (locked)
+            return;
+
+        if (image.trackingState != TrackingState.Tracking)
+            return;
+
+        locked = true;
         string id = image.trackableId.ToString();
 
         if (!spawnedObjects.TryGetValue(id, out GameObject obj))
