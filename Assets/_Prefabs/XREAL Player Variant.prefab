@@ -54,6 +54,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7695254148612354484, guid: 3182b5074a6bf3d4887a44a38cbb9cb6, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158481709739840577, guid: 3182b5074a6bf3d4887a44a38cbb9cb6, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -161,10 +165,7 @@ PrefabInstance:
     - {fileID: 145585682052400068, guid: 55fe118f63c55e540923112274c06b39, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3811596598756183298, guid: 55fe118f63c55e540923112274c06b39, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 548400144314281723}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55fe118f63c55e540923112274c06b39, type: 3}
 --- !u!1 &532705221326540659 stripped
 GameObject:
@@ -176,38 +177,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3811596598756183297, guid: 55fe118f63c55e540923112274c06b39, type: 3}
   m_PrefabInstance: {fileID: 4223357205664434556}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1043115382820570238 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3811596598756183298, guid: 55fe118f63c55e540923112274c06b39, type: 3}
-  m_PrefabInstance: {fileID: 4223357205664434556}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &548400144314281723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1043115382820570238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44a86a505c34b934492d5851b2b5bf41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trackedImageManager: {fileID: 3457921745677069015}
-  boxPrefab: {fileID: 8791383988929833762, guid: dc6ed849096cadf49bbef395fd1f5a79, type: 3}
 --- !u!1 &2807111326273493226 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2047094802368352662, guid: 55fe118f63c55e540923112274c06b39, type: 3}
   m_PrefabInstance: {fileID: 4223357205664434556}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3457921745677069015 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1540618656098624427, guid: 55fe118f63c55e540923112274c06b39, type: 3}
-  m_PrefabInstance: {fileID: 4223357205664434556}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1043115382820570238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dea56a9eaadd1c439095de4f9a371cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
