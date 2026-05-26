@@ -55,7 +55,7 @@ public class XrealMarkerDetection : MonoBehaviour
 
         GameObject obj = Instantiate(
             boxPrefab,
-            image.transform.position,
+            image.transform.position - image.transform.up * 0.1f,
             image.transform.rotation
         );
 
@@ -77,7 +77,8 @@ public class XrealMarkerDetection : MonoBehaviour
             obj.SetActive(true);
 
             // Optional explicit updates
-            obj.transform.position = image.transform.position;
+            obj.transform.position = image.transform.position -
+             image.transform.up * 0.1f;
             obj.transform.rotation = image.transform.rotation;
         }
         else
