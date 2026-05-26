@@ -1,14 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Meta.XR.MRUtilityKit;
 
 public class MetaQRCodes : MonoBehaviour
 {
     [SerializeField] private GameObject boxPrefab;
-    [SerializeField] private Vector3 localOffset = new Vector3(0f, 0.02f, 0f);
 
-    private readonly Dictionary<MRUKTrackable, GameObject> spawnedObjects = new();
+    // Measured correction offset
+    [SerializeField]
+    private Vector3 correctionOffset =
+        new Vector3(-0.23f, -0.05f, 1.22f);
+
+    private bool spawned;
 
     private IEnumerator Start()
     {
@@ -18,7 +21,6 @@ public class MetaQRCodes : MonoBehaviour
         }
 
         MRUK.Instance.SceneSettings.TrackableAdded.AddListener(OnTrackableAdded);
-        MRUK.Instance.SceneSettings.TrackableRemoved.AddListener(OnTrackableRemoved);
     }
 
     private void OnDestroy()
@@ -27,30 +29,60 @@ public class MetaQRCodes : MonoBehaviour
             return;
 
         MRUK.Instance.SceneSettings.TrackableAdded.RemoveListener(OnTrackableAdded);
-        MRUK.Instance.SceneSettings.TrackableRemoved.RemoveListener(OnTrackableRemoved);
     }
 
     private void OnTrackableAdded(MRUKTrackable trackable)
     {
+        if (spawned)
+            return;
+
         if (trackable.TrackableType != OVRAnchor.TrackableType.QRCode)
             return;
 
         Debug.Log("QR detected: " + trackable.MarkerPayloadString);
 
-        GameObject box = Instantiate(boxPrefab, trackable.transform);
+        Vector3 correctedPosition =
+            trackable.transform.position + correctionOffset;
 
-        box.transform.localPosition = localOffset;
-        box.transform.localRotation = Quaternion.identity;
+        Quaternion qrRotation =
+            trackable.transform.rotation;
 
-        spawnedObjects[trackable] = box;
+        Debug.Log($"Raw QR Position: {trackable.transform.position}");
+        Debug.Log($"Corrected Position: {correctedPosition}");
+
+        Instantiate(
+            boxPrefab,
+            correctedPosition,
+            qrRotation
+        );
+
+        spawned = true;
     }
 
-    private void OnTrackableRemoved(MRUKTrackable trackable)
+    private void Update()
     {
-        if (!spawnedObjects.TryGetValue(trackable, out GameObject obj))
-            return;
+        foreach (var trackable in FindObjectsOfType<MRUKTrackable>())
+        {
+            if (trackable.TrackableType != OVRAnchor.TrackableType.QRCode)
+                continue;
 
-        Destroy(obj);
-        spawnedObjects.Remove(trackable);
+            Debug.DrawRay(
+                trackable.transform.position,
+                trackable.transform.up * 0.2f,
+                Color.green
+            );
+
+            Debug.DrawRay(
+                trackable.transform.position,
+                trackable.transform.forward * 0.2f,
+                Color.blue
+            );
+
+            Debug.DrawRay(
+                trackable.transform.position,
+                trackable.transform.right * 0.2f,
+                Color.red
+            );
+        }
     }
 }

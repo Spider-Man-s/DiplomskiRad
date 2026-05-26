@@ -1,16 +1,18 @@
-using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+
 public class XrealMarkerDetection : MonoBehaviour
 {
+    [SerializeField]
+    private ARTrackedImageManager trackedImageManager;
 
+    [SerializeField]
+    private GameObject boxPrefab;
 
-
-    [SerializeField] private ARTrackedImageManager trackedImageManager;
-    [SerializeField] private GameObject boxPrefab;
-
-    private GameObject spawnedBox;
+    private readonly Dictionary<string, GameObject> spawnedObjects =
+        new Dictionary<string, GameObject>();
 
     private void OnEnable()
     {
@@ -26,50 +28,74 @@ public class XrealMarkerDetection : MonoBehaviour
     {
         foreach (ARTrackedImage image in args.added)
         {
-            HandleMarkerFound(image);
+            CreateMarkerObject(image);
         }
 
         foreach (ARTrackedImage image in args.updated)
         {
-            if (image.trackingState == TrackingState.Tracking)
-            {
-                HandleMarkerFound(image);
-            }
+            UpdateMarkerObject(image);
         }
 
         foreach (ARTrackedImage image in args.removed)
         {
-            Debug.Log("Marker removed: " + GetMarkerId(image));
-
-            if (spawnedBox != null)
-            {
-                spawnedBox.SetActive(false);
-            }
+            RemoveMarkerObject(image);
         }
     }
 
-    private void HandleMarkerFound(ARTrackedImage image)
+    private void CreateMarkerObject(ARTrackedImage image)
     {
-        int markerId = GetMarkerId(image);
+        string id = image.trackableId.ToString();
 
-        Debug.Log("Marker detected. ID: " + markerId);
-        Debug.Log("Reference name: " + image.referenceImage.name);
-        Debug.Log("Tracking state: " + image.trackingState);
-        Debug.Log("Position: " + image.transform.position);
+        if (spawnedObjects.ContainsKey(id))
+            return;
 
-        if (spawnedBox == null)
+        Debug.Log($"Marker detected: {image.referenceImage.name}");
+        Debug.Log($"Position: {image.transform.position}");
+        Debug.Log($"Rotation: {image.transform.rotation.eulerAngles}");
+
+        GameObject obj = Instantiate(
+            boxPrefab,
+            image.transform.position,
+            image.transform.rotation
+        );
+
+        // This is the important part from the demo
+        obj.transform.SetParent(image.transform, false);
+
+        spawnedObjects[id] = obj;
+    }
+
+    private void UpdateMarkerObject(ARTrackedImage image)
+    {
+        string id = image.trackableId.ToString();
+
+        if (!spawnedObjects.TryGetValue(id, out GameObject obj))
+            return;
+
+        if (image.trackingState == TrackingState.Tracking)
         {
-            spawnedBox = Instantiate(boxPrefab);
+            obj.SetActive(true);
+
+            // Optional explicit updates
+            obj.transform.position = image.transform.position;
+            obj.transform.rotation = image.transform.rotation;
         }
-
-        spawnedBox.SetActive(true);
-        spawnedBox.transform.position = image.transform.position;
-        spawnedBox.transform.rotation = image.transform.rotation;
+        else
+        {
+            obj.SetActive(false);
+        }
     }
 
-    private int GetMarkerId(ARTrackedImage image)
+    private void RemoveMarkerObject(ARTrackedImage image)
     {
-        return (int)image.trackableId.subId2 & 0xFF;
-    }
+        string id = image.trackableId.ToString();
 
+        if (!spawnedObjects.TryGetValue(id, out GameObject obj))
+            return;
+
+        Destroy(obj);
+        spawnedObjects.Remove(id);
+
+        Debug.Log($"Marker removed: {id}");
+    }
 }

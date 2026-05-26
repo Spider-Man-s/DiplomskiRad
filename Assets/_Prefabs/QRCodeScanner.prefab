@@ -144,7 +144,7 @@ MonoBehaviour:
   <RoomRemovedEvent>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
-  EnableWorldLock: 1
+  EnableWorldLock: 0
   TrackingSpaceOffset:
     e00: 1
     e01: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
     RoomIndex: -1
     RoomPrefabs: []
     SceneJsons: []
-    LoadSceneOnStartup: 1
+    LoadSceneOnStartup: 0
     EnableHighFidelityScene: 0
     SeatWidth: 0.6
     SceneJson: 
@@ -193,5 +193,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec7b6578a9232949b84180eba132b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxPrefab: {fileID: 1902119716997305347, guid: e249f757711715a42a123891a98b1be7, type: 3}
-  localOffset: {x: 0, y: 0.02, z: 0}
+  boxPrefab: {fileID: 8791383988929833762, guid: dc6ed849096cadf49bbef395fd1f5a79, type: 3}

@@ -234,6 +234,8 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 6958151712812088702, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
     - {fileID: 3686330604155552911, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+    - {fileID: 1976415994398670502, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+    - {fileID: 8780199693217724744, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7887823656286205917, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       insertIndex: -1
@@ -247,7 +249,7 @@ PrefabInstance:
       addedObject: {fileID: 1540618656098624427}
     - targetCorrespondingSourceObject: {fileID: 2218496723442559054, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 145585682052400068}
+      addedObject: {fileID: 8445832510941551923}
     - targetCorrespondingSourceObject: {fileID: 4743647466011135546, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2318386696724127452}
@@ -680,9 +682,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_SerializedLibrary: {fileID: 11400000, guid: 7ae1275b8409b874ba908c4c5d24ed92, type: 2}
-  m_MaxNumberOfMovingImages: 3
-  m_TrackedImagePrefab: {fileID: 4187684006634046873, guid: 0e5aa6d1cb573ea47ad852188eb0a279, type: 3}
---- !u!114 &145585682052400068
+  m_MaxNumberOfMovingImages: 0
+  m_TrackedImagePrefab: {fileID: 8791383988929833762, guid: dc6ed849096cadf49bbef395fd1f5a79, type: 3}
+--- !u!114 &8445832510941551923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -691,12 +693,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3811596598756183298}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 251f2119baf856b4fbfbdaf563c36383, type: 3}
+  m_Script: {fileID: 11500000, guid: 44a86a505c34b934492d5851b2b5bf41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_WorldSpaceCanvasCamera: {fileID: 0}
-  m_DefaultTexture: {fileID: 2800000, guid: 0f9755aed9d629147a8146d7ba399d76, type: 3}
-  m_ScanningFrame: {fileID: 0}
+  trackedImageManager: {fileID: 1540618656098624427}
+  boxPrefab: {fileID: 8791383988929833762, guid: dc6ed849096cadf49bbef395fd1f5a79, type: 3}
 --- !u!4 &3870957011876187176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2275526217487247716, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
