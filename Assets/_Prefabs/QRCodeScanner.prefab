@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5655614679536731884}
   - component: {fileID: 1296340970249726221}
   - component: {fileID: 6335739064409100267}
-  - component: {fileID: 2202876871069773641}
   m_Layer: 0
   m_Name: QRCodeScanner
   m_TagString: Untagged
@@ -181,16 +180,3 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   _immersiveSceneDebuggerPrefab: {fileID: 0}
---- !u!114 &2202876871069773641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6803526617470798518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cec7b6578a9232949b84180eba132b3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxPrefab: {fileID: 8791383988929833762, guid: dc6ed849096cadf49bbef395fd1f5a79, type: 3}

@@ -7,6 +7,8 @@ public class XrealMarkerDetection : MonoBehaviour
 {
     [SerializeField]
     private ARTrackedImageManager trackedImageManager;
+    [SerializeField]
+    private ColocationAligner aligner;
 
     [SerializeField]
     private GameObject ballPrefab;
@@ -32,7 +34,7 @@ public class XrealMarkerDetection : MonoBehaviour
             CreateMarkerObject(image);
         }
 
-        foreach (ARTrackedImage image in args.updated)
+        /* foreach (ARTrackedImage image in args.updated)
         {
             UpdateMarkerObject(image);
         }
@@ -41,6 +43,7 @@ public class XrealMarkerDetection : MonoBehaviour
         {
             RemoveMarkerObject(image);
         }
+        */
     }
 
     private void CreateMarkerObject(ARTrackedImage image)
@@ -59,11 +62,10 @@ public class XrealMarkerDetection : MonoBehaviour
             image.transform.position - image.transform.up * 0.1f,
             image.transform.rotation
         );
-
-        // This is the important part from the demo
         obj.transform.SetParent(image.transform, false);
 
         spawnedObjects[id] = obj;
+        aligner.SetLocalMarker(obj.transform);
     }
 
     private void UpdateMarkerObject(ARTrackedImage image)

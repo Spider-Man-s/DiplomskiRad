@@ -5,8 +5,9 @@ using Meta.XR.MRUtilityKit;
 public class MetaQRCodes : MonoBehaviour
 {
     [SerializeField] private GameObject boxPrefab;
+    [SerializeField]
+    private ColocationAligner aligner;
 
-    // Measured correction offset
     [SerializeField]
     private Vector3 correctionOffset =
         new Vector3(-0.23f, -0.05f, 1.22f);
@@ -50,12 +51,13 @@ public class MetaQRCodes : MonoBehaviour
         Debug.Log($"Raw QR Position: {trackable.transform.position}");
         Debug.Log($"Corrected Position: {correctedPosition}");
 
-        Instantiate(
+        GameObject obj = Instantiate(
             boxPrefab,
             correctedPosition,
             qrRotation
         );
 
+        aligner.SetLocalMarker(obj.transform);
         spawned = true;
     }
 
