@@ -680,7 +680,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 438583742}
-  - component: {fileID: 438583743}
   m_Layer: 0
   m_Name: SceneSetup
   m_TagString: Untagged
@@ -708,22 +707,6 @@ Transform:
   - {fileID: 268316304}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &438583743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438583741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2ce94dda9dde0044b6619c2b7e2fdc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tableLength: 1.2
-  tableWidth: 0.6
-  tableHeight: 0.05
-  tableMaterial: {fileID: 2100000, guid: ce10802fb73da18439a79c6d38bc6e25, type: 2}
 --- !u!1001 &631056298
 PrefabInstance:
   m_ObjectHideFlags: 0
