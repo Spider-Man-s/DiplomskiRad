@@ -9,7 +9,7 @@ public class ManualColocationAligner : NetworkBehaviour
 
     [Header("Scene Placement Object Name")]
     [SerializeField]
-    private string placementObjectName = "QRCodePlacement";
+    private string placementObjectName = "QR_Code";
 
     [Header("Table")]
     [SerializeField]
@@ -22,29 +22,19 @@ public class ManualColocationAligner : NetworkBehaviour
     [SerializeField]
     private Vector3 tableRotation;
 
-    [Networked]
-    private Vector3 MetaPlacementPosition { get; set; }
+    // SHARED DATA
+    private Vector3 metaPosition;
+    private Quaternion metaRotation;
+    private bool metaReady;
 
-    [Networked]
-    private Quaternion MetaPlacementRotation { get; set; }
-
-    [Networked]
-    private bool MetaPlacementReady { get; set; }
-
-    [Networked]
-    private Vector3 XrealPlacementPosition { get; set; }
-
-    [Networked]
-    private Quaternion XrealPlacementRotation { get; set; }
-
-    [Networked]
-    private bool XrealPlacementReady { get; set; }
+    private Vector3 xrealPosition;
+    private Quaternion xrealRotation;
+    private bool xrealReady;
 
     private bool localConfirmed;
     private bool aligned;
     private bool tableSpawned;
 
-    // Called by UI button
     public void ConfirmPlacement()
     {
         if (localConfirmed)
@@ -56,38 +46,70 @@ public class ManualColocationAligner : NetworkBehaviour
         if (placementObject == null)
         {
             Debug.LogError(
-                $"Could not find object named: {placementObjectName}"
+                $"Could not find object: {placementObjectName}"
             );
 
             return;
         }
 
-        Transform placementTransform =
-            placementObject.transform;
+        Transform t = placementObject.transform;
 
         localConfirmed = true;
 
 #if META_BUILD
 
-        MetaPlacementPosition = placementTransform.position;
-        MetaPlacementRotation = placementTransform.rotation;
-        MetaPlacementReady = true;
+        metaPosition = t.position;
+        metaRotation = t.rotation;
+        metaReady = true;
 
-        Debug.Log(
-            $"META placement locked: {MetaPlacementPosition}"
+        Debug.Log($"META LOCAL: {metaPosition}");
+
+        RPC_SendPlacement(
+            metaPosition,
+            metaRotation,
+            true
         );
 
 #elif XREAL_BUILD
 
-        XrealPlacementPosition = placementTransform.position;
-        XrealPlacementRotation = placementTransform.rotation;
-        XrealPlacementReady = true;
+        xrealPosition = t.position;
+        xrealRotation = t.rotation;
+        xrealReady = true;
 
-        Debug.Log(
-            $"XREAL placement locked: {XrealPlacementPosition}"
+        Debug.Log($"XREAL LOCAL: {xrealPosition}");
+
+        RPC_SendPlacement(
+            xrealPosition,
+            xrealRotation,
+            false
         );
 
 #endif
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    private void RPC_SendPlacement(
+        Vector3 position,
+        Quaternion rotation,
+        bool isMeta
+    )
+    {
+        if (isMeta)
+        {
+            metaPosition = position;
+            metaRotation = rotation;
+            metaReady = true;
+
+            Debug.Log($"RECEIVED META: {metaPosition}");
+        }
+        else
+        {
+            xrealPosition = position;
+            xrealRotation = rotation;
+            xrealReady = true;
+
+            Debug.Log($"RECEIVED XREAL: {xrealPosition}");
+        }
     }
 
     private void Update()
@@ -95,10 +117,7 @@ public class ManualColocationAligner : NetworkBehaviour
         if (aligned)
             return;
 
-        if (!localConfirmed)
-            return;
-
-        if (!MetaPlacementReady || !XrealPlacementReady)
+        if (!metaReady || !xrealReady)
             return;
 
 #if META_BUILD
@@ -123,19 +142,19 @@ public class ManualColocationAligner : NetworkBehaviour
     private void AlignXrealToMeta()
     {
         Vector3 positionOffset =
-            MetaPlacementPosition - XrealPlacementPosition;
+            metaPosition - xrealPosition;
 
         xrOrigin.position += positionOffset;
 
         Vector3 metaForward =
             Vector3.ProjectOnPlane(
-                MetaPlacementRotation * Vector3.forward,
+                metaRotation * Vector3.forward,
                 Vector3.up
             ).normalized;
 
         Vector3 xrealForward =
             Vector3.ProjectOnPlane(
-                XrealPlacementRotation * Vector3.forward,
+                xrealRotation * Vector3.forward,
                 Vector3.up
             ).normalized;
 
@@ -152,13 +171,8 @@ public class ManualColocationAligner : NetworkBehaviour
             angle
         );
 
-        Debug.Log(
-            $"Applied position offset: {positionOffset}"
-        );
-
-        Debug.Log(
-            $"Applied yaw correction: {angle}"
-        );
+        Debug.Log($"OFFSET: {positionOffset}");
+        Debug.Log($"ANGLE: {angle}");
     }
 
     private void SpawnSharedTable()
@@ -168,7 +182,7 @@ public class ManualColocationAligner : NetworkBehaviour
 
         Vector3 forward =
             Vector3.ProjectOnPlane(
-                MetaPlacementRotation * Vector3.forward,
+                metaRotation * Vector3.forward,
                 Vector3.up
             ).normalized;
 
@@ -179,7 +193,7 @@ public class ManualColocationAligner : NetworkBehaviour
             );
 
         Vector3 worldPosition =
-            MetaPlacementPosition +
+            metaPosition +
             flatRotation * tableOffset;
 
         Quaternion worldRotation =
@@ -194,7 +208,7 @@ public class ManualColocationAligner : NetworkBehaviour
         tableSpawned = true;
 
         Debug.Log(
-            $"Spawned shared table at {worldPosition}"
+            $"TABLE SPAWNED AT: {worldPosition}"
         );
     }
 }
