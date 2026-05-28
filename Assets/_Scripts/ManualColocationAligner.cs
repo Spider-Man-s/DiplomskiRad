@@ -69,6 +69,7 @@ public class ManualColocationAligner : NetworkBehaviour
             metaRotation,
             true
         );
+        RPC_SetReady(true);
 
 #elif XREAL_BUILD
 
@@ -83,6 +84,7 @@ public class ManualColocationAligner : NetworkBehaviour
             xrealRotation,
             false
         );
+        RPC_SetReady(false);
 
 #endif
     }
@@ -109,6 +111,21 @@ public class ManualColocationAligner : NetworkBehaviour
             xrealReady = true;
 
             Debug.Log($"RECEIVED XREAL: {xrealPosition}");
+        }
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    private void RPC_SetReady(bool isMeta)
+    {
+        if (isMeta)
+        {
+            metaReady = true;
+            Debug.Log("META READY RECEIVED");
+        }
+        else
+        {
+            xrealReady = true;
+            Debug.Log("XREAL READY RECEIVED");
         }
     }
 
