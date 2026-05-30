@@ -226,11 +226,34 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         if (!_sceneReady)
             return;
 
-        if (spawnPoints == null || spawnPoints.Length == 0)
-            return;
+        Transform spawn = null;
 
-        int index = Mathf.Abs(runner.LocalPlayer.RawEncoded) % spawnPoints.Length;
-        Transform spawn = spawnPoints[index].transform;
+#if META_BUILD
+    GameObject metaSpawn = GameObject.Find("MetaSpawn");
+
+    if (metaSpawn != null)
+        spawn = metaSpawn.transform;
+
+#elif XREAL_BUILD
+    GameObject xrealSpawn = GameObject.Find("XrealSpawn");
+
+    if (xrealSpawn != null)
+        spawn = xrealSpawn.transform;
+
+#else
+        Debug.LogWarning("No build symbol defined. Using first SpawnPoint.");
+
+        if (spawnPoints != null && spawnPoints.Length > 0)
+            spawn = spawnPoints[0].transform;
+#endif
+
+        if (spawn == null)
+        {
+            Debug.LogError("Could not find spawn point for this platform.");
+            return;
+        }
+
+        Debug.Log($"Spawning player at {spawn.name}");
 
         var playerObj = runner.Spawn(
             playerPrefab,
@@ -241,8 +264,6 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         runner.SetPlayerObject(runner.LocalPlayer, playerObj);
 
         _spawnedLocalPlayer = true;
-
-        Debug.Log($"FusionBoot: Spawned local player at spawn index {index}");
 
         ApplyVoiceSettings();
     }

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class ColocationMesh : MonoBehaviour
 {
     [Header("Objects to change")]
@@ -13,8 +13,13 @@ public class ColocationMesh : MonoBehaviour
 
     private void Start()
     {
-        lastState = FusionBoot.ColocationAvatarsVisible;
-        ApplyMaterial();
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (sceneName == "_ColocationSpace")
+        {
+            lastState = FusionBoot.ColocationAvatarsVisible;
+            ApplyMaterial();
+        }
     }
 
     private void ApplyMaterial()
@@ -38,3 +43,8 @@ public class ColocationMesh : MonoBehaviour
         }
     }
 }
+
+
+
+
+

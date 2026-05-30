@@ -7,10 +7,11 @@ public class ColocationManager : NetworkBehaviour
 
     public Vector3 MetaPosition { get; private set; }
     public Quaternion MetaRotation { get; private set; }
-    public bool MetaReady { get; private set; }
 
     public Vector3 XrealPosition { get; private set; }
     public Quaternion XrealRotation { get; private set; }
+
+    public bool MetaReady { get; private set; }
     public bool XrealReady { get; private set; }
 
     private void Awake()
@@ -24,18 +25,32 @@ public class ColocationManager : NetworkBehaviour
         Instance = this;
     }
 
-    public void SubmitMeta(Vector3 position, Quaternion rotation)
+    // Called continuously by QRPlacementTracker
+
+    public void SetMetaLocalTransform(
+        Vector3 position,
+        Quaternion rotation)
     {
-        RPC_SubmitPlacement(position, rotation, true);
+        RPC_UpdateTransform(
+            position,
+            rotation,
+            true
+        );
     }
 
-    public void SubmitXreal(Vector3 position, Quaternion rotation)
+    public void SetXrealLocalTransform(
+        Vector3 position,
+        Quaternion rotation)
     {
-        RPC_SubmitPlacement(position, rotation, false);
+        RPC_UpdateTransform(
+            position,
+            rotation,
+            false
+        );
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
-    private void RPC_SubmitPlacement(
+    private void RPC_UpdateTransform(
         Vector3 position,
         Quaternion rotation,
         bool isMeta)
@@ -44,22 +59,42 @@ public class ColocationManager : NetworkBehaviour
         {
             MetaPosition = position;
             MetaRotation = rotation;
-            MetaReady = true;
-
-            Debug.Log($"META RECEIVED: {position}");
         }
         else
         {
             XrealPosition = position;
             XrealRotation = rotation;
-            XrealReady = true;
-
-            Debug.Log($"XREAL RECEIVED: {position}");
         }
+    }
 
-        if (MetaReady && XrealReady)
+    // Called by Confirm button
+
+    public void ConfirmMeta()
+    {
+        RPC_Confirm(true);
+    }
+
+    public void ConfirmXreal()
+    {
+        RPC_Confirm(false);
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    private void RPC_Confirm(bool isMeta)
+    {
+        if (isMeta)
         {
-            Debug.Log("BOTH PLAYERS READY");
+            MetaReady = true;
+            Debug.Log("META CONFIRMED");
         }
+        else
+        {
+            XrealReady = true;
+            Debug.Log("XREAL CONFIRMED");
+        }
+
+        Debug.Log(
+            $"MetaReady={MetaReady} XrealReady={XrealReady}"
+        );
     }
 }

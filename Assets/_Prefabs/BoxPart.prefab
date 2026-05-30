@@ -318,7 +318,7 @@ MonoBehaviour:
   _IsGrabbed:
     _value: 0
   _CurrentGrabber: {fileID: 0}
-  parentingMode: 0
+  parentingMode: 2
   debugPositions: 0
   onUngrab:
     m_PersistentCalls:

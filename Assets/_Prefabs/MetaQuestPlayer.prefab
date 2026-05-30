@@ -235,6 +235,8 @@ PrefabInstance:
     - {fileID: 8055008406965272897, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
     - {fileID: 1096765080775214961, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
     - {fileID: 3707255535797615770, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+    - {fileID: 6873022368256633593, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+    - {fileID: 5531948733902918658, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6958151712812088702, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
     - {fileID: 3686330604155552911, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
@@ -701,6 +703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackedImageManager: {fileID: 1540618656098624427}
+  aligner: {fileID: 0}
   ballPrefab: {fileID: 8791383988929833762, guid: dc6ed849096cadf49bbef395fd1f5a79, type: 3}
 --- !u!4 &3870957011876187176 stripped
 Transform:

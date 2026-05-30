@@ -7,17 +7,13 @@ public class ManualColocationAligner : NetworkBehaviour
     [SerializeField]
     private Transform xrOrigin;
 
-    [Header("Scene Placement Object Name")]
-    [SerializeField]
-    private string placementObjectName = "QR_Code";
-
     [Header("Table")]
     [SerializeField]
     private NetworkObject tablePrefab;
 
     [SerializeField]
     private Vector3 tableOffset =
-        new Vector3(0.662f, 0.161f, 0.183f);
+        new Vector3(0.662f, 0.162f, 0.184f);
 
     [SerializeField]
     private Vector3 tableRotation;
@@ -31,41 +27,19 @@ public class ManualColocationAligner : NetworkBehaviour
         if (localConfirmed)
             return;
 
-        GameObject placementObject =
-            GameObject.Find(placementObjectName);
-
-        if (placementObject == null)
-        {
-            Debug.LogError(
-                $"Could not find object: {placementObjectName}"
-            );
-
-            return;
-        }
-
-        Transform t = placementObject.transform;
+        localConfirmed = true;
 
 #if META_BUILD
 
-        ColocationManager.Instance.SubmitMeta(
-            t.position,
-            t.rotation
-        );
-
-        Debug.Log($"META LOCAL: {t.position}");
+        ColocationManager.Instance.ConfirmMeta();
 
 #elif XREAL_BUILD
 
-        ColocationManager.Instance.SubmitXreal(
-            t.position,
-            t.rotation
-        );
-
-        Debug.Log($"XREAL LOCAL: {t.position}");
+        ColocationManager.Instance.ConfirmXreal();
 
 #endif
 
-        localConfirmed = true;
+        Debug.Log("Local placement confirmed.");
     }
 
     private void Update()
@@ -79,24 +53,19 @@ public class ManualColocationAligner : NetworkBehaviour
         if (ColocationManager.Instance == null)
             return;
 
-        Debug.Log(
-            $"MetaReady={ColocationManager.Instance.MetaReady} " +
-            $"XrealReady={ColocationManager.Instance.XrealReady}"
-        );
-
         if (!ColocationManager.Instance.MetaReady ||
             !ColocationManager.Instance.XrealReady)
             return;
 
-        Debug.Log("BOTH PLAYERS READY");
+        Debug.Log("Both players confirmed.");
 
 #if META_BUILD
 
         aligned = true;
 
-        Debug.Log("META alignment complete.");
-
         SpawnSharedTable();
+
+        Debug.Log("META alignment complete.");
 
 #elif XREAL_BUILD
 
@@ -111,92 +80,91 @@ public class ManualColocationAligner : NetworkBehaviour
 
     private void AlignXrealToMeta()
     {
-        Vector3 metaPosition =
+        Vector3 metaQRPos =
             ColocationManager.Instance.MetaPosition;
 
-        Quaternion metaRotation =
+        Quaternion metaQRRot =
             ColocationManager.Instance.MetaRotation;
 
-        Vector3 xrealPosition =
+        Vector3 xrealQRPos =
             ColocationManager.Instance.XrealPosition;
 
-        Quaternion xrealRotation =
+        Quaternion xrealQRRot =
             ColocationManager.Instance.XrealRotation;
 
-        Vector3 positionOffset =
-            metaPosition - xrealPosition;
+        Quaternion rotationDelta =
+            metaQRRot *
+            Quaternion.Inverse(xrealQRRot);
 
-        xrOrigin.position += positionOffset;
+        Vector3 xrOriginOffset =
+            xrOrigin.position - xrealQRPos;
 
-        Vector3 metaForward =
-            Vector3.ProjectOnPlane(
-                metaRotation * Vector3.forward,
-                Vector3.up
-            ).normalized;
+        xrOriginOffset =
+            rotationDelta * xrOriginOffset;
 
-        Vector3 xrealForward =
-            Vector3.ProjectOnPlane(
-                xrealRotation * Vector3.forward,
-                Vector3.up
-            ).normalized;
+        xrOrigin.rotation =
+            rotationDelta * xrOrigin.rotation;
 
-        float angle =
-            Vector3.SignedAngle(
-                xrealForward,
-                metaForward,
-                Vector3.up
-            );
+        xrOrigin.position =
+            metaQRPos + xrOriginOffset;
 
-        xrOrigin.RotateAround(
-            Vector3.zero,
-            Vector3.up,
-            angle
-        );
-
-        Debug.Log($"OFFSET: {positionOffset}");
-        Debug.Log($"ANGLE: {angle}");
+        Debug.Log($"META QR: {metaQRPos}");
+        Debug.Log($"XREAL QR: {xrealQRPos}");
+        Debug.Log($"NEW XR ORIGIN: {xrOrigin.position}");
     }
 
-    private void SpawnSharedTable()
+    public void SpawnSharedTable()
     {
-        if (tableSpawned)
-            return;
 
-        Vector3 metaPosition =
+
+        Vector3 qrPosition =
             ColocationManager.Instance.MetaPosition;
 
-        Quaternion metaRotation =
+        Quaternion qrRotation =
             ColocationManager.Instance.MetaRotation;
 
-        Vector3 forward =
+        // Get QR red axis
+        Vector3 right =
+            qrRotation * Vector3.right;
+
+        // Project it onto the floor
+        Vector3 flatRight =
             Vector3.ProjectOnPlane(
-                metaRotation * Vector3.forward,
+                right,
                 Vector3.up
             ).normalized;
 
-        Quaternion flatRotation =
-            Quaternion.LookRotation(
-                forward,
-                Vector3.up
+        // Convert projected red vector into angle
+        float projectedZ =
+            Mathf.Atan2(
+                flatRight.z,
+                flatRight.x
+            ) * Mathf.Rad2Deg;
+
+        // Table stays flat, only Z changes
+        Quaternion tableRotation =
+            Quaternion.Euler(
+                90f,
+                0f,
+                projectedZ
             );
-
-        Vector3 worldPosition =
-            metaPosition +
-            flatRotation * tableOffset;
-
-        Quaternion worldRotation =
-            Quaternion.Euler(tableRotation);
 
         Runner.Spawn(
             tablePrefab,
-            worldPosition,
-            worldRotation
+            qrPosition,
+            tableRotation
         );
 
         tableSpawned = true;
 
-        Debug.Log(
-            $"TABLE SPAWNED AT: {worldPosition}"
+        Debug.DrawRay(
+            qrPosition,
+            flatRight,
+            Color.red,
+            5f
         );
+
+        Debug.Log($"QR Position: {qrPosition}");
+        Debug.Log($"Projected Z: {projectedZ}");
     }
 }
