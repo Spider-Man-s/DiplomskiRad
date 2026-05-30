@@ -22,15 +22,6 @@ public class ManualColocationAligner : NetworkBehaviour
     [SerializeField]
     private Vector3 tableRotation;
 
-    // SHARED DATA
-    private Vector3 metaPosition;
-    private Quaternion metaRotation;
-    private bool metaReady;
-
-    private Vector3 xrealPosition;
-    private Quaternion xrealRotation;
-    private bool xrealReady;
-
     private bool localConfirmed;
     private bool aligned;
     private bool tableSpawned;
@@ -54,79 +45,27 @@ public class ManualColocationAligner : NetworkBehaviour
 
         Transform t = placementObject.transform;
 
-        localConfirmed = true;
-
 #if META_BUILD
 
-        metaPosition = t.position;
-        metaRotation = t.rotation;
-        metaReady = true;
-
-        Debug.Log($"META LOCAL: {metaPosition}");
-
-        RPC_SendPlacement(
-            metaPosition,
-            metaRotation,
-            true
+        ColocationManager.Instance.SubmitMeta(
+            t.position,
+            t.rotation
         );
-        RPC_SetReady(true);
+
+        Debug.Log($"META LOCAL: {t.position}");
 
 #elif XREAL_BUILD
 
-        xrealPosition = t.position;
-        xrealRotation = t.rotation;
-        xrealReady = true;
-
-        Debug.Log($"XREAL LOCAL: {xrealPosition}");
-
-        RPC_SendPlacement(
-            xrealPosition,
-            xrealRotation,
-            false
+        ColocationManager.Instance.SubmitXreal(
+            t.position,
+            t.rotation
         );
-        RPC_SetReady(false);
+
+        Debug.Log($"XREAL LOCAL: {t.position}");
 
 #endif
-    }
 
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    private void RPC_SendPlacement(
-        Vector3 position,
-        Quaternion rotation,
-        bool isMeta
-    )
-    {
-        if (isMeta)
-        {
-            metaPosition = position;
-            metaRotation = rotation;
-            metaReady = true;
-
-            Debug.Log($"RECEIVED META: {metaPosition}");
-        }
-        else
-        {
-            xrealPosition = position;
-            xrealRotation = rotation;
-            xrealReady = true;
-
-            Debug.Log($"RECEIVED XREAL: {xrealPosition}");
-        }
-    }
-
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    private void RPC_SetReady(bool isMeta)
-    {
-        if (isMeta)
-        {
-            metaReady = true;
-            Debug.Log("META READY RECEIVED");
-        }
-        else
-        {
-            xrealReady = true;
-            Debug.Log("XREAL READY RECEIVED");
-        }
+        localConfirmed = true;
     }
 
     private void Update()
@@ -134,8 +73,22 @@ public class ManualColocationAligner : NetworkBehaviour
         if (aligned)
             return;
 
-        if (!metaReady || !xrealReady)
+        if (!localConfirmed)
             return;
+
+        if (ColocationManager.Instance == null)
+            return;
+
+        Debug.Log(
+            $"MetaReady={ColocationManager.Instance.MetaReady} " +
+            $"XrealReady={ColocationManager.Instance.XrealReady}"
+        );
+
+        if (!ColocationManager.Instance.MetaReady ||
+            !ColocationManager.Instance.XrealReady)
+            return;
+
+        Debug.Log("BOTH PLAYERS READY");
 
 #if META_BUILD
 
@@ -158,6 +111,18 @@ public class ManualColocationAligner : NetworkBehaviour
 
     private void AlignXrealToMeta()
     {
+        Vector3 metaPosition =
+            ColocationManager.Instance.MetaPosition;
+
+        Quaternion metaRotation =
+            ColocationManager.Instance.MetaRotation;
+
+        Vector3 xrealPosition =
+            ColocationManager.Instance.XrealPosition;
+
+        Quaternion xrealRotation =
+            ColocationManager.Instance.XrealRotation;
+
         Vector3 positionOffset =
             metaPosition - xrealPosition;
 
@@ -196,6 +161,12 @@ public class ManualColocationAligner : NetworkBehaviour
     {
         if (tableSpawned)
             return;
+
+        Vector3 metaPosition =
+            ColocationManager.Instance.MetaPosition;
+
+        Quaternion metaRotation =
+            ColocationManager.Instance.MetaRotation;
 
         Vector3 forward =
             Vector3.ProjectOnPlane(
