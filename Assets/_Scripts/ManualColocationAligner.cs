@@ -83,39 +83,44 @@ public class ManualColocationAligner : NetworkBehaviour
         Vector3 metaQRPos =
             ColocationManager.Instance.MetaPosition;
 
-        Quaternion metaQRRot =
-            ColocationManager.Instance.MetaRotation;
-
         Vector3 xrealQRPos =
             ColocationManager.Instance.XrealPosition;
 
-        Quaternion xrealQRRot =
-            ColocationManager.Instance.XrealRotation;
+        float metaZ =
+            ColocationManager.Instance.MetaProjectedZ;
 
-        Quaternion rotationDelta =
-            metaQRRot *
-            Quaternion.Inverse(xrealQRRot);
+        float xrealZ =
+            ColocationManager.Instance.XrealProjectedZ;
 
-        Vector3 xrOriginOffset =
-            xrOrigin.position - xrealQRPos;
+        float rotationOffset =
+            metaZ - xrealZ;
 
-        xrOriginOffset =
-            rotationDelta * xrOriginOffset;
+        // Rotate XR Origin around its QR
+        xrOrigin.RotateAround(
+            xrealQRPos,
+            Vector3.up,
+            rotationOffset
+        );
 
-        xrOrigin.rotation =
-            rotationDelta * xrOrigin.rotation;
+        // Re-read QR position after rotation
+        xrealQRPos =
+            ColocationManager.Instance.XrealPosition;
 
-        xrOrigin.position =
-            metaQRPos + xrOriginOffset;
+        Vector3 positionOffset =
+            metaQRPos - xrealQRPos;
 
-        Debug.Log($"META QR: {metaQRPos}");
+        xrOrigin.position += positionOffset;
+
+        Debug.Log($"Meta QR: {metaQRPos}");
         Debug.Log($"XREAL QR: {xrealQRPos}");
-        Debug.Log($"NEW XR ORIGIN: {xrOrigin.position}");
+        Debug.Log($"Rotation Offset: {rotationOffset}");
+        Debug.Log($"Position Offset: {positionOffset}");
     }
 
     public void SpawnSharedTable()
     {
-
+        if (tableSpawned)
+            return;
 
         Vector3 qrPosition =
             ColocationManager.Instance.MetaPosition;

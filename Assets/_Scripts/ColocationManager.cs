@@ -11,8 +11,12 @@ public class ColocationManager : NetworkBehaviour
     public Vector3 XrealPosition { get; private set; }
     public Quaternion XrealRotation { get; private set; }
 
+    public float MetaProjectedZ { get; private set; }
+    public float XrealProjectedZ { get; private set; }
+
     public bool MetaReady { get; private set; }
     public bool XrealReady { get; private set; }
+
 
     private void Awake()
     {
@@ -28,46 +32,51 @@ public class ColocationManager : NetworkBehaviour
     // Called continuously by QRPlacementTracker
 
     public void SetMetaLocalTransform(
-        Vector3 position,
-        Quaternion rotation)
+     Vector3 position,
+     Quaternion rotation,
+     float projectedZ)
     {
         RPC_UpdateTransform(
             position,
             rotation,
+            projectedZ,
             true
         );
     }
-
     public void SetXrealLocalTransform(
-        Vector3 position,
-        Quaternion rotation)
+     Vector3 position,
+     Quaternion rotation,
+     float projectedZ)
     {
         RPC_UpdateTransform(
             position,
             rotation,
+            projectedZ,
             false
         );
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     private void RPC_UpdateTransform(
-        Vector3 position,
-        Quaternion rotation,
-        bool isMeta)
+     Vector3 position,
+     Quaternion rotation,
+     float projectedZ,
+     bool isMeta)
     {
         if (isMeta)
         {
             MetaPosition = position;
             MetaRotation = rotation;
+            MetaProjectedZ = projectedZ;
         }
         else
         {
             XrealPosition = position;
             XrealRotation = rotation;
+            XrealProjectedZ = projectedZ;
         }
     }
 
-    // Called by Confirm button
 
     public void ConfirmMeta()
     {
