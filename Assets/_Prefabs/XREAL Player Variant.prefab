@@ -101,6 +101,10 @@ PrefabInstance:
       propertyPath: m_AndroidXRRightHandMesh
       value: 
       objectReference: {fileID: 532705221326540659}
+    - target: {fileID: 3704506389704428675, guid: 55fe118f63c55e540923112274c06b39, type: 3}
+      propertyPath: m_CameraYOffset
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3811596598756183297, guid: 55fe118f63c55e540923112274c06b39, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
