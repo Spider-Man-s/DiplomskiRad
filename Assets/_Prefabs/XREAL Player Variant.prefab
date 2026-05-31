@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5885813487342165058, guid: 3182b5074a6bf3d4887a44a38cbb9cb6, type: 3}
+      propertyPath: m_CacheCameraPosition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5885813487342165058, guid: 3182b5074a6bf3d4887a44a38cbb9cb6, type: 3}
+      propertyPath: m_CacheCameraYRotation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7695254148612354484, guid: 3182b5074a6bf3d4887a44a38cbb9cb6, type: 3}
       propertyPath: m_Name
       value: XREAL Player Variant
@@ -107,7 +115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3704506389704428675, guid: 55fe118f63c55e540923112274c06b39, type: 3}
       propertyPath: m_RequestedTrackingOriginMode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3811596598756183297, guid: 55fe118f63c55e540923112274c06b39, type: 3}
       propertyPath: m_LocalPosition.x
