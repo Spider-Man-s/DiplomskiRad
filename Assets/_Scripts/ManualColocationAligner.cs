@@ -69,7 +69,7 @@ public class ManualColocationAligner : NetworkBehaviour
 
 #elif XREAL_BUILD
 
-        AlignXrealToMeta();
+      //  AlignXrealToMeta();
 
         aligned = true;
 
