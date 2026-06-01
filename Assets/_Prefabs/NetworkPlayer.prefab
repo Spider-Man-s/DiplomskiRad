@@ -321,6 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xrOrigin: {fileID: 5657978849562248123}
   tablePrefab: {fileID: 5574945985566940071, guid: b6a046c7229334d488397afab5db3d12, type: 3}
+  boxPartPrefab: {fileID: 4339206150634971773, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
   tableOffset: {x: 0.72, y: 0.161, z: 0.183}
   tableRotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &2163972526319257476

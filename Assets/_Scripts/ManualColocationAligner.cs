@@ -10,6 +10,8 @@ public class ManualColocationAligner : NetworkBehaviour
     [Header("Table")]
     [SerializeField]
     private NetworkObject tablePrefab;
+    [SerializeField]
+    private NetworkObject boxPartPrefab;
 
     [SerializeField]
     private Vector3 tableOffset =
@@ -154,22 +156,30 @@ public class ManualColocationAligner : NetworkBehaviour
                 projectedZ
             );
 
-        Runner.Spawn(
-            tablePrefab,
-            qrPosition,
-            tableRotation
-        );
+        NetworkObject table = Runner.Spawn(
+             tablePrefab,
+             qrPosition,
+             tableRotation
+         );
+        BoxSideSpawn[] spawns =
+            table.GetComponentsInChildren<BoxSideSpawn>();
 
-        tableSpawned = true;
+        foreach (BoxSideSpawn spawn in spawns)
+        {
+            Runner.Spawn(
+                boxPartPrefab,
+                spawn.transform.position,
+                spawn.transform.rotation
+            );
 
-        Debug.DrawRay(
-            qrPosition,
-            flatRight,
-            Color.red,
-            5f
-        );
+            Debug.Log(
+                $"Spawned box at {spawn.name}"
+            );
+            tableSpawned = true;
 
-        Debug.Log($"QR Position: {qrPosition}");
-        Debug.Log($"Projected Z: {projectedZ}");
+
+            Debug.Log($"QR Position: {qrPosition}");
+            Debug.Log($"Projected Z: {projectedZ}");
+        }
     }
 }

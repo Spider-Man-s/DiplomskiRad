@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8277640905409171672}
   - component: {fileID: 7409288626314842093}
+  - component: {fileID: 3248805016724962345}
   m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
@@ -127,6 +128,30 @@ MonoBehaviour:
   - {fileID: 8436008742513595046}
   snapMin: 85
   snapMax: 95
+--- !u!114 &3248805016724962345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4261701590470670142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 794860507
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects:
+  - {fileID: 4331650870924986835}
+  - {fileID: 8813622997490311039}
+  - {fileID: 8488771606694087436}
+  - {fileID: 1742906954574254153}
+  - {fileID: 1996008877782441287}
+  - {fileID: 1770159474222953382}
+  NetworkedBehaviours: []
+  ForceRemoteRenderTimeframe: 0
 --- !u!1 &7773028257663773796
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4339206150634971773, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
       propertyPath: SortKey
-      value: 696062470
+      value: 3812127529
       objectReference: {fileID: 0}
     - target: {fileID: 4339206150634971773, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
       propertyPath: NestedObjects.Array.size
@@ -317,6 +342,17 @@ PrefabInstance:
       addedObject: {fileID: 6319789384449120717}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
+--- !u!114 &4331650870924986835 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4339206150634971773, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
+  m_PrefabInstance: {fileID: 12077605401881518}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8077843707482508633 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8084151036013045495, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
@@ -336,7 +372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4339206150634971773, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
       propertyPath: SortKey
-      value: 3213226060
+      value: 139545929
       objectReference: {fileID: 0}
     - target: {fileID: 8084151036013045495, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
       propertyPath: m_LocalScale.x
@@ -425,7 +461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4339206150634971773, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
       propertyPath: SortKey
-      value: 4132672875
+      value: 2751393578
       objectReference: {fileID: 0}
     - target: {fileID: 8084151036013045495, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
       propertyPath: m_LocalScale.x
@@ -514,7 +550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4339206150634971773, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
       propertyPath: SortKey
-      value: 2258481273
+      value: 1160713410
       objectReference: {fileID: 0}
     - target: {fileID: 4339206150634971773, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
       propertyPath: NestedObjects.Array.size
@@ -614,7 +650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4339206150634971773, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
       propertyPath: SortKey
-      value: 2622216974
+      value: 4027442051
       objectReference: {fileID: 0}
     - target: {fileID: 8084151036013045495, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
       propertyPath: m_LocalScale.x
@@ -703,7 +739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4339206150634971773, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
       propertyPath: SortKey
-      value: 2374726455
+      value: 304338256
       objectReference: {fileID: 0}
     - target: {fileID: 8084151036013045495, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
       propertyPath: m_LocalScale.x
