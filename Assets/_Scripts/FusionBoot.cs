@@ -294,6 +294,20 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         _spawnedLocalPlayer = false;
     }
 
+    public async void ReturnToMainMenu()
+    {
+        if (_runner != null && _runner.IsRunning)
+        {
+            await _runner.Shutdown();
+        }
+
+        _runner = null;
+        _sceneReady = false;
+        _spawnedLocalPlayer = false;
+
+        SceneManager.LoadScene(0);
+    }
+
     public void OnConnectedToServer(NetworkRunner runner) { }
     public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) { }
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }

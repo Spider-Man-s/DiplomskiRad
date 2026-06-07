@@ -6,13 +6,7 @@ public class ManualColocationAligner : NetworkBehaviour
     [Header("XR Origin")]
     [SerializeField]
     private Transform xrOrigin;
-#if META_BUILD
-    [Header("Meta Rig")]
-    private Transform metaRig;
-#elif XREAL_BUILD
-    [Header("XREAL Rig")]
-    private Transform xrealRig;
-#endif
+
     [Header("Table")]
     [SerializeField]
     private NetworkObject tablePrefab;
@@ -187,5 +181,10 @@ public class ManualColocationAligner : NetworkBehaviour
             Debug.Log($"QR Position: {qrPosition}");
             Debug.Log($"Projected Z: {projectedZ}");
         }
+    }
+
+    public void ReturnToMainMenu()
+    {
+        FusionBoot.Instance.ReturnToMainMenu();
     }
 }
