@@ -203,10 +203,6 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
         ApplyVoiceSettings();
 
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            RebindSceneReferences();
-        }
     }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
@@ -313,6 +309,21 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         SceneManager.LoadScene(0);
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 0)
+            RebindSceneReferences();
+    }
     void RebindSceneReferences()
     {
         menuRigRoot = GameObject.FindGameObjectWithTag("RIG");
