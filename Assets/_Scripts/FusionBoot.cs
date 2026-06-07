@@ -39,45 +39,46 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
     private void Awake()
     {
         base.Awake();
+        InitUI();
+    }
 
-        // ---------------- VOICE TOGGLE ----------------
-        if (voiceChatToggle != null)
-        {
-            voiceChatToggle.isOn = VoiceChatEnabled;
-
-            voiceChatToggle.onValueChanged.RemoveAllListeners();
-            voiceChatToggle.onValueChanged.AddListener((value) =>
-            {
-                VoiceChatEnabled = value;
-                ApplyVoiceSettings();
-            });
-        }
-
-        // ---------------- COLOCATION AVATAR TOGGLE ----------------
-        if (colocationAvatarToggle != null)
-        {
-            colocationAvatarToggle.isOn = ColocationAvatarsVisible;
-
-            colocationAvatarToggle.onValueChanged.RemoveAllListeners();
-            colocationAvatarToggle.onValueChanged.AddListener((value) =>
-            {
-                ColocationAvatarsVisible = value;
-            });
-        }
-
-        // ---------------- BUTTONS ----------------
+    private void InitUI()
+    {
         if (joinButtonRemote != null)
         {
-            joinButtonRemote.interactable = true;
-            joinButtonRemote.onClick.RemoveListener(OnRemoteJoinClicked);
+            joinButtonRemote.onClick.RemoveAllListeners();
             joinButtonRemote.onClick.AddListener(OnRemoteJoinClicked);
+            joinButtonRemote.interactable = true;
         }
 
         if (joinButtonColocation != null)
         {
-            joinButtonColocation.interactable = true;
-            joinButtonColocation.onClick.RemoveListener(OnColocationJoinClicked);
+            joinButtonColocation.onClick.RemoveAllListeners();
             joinButtonColocation.onClick.AddListener(OnColocationJoinClicked);
+            joinButtonColocation.interactable = true;
+        }
+
+        if (voiceChatToggle != null)
+        {
+            voiceChatToggle.onValueChanged.RemoveAllListeners();
+            voiceChatToggle.onValueChanged.AddListener(v =>
+            {
+                VoiceChatEnabled = v;
+                ApplyVoiceSettings();
+            });
+
+            voiceChatToggle.isOn = VoiceChatEnabled;
+        }
+
+        if (colocationAvatarToggle != null)
+        {
+            colocationAvatarToggle.onValueChanged.RemoveAllListeners();
+            colocationAvatarToggle.onValueChanged.AddListener(v =>
+            {
+                ColocationAvatarsVisible = v;
+            });
+
+            colocationAvatarToggle.isOn = ColocationAvatarsVisible;
         }
     }
 
@@ -331,6 +332,8 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         joinButtonRemote = GameObject.FindGameObjectWithTag("JBR")?.GetComponent<Button>();
         joinButtonColocation = GameObject.FindGameObjectWithTag("JBC")?.GetComponent<Button>();
         voiceChatToggle = GameObject.FindGameObjectWithTag("VCT")?.GetComponent<Toggle>();
+
+        InitUI();
     }
     public void OnConnectedToServer(NetworkRunner runner) { }
     public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) { }
