@@ -8,11 +8,11 @@ public class ConfirmButtonScript : MonoBehaviour
     {
         string sceneName = SceneManager.GetActiveScene().name;
 
-        if (sceneName == "_ColocationSpace")
+        if (sceneName != "_ColocationSpace")
         {
-            Debug.Log("We are in the colocation scene.");
+            Debug.Log("We are not in the colocation scene.");
 
-            button.SetActive(true);
+            button.SetActive(false);
         }
     }
 }

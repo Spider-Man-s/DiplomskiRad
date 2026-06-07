@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class LocalUIOnly : NetworkBehaviour
 {
+
+    [SerializeField] private GameObject uiRoot;
+
     public override void Spawned()
     {
-        gameObject.SetActive(Object.HasInputAuthority);
+        uiRoot.SetActive(Object.HasStateAuthority);
     }
 }

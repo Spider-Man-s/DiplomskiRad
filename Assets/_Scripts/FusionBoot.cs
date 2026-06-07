@@ -202,6 +202,11 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         _sceneReady = spawnPoints != null && spawnPoints.Length > 0;
 
         ApplyVoiceSettings();
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            RebindSceneReferences();
+        }
     }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
@@ -308,6 +313,14 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         SceneManager.LoadScene(0);
     }
 
+    void RebindSceneReferences()
+    {
+        menuRigRoot = GameObject.FindGameObjectWithTag("RIG");
+
+        joinButtonRemote = GameObject.FindGameObjectWithTag("JBR")?.GetComponent<Button>();
+        joinButtonColocation = GameObject.FindGameObjectWithTag("JBC")?.GetComponent<Button>();
+        voiceChatToggle = GameObject.FindGameObjectWithTag("VCT")?.GetComponent<Toggle>();
+    }
     public void OnConnectedToServer(NetworkRunner runner) { }
     public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) { }
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
