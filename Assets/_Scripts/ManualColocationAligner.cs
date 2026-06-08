@@ -98,11 +98,19 @@ public class ManualColocationAligner : NetworkBehaviour
             metaZ - xrealZ;
 
         // Rotate XR Origin around its QR
-        xrOrigin.RotateAround(
-            xrealQRPos,
-            Vector3.up,
-            rotationOffset
-        );
+        /*
+                xrOrigin.RotateAround(
+                    xrealQRPos,
+                    Vector3.up,
+                    rotationOffset
+                );
+
+        */
+        xrOrigin.Rotate(
+    Vector3.up,
+    rotationOffset,
+    Space.World
+);
 
         // Re-read QR position after rotation
         xrealQRPos =
