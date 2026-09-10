@@ -4,7 +4,7 @@ using UnityEngine;
 public class ManualColocationAligner : NetworkBehaviour
 {
     [SerializeField] private Transform xrOrigin;
-    [SerializeField] private QRPlacementTracker qrTracker;
+    private QRPlacementTracker qrTracker;
 
     [SerializeField] private NetworkObject tablePrefab;
     [SerializeField] private NetworkObject boxPartPrefab;
@@ -15,6 +15,15 @@ public class ManualColocationAligner : NetworkBehaviour
     private bool localConfirmed;
     private bool aligned;
     private bool tableSpawned;
+
+
+    public override void Spawned()
+    {
+        qrTracker = FindObjectOfType<QRPlacementTracker>();
+
+        if (qrTracker == null)
+            Debug.LogError("QRPlacementTracker not found in scene.");
+    }
 
     public void ConfirmPlacement()
     {
