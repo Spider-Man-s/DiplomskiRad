@@ -289,7 +289,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3480347742913227435}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ManualColocationAligner, Assembly-CSharp
         m_MethodName: ReturnToMainMenu
         m_Mode: 1
@@ -318,7 +318,6 @@ GameObject:
   - component: {fileID: 6994873976954648049}
   - component: {fileID: 4438605856556969512}
   - component: {fileID: 5552410146651773002}
-  - component: {fileID: 3480347742913227435}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Untagged
@@ -372,7 +371,6 @@ MonoBehaviour:
   - {fileID: 4613615631309798877}
   - {fileID: 5510538001805999493}
   - {fileID: 1527775320528262125}
-  - {fileID: 3480347742913227435}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &4613615631309798877
 MonoBehaviour:
@@ -576,22 +574,6 @@ MonoBehaviour:
   m_CameraFloorOffsetObject: {fileID: 0}
   m_RequestedTrackingOriginMode: 0
   m_CameraYOffset: 0
---- !u!114 &3480347742913227435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7264692236532139030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7ebffe2b73100498a3df6eaf97794b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xrOrigin: {fileID: 5657978849562248123}
-  tablePrefab: {fileID: 5574945985566940071, guid: b6a046c7229334d488397afab5db3d12, type: 3}
-  boxPartPrefab: {fileID: 4339206150634971773, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
-  tableOffset: {x: 0.72, y: 0.161, z: 0.183}
 --- !u!1001 &2163972526319257476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1109,10 +1091,6 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1771109778743031087, guid: 827365180285f0247b4f34fd2cd8f2c0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3480347742913227435}
-    - target: {fileID: 1771109778743031087, guid: 827365180285f0247b4f34fd2cd8f2c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 4376835543503482513}
@@ -1222,7 +1200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5859151916719400916, guid: 827365180285f0247b4f34fd2cd8f2c0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6135445563119255639, guid: 827365180285f0247b4f34fd2cd8f2c0, type: 3}
       propertyPath: SortKey

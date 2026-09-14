@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handSkeletonVersion: 1
   colorSpace: 7
-  requestsVisualFaceTracking: 0
-  requestsAudioFaceTracking: 0
+  requestsVisualFaceTracking: 1
+  requestsAudioFaceTracking: 1
   enableFaceTrackingVisemesOutput: 0
-  telemetryProjectGuid: e7afef8f-a4b3-4b4e-bee4-283db7769fc3
+  telemetryProjectGuid: 01d37fb7-f905-4a60-adab-eda65515d722
   bodyTrackingFidelity: 1
   bodyTrackingJointSet: 0
   allowVisibilityMesh: 1

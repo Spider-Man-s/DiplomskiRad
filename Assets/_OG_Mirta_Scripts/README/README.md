@@ -108,7 +108,7 @@ Assign `trackingOrigin` to the stable XR/device tracking root that represents th
 
 **Do not assign the HMD camera.** The HMD moves. The tracking/device origin must remain fixed while the user moves.
 
-If Unity world space itself is already that fixed local tracking frame, leave `trackingOrigin` empty.
+If Unity world space itself is already that fixed local tracking frame, leave `trackingOrigin` empty.     ++
 
 Do not use the unreliable XREAL floor origin if your project has already shown it to be inconsistent.
 
