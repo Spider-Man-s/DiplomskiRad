@@ -1580,7 +1580,7 @@ GameObject:
   - component: {fileID: 1353991616}
   - component: {fileID: 1353991617}
   m_Layer: 0
-  m_Name: ColocationSessionState
+  m_Name: ColocationSessionState + TS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
