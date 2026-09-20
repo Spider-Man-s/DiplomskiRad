@@ -8,12 +8,15 @@ public class ColocationReadyGate : MonoBehaviour
 {
     [SerializeField] private ColocationSessionState sessionState;
     [SerializeField] private GameObject[] enableWhenReady;
-
+    TableSpawner tableSpawner;
     private bool opened;
 
     private void Start()
     {
         SetTargets(false);
+        tableSpawner = GetComponent<TableSpawner>();
+        if (tableSpawner == null)
+            Debug.LogError("TableSpawner component is missing.");
     }
 
     private void Update()
@@ -31,6 +34,11 @@ public class ColocationReadyGate : MonoBehaviour
         opened = true;
         SetTargets(true);
         Debug.Log("Co-location ready gate opened.");
+
+#if META_BUILD
+        if (tableSpawner!=null)
+           tableSpawner.SpawnSharedTable();
+#endif
     }
 
     private void SetTargets(bool active)
@@ -44,4 +52,5 @@ public class ColocationReadyGate : MonoBehaviour
                 target.SetActive(active);
         }
     }
+
 }

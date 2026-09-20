@@ -18,17 +18,9 @@ public class ColocationSessionState : NetworkBehaviour
     [Networked] public NetworkBool MetaReady { get; private set; }
     [Networked] public NetworkBool XrealReady { get; private set; }
 
-    TableSpawner tableSpawner;
 
     public bool BothReady => MetaReady && XrealReady;
 
-    private void Start()
-    {
-        tableSpawner = GetComponent<TableSpawner>();
-        if (tableSpawner == null)
-            Debug.LogError("TableSpawner component is missing.");
-
-    }
 
     public void ReportLocalCalibration(ColocationDeviceRole role)
     {
@@ -65,14 +57,6 @@ public class ColocationSessionState : NetworkBehaviour
             XrealReady = true;
 
         Debug.Log($"Colocation ready state: Meta={MetaReady}, XREAL={XrealReady}");
-        Handshake(BothReady); //spawnaj stol ako su oboje ready
     }
 
-    private void Handshake(bool BothReady)
-    {
-#if META_BUILD
-        if (BothReady && tableSpawner!=null)
-           tableSpawner.SpawnSharedTable();
-#endif
-    }
 }
