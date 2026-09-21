@@ -1945,7 +1945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72589312d9e7d1c45a3eaf4cfc965d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tablePrefab: {fileID: 5574945985566940071, guid: b6a046c7229334d488397afab5db3d12, type: 3}
+  tablePrefab: {fileID: 5574945985566940071, guid: 0eaddb02fa62a9941bca6c4a21d80356, type: 3}
   boxPartPrefab: {fileID: 4339206150634971773, guid: d7e51bb8b9d32224c867b49030e53fd6, type: 3}
   foldableBoxPrefab: {fileID: 9191506079489854738, guid: 8523163a8339e7e40ae1feb08ef5b79e, type: 3}
   tableOffset: {x: 0.602, y: 0.017, z: 0.395}
@@ -2246,6 +2246,10 @@ PrefabInstance:
       propertyPath: SortKey
       value: 3360837295
       objectReference: {fileID: 0}
+    - target: {fileID: 7351546736775950281, guid: 8523163a8339e7e40ae1feb08ef5b79e, type: 3}
+      propertyPath: SortKey
+      value: 3518449425
+      objectReference: {fileID: 0}
     - target: {fileID: 8524034998271858146, guid: 8523163a8339e7e40ae1feb08ef5b79e, type: 3}
       propertyPath: SortKey
       value: 660476289
@@ -2430,7 +2434,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3433218301287687032, guid: 0eaddb02fa62a9941bca6c4a21d80356, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.602
+      value: 0.618
       objectReference: {fileID: 0}
     - target: {fileID: 3433218301287687032, guid: 0eaddb02fa62a9941bca6c4a21d80356, type: 3}
       propertyPath: m_LocalPosition.y

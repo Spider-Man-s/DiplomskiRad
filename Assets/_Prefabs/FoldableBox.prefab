@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4326957266585197184}
   - component: {fileID: 7796806262667437296}
   - component: {fileID: 5441235689618668525}
+  - component: {fileID: 7351546736775950281}
+  - component: {fileID: 1534967679600087597}
   m_Layer: 0
   m_Name: Table
   m_TagString: Untagged
@@ -108,6 +110,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7351546736775950281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091744556776570643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 3730148458
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 1534967679600087597}
+  ForceRemoteRenderTimeframe: 0
+--- !u!114 &1534967679600087597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091744556776570643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48cd32c74bacb04439b7c677ebf5fd42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateAuthorityContinuouslyDrives: 0
 --- !u!1 &1275427557833739562
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +203,7 @@ MonoBehaviour:
   - {fileID: 2815735167413508804}
   - {fileID: 1035887677647773821}
   - {fileID: 5056838347717204632}
+  - {fileID: 7351546736775950281}
   NetworkedBehaviours: []
   ForceRemoteRenderTimeframe: 0
 --- !u!1001 &961712097535024591
