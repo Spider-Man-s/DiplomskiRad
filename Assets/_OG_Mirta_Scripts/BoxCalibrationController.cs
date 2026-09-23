@@ -51,21 +51,21 @@ public class BoxCalibrationController : MonoBehaviour
 
     // ----- Position nudges along BOX LOCAL axes -----
 
-    public void PositionXPlus()  => NudgePosition(Vector3.right,  positionStepMeters);
+    public void PositionXPlus() => NudgePosition(Vector3.right, positionStepMeters);
     public void PositionXMinus() => NudgePosition(Vector3.right, -positionStepMeters);
-    public void PositionYPlus()  => NudgePosition(Vector3.up,     positionStepMeters);
-    public void PositionYMinus() => NudgePosition(Vector3.up,    -positionStepMeters);
-    public void PositionZPlus()  => NudgePosition(Vector3.forward, positionStepMeters);
-    public void PositionZMinus() => NudgePosition(Vector3.forward,-positionStepMeters);
+    public void PositionYPlus() => NudgePosition(Vector3.up, positionStepMeters);
+    public void PositionYMinus() => NudgePosition(Vector3.up, -positionStepMeters);
+    public void PositionZPlus() => NudgePosition(Vector3.forward, positionStepMeters);
+    public void PositionZMinus() => NudgePosition(Vector3.forward, -positionStepMeters);
 
     // ----- Rotation nudges around BOX CENTER -----
 
-    public void RotationXPlus()  => NudgeRotation(Vector3.right,   rotationStepDegrees);
-    public void RotationXMinus() => NudgeRotation(Vector3.right,  -rotationStepDegrees);
-    public void RotationYPlus()  => NudgeRotation(Vector3.up,      rotationStepDegrees);
-    public void RotationYMinus() => NudgeRotation(Vector3.up,     -rotationStepDegrees);
-    public void RotationZPlus()  => NudgeRotation(Vector3.forward, rotationStepDegrees);
-    public void RotationZMinus() => NudgeRotation(Vector3.forward,-rotationStepDegrees);
+    public void RotationXPlus() => NudgeRotation(Vector3.right, rotationStepDegrees);
+    public void RotationXMinus() => NudgeRotation(Vector3.right, -rotationStepDegrees);
+    public void RotationYPlus() => NudgeRotation(Vector3.up, rotationStepDegrees);
+    public void RotationYMinus() => NudgeRotation(Vector3.up, -rotationStepDegrees);
+    public void RotationZPlus() => NudgeRotation(Vector3.forward, rotationStepDegrees);
+    public void RotationZMinus() => NudgeRotation(Vector3.forward, -rotationStepDegrees);
 
     // ----- Precision presets -----
 
