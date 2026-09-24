@@ -9,14 +9,20 @@ public class ColocationReadyGate : MonoBehaviour
     [SerializeField] private ColocationSessionState sessionState;
     [SerializeField] private GameObject[] enableWhenReady;
     TableSpawner tableSpawner;
+    FloorCalibration floorCalibration;
     private bool opened;
+    private bool floorCalibrated = false;
+    private bool isCalibrated = false;
 
     private void Start()
     {
         SetTargets(false);
         tableSpawner = GetComponent<TableSpawner>();
+        floorCalibration = GetComponent<FloorCalibration>();
         if (tableSpawner == null)
             Debug.LogError("TableSpawner component is missing.");
+        if (floorCalibration == null)
+            Debug.LogError("FloorCalibration component is missing.");
     }
 
     private void Update()
@@ -32,13 +38,11 @@ public class ColocationReadyGate : MonoBehaviour
             return;
 
         opened = true;
+        isCalibrated = true;
         SetTargets(true);
         Debug.Log("Co-location ready gate opened.");
+        BeginConfig();
 
-#if META_BUILD
-        if (tableSpawner!=null)
-           tableSpawner.SpawnSharedTable();
-#endif
     }
 
     private void SetTargets(bool active)
@@ -51,6 +55,26 @@ public class ColocationReadyGate : MonoBehaviour
             if (target != null)
                 target.SetActive(active);
         }
+    }
+
+    private void BeginConfig()
+    {
+
+        if (!floorCalibrated)
+        {
+            floorCalibration.ShowFloor();
+            //wait for user to confirm height and set floorCalibrated to true
+            floorCalibrated = true;
+        }
+
+        if (isCalibrated && floorCalibrated)
+        {
+#if META_BUILD
+        if (tableSpawner != null)
+            tableSpawner.SpawnSharedTable();
+#endif
+        }
+
     }
 
 }
