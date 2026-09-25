@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 /// <summary>
 /// Optional gate that enables gameplay objects only after this client is calibrated AND Fusion
 /// reports that both Meta and XREAL have confirmed calibration.
@@ -8,21 +8,33 @@ public class ColocationReadyGate : MonoBehaviour
 {
     [SerializeField] private ColocationSessionState sessionState;
     [SerializeField] private GameObject[] enableWhenReady;
+
     TableSpawner tableSpawner;
-    FloorCalibration floorCalibration;
+
     private bool opened;
     private bool floorCalibrated = false;
     private bool isCalibrated = false;
 
+
+    public static ColocationReadyGate Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
     private void Start()
     {
         SetTargets(false);
         tableSpawner = GetComponent<TableSpawner>();
-        floorCalibration = GetComponent<FloorCalibration>();
         if (tableSpawner == null)
             Debug.LogError("TableSpawner component is missing.");
-        if (floorCalibration == null)
-            Debug.LogError("FloorCalibration component is missing.");
+
     }
 
     private void Update()
@@ -57,14 +69,39 @@ public class ColocationReadyGate : MonoBehaviour
         }
     }
 
+
+    public void SetFloorCalibrated(bool calibrated)
+    {
+        floorCalibrated = calibrated;
+    }
+
+
+
+
+
+
+
+
+    //////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
     private void BeginConfig()
     {
 
         if (!floorCalibrated)
         {
-            floorCalibration.ShowFloor();
-            //wait for user to confirm height and set floorCalibrated to true
-            floorCalibrated = true;
+
+            FloorCalibration.Instance.ShowFloor();
+            StartCoroutine(WaitForCalibration());
         }
 
         if (isCalibrated && floorCalibrated)
@@ -76,5 +113,13 @@ public class ColocationReadyGate : MonoBehaviour
         }
 
     }
+
+    IEnumerator WaitForCalibration()
+    {
+        Debug.Log("Waiting for floor calibration...");
+        yield return new WaitUntil(() => floorCalibrated == true);
+        Debug.Log("Calibration complete! Advancing game state...");
+    }
+
 
 }

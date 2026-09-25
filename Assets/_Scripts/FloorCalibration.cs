@@ -5,51 +5,63 @@ using Fusion;
 public class FloorCalibration : NetworkBehaviour
 {
     [SerializeField] private NetworkObject floorPlanePrefab;
-    public Slider mySlider;
-    public GameObject UIHeightSlider;
+    [SerializeField] private NetworkObject UIHeightSliderPrefab;
 
-    public NetworkObject floorPlane;
-    private SharedSpaceSpawner spawner;
-    public TMP_Text heightText;
-    private float sliderValue;
-    private bool floorVisible = false;
     public float BoxHeight = 0f;
-    private float totalHeight = 0f;
+    private NetworkObject floorPlane;
+    private NetworkObject UIHeightSlider;
 
+    private SharedSpaceSpawner spawner;
+    private bool floorVisible = false;
+    private float startHeight = 0f;
+
+
+    public static FloorCalibration Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
     private void Start()
     {
         spawner = GetComponent<SharedSpaceSpawner>();
         if (spawner == null)
             Debug.LogError("SharedSpaceSpawner component is missing.");
 
-
-
     }
-    void OnHeightSliderChanged(float newValue)
-    {
-        heightText.text = "Set Table Height: " + newValue.ToString("F2") + " cm";
-        sliderValue = newValue / 10f;
-        if (floorVisible) //uzmi pocetnu visinu i onda racunaj, ovako ce biti preveliki step
-        {
-            totalHeight = BoxHeight / 2f + sliderValue;
-            Vector3 pos = floorPlane.transform.position;
-            pos.y = -totalHeight;
-            floorPlane.transform.position = pos;
-        }
-    }
-
     public void ShowFloor()
     {
         floorPlane = spawner.SpawnAtSharedPose(floorPlanePrefab, new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f));
+        startHeight = floorPlane.transform.position.y;
         floorVisible = true;
-        UIHeightSlider.SetActive(true); //spawn? nez kaj s lokalnim
-        mySlider.onValueChanged.AddListener(OnHeightSliderChanged);
+        UIHeightSlider = spawner.SpawnAtSharedPose(UIHeightSliderPrefab, new Vector3(0f, 0.5f, 0f), new Vector3(0f, 0f, 0f));
+
     }
+
+    public void MoveFloor(float newHeight)
+    {
+        if (floorPlane == null)
+        {
+            Debug.LogError("Floor plane is not spawned.");
+            return;
+        }
+        float finalHeight = startHeight - BoxHeight / 2f - newHeight;
+
+        floorPlane.transform.position = new Vector3(floorPlane.transform.position.x, finalHeight, floorPlane.transform.position.z);
+    }
+
     public void ConfirmHeight()
     {
         floorVisible = false;
-        //ugasi floor renderer
-        UIHeightSlider.SetActive(false);
+        MeshRenderer meshRenderer = floorPlane.GetComponent<MeshRenderer>();
+        meshRenderer.enabled = false;
+        Runner.Despawn(UIHeightSlider);
+        ColocationReadyGate.Instance.SetFloorCalibrated(true);
         //dovuci slidere ili gumbe za xy po podu
 
     }
