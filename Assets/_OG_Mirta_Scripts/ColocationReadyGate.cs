@@ -53,8 +53,10 @@ public class ColocationReadyGate : MonoBehaviour
         isCalibrated = true;
         SetTargets(true);
         Debug.Log("Co-location ready gate opened.");
-        BeginConfig();
 
+#if META_BUILD
+        BeginConfig();
+#endif
     }
 
     private void SetTargets(bool active)
@@ -99,17 +101,15 @@ public class ColocationReadyGate : MonoBehaviour
 
         if (!floorCalibrated)
         {
-
             FloorCalibration.Instance.ShowFloor();
             StartCoroutine(WaitForCalibration());
         }
 
         if (isCalibrated && floorCalibrated)
         {
-#if META_BUILD
-        if (tableSpawner != null)
-            tableSpawner.SpawnSharedTable();
-#endif
+            if (tableSpawner != null)
+                tableSpawner.SpawnSharedTable();
+
         }
 
     }
