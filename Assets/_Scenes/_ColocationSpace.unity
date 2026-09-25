@@ -1720,6 +1720,74 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8896620643513861592, guid: 405ff1b6d34178a4a987fc2f6908a1f3, type: 3}
+--- !u!1 &662675607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 662675609}
+  - component: {fileID: 662675608}
+  - component: {fileID: 662675610}
+  m_Layer: 0
+  m_Name: ColocationSessionState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &662675608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662675607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008bd6b17cc85674081dad0cf1767b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MetaReady:
+    _value: 0
+  _XrealReady:
+    _value: 0
+--- !u!4 &662675609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662675607}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &662675610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662675607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 1890518659
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 662675608}
+  ForceRemoteRenderTimeframe: 0
 --- !u!1 &750122155
 GameObject:
   m_ObjectHideFlags: 0
@@ -2762,13 +2830,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1353991614}
   - component: {fileID: 1353991615}
-  - component: {fileID: 1353991616}
   - component: {fileID: 1353991617}
   - component: {fileID: 1353991618}
   - component: {fileID: 1353991619}
   - component: {fileID: 1353991620}
   m_Layer: 0
-  m_Name: ColocationSessionState + TS
+  m_Name: Table and Floor spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2803,30 +2870,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 262937399
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 524289
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 1353991616}
   - {fileID: 1353991617}
   - {fileID: 1353991618}
   - {fileID: 1353991620}
   ForceRemoteRenderTimeframe: 0
---- !u!114 &1353991616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353991613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 008bd6b17cc85674081dad0cf1767b0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _MetaReady:
-    _value: 0
-  _XrealReady:
-    _value: 0
 --- !u!114 &1353991617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2870,7 +2920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b803587d6ab7dc948af27525ce4921a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sessionState: {fileID: 1353991616}
+  sessionState: {fileID: 0}
   enableWhenReady: []
 --- !u!114 &1353991620
 MonoBehaviour:
@@ -2886,7 +2936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorPlanePrefab: {fileID: 8844017126291761690, guid: 4bee4667829270f4986d4da83671d028, type: 3}
   UIHeightSliderPrefab: {fileID: 676508764994880181, guid: 4f48d579270e2ca46babbb93bfd82f7a, type: 3}
-  UIXZPrefab: {fileID: 0}
+  UIXZPrefab: {fileID: 2021538311106470081, guid: 2490acc655c431f4b9009cdc4033a46f, type: 3}
   BoxHeight: 0.21
   positionStepMeters: 0.1
 --- !u!1 &1393624241
@@ -7972,7 +8022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   calibrationRig: {fileID: 9111949701320098826}
   sharedSpaceManager: {fileID: 894895995}
-  sessionState: {fileID: 1353991616}
+  sessionState: {fileID: 662675608}
   editorFallbackRole: 0
   positionStepMeters: 0.01
   rotationStepDegrees: 0.5
@@ -9988,6 +10038,7 @@ SceneRoots:
   - {fileID: 313546619}
   - {fileID: 894895994}
   - {fileID: 1353991614}
+  - {fileID: 662675609}
   - {fileID: 3418521735563204747}
   - {fileID: 1862284235}
   - {fileID: 1916427384}

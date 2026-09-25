@@ -101,6 +101,7 @@ public class ColocationReadyGate : MonoBehaviour
 
         if (!floorCalibrated)
         {
+            Debug.Log("Floor not calibrated. Showing floor calibration UI.");
             FloorCalibration.Instance.ShowFloor();
             StartCoroutine(WaitForCalibration());
         }
