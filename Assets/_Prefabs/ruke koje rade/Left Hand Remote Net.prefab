@@ -1468,7 +1468,6 @@ GameObject:
   - component: {fileID: 6138987818464144006}
   - component: {fileID: 7805861480950611940}
   - component: {fileID: 7615339908622557654}
-  - component: {fileID: 2082053004215734591}
   m_Layer: 0
   m_Name: L_Wrist
   m_TagString: Untagged
@@ -1609,19 +1608,6 @@ MonoBehaviour:
     m_JointTransform: {fileID: 616818663859737807}
   debugAppliedPoses: 0
   appliedPoses: []
---- !u!114 &2082053004215734591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8668690880097545639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 257a0c75c8a35a6478f730d67e8ce272, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 0}
 --- !u!1 &8825837550294154703
 GameObject:
   m_ObjectHideFlags: 0

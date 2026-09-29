@@ -510,7 +510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.827, y: -0.239}
+  m_AnchoredPosition: {x: 0.82702637, y: -0.23901367}
   m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1840768065700772774
@@ -609,10 +609,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 263782563
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 524289
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 4626034737606094064}
+  - {fileID: 2246311952361955214}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &4626034737606094064
 MonoBehaviour:
@@ -642,6 +643,7 @@ MonoBehaviour:
   mySlider: {fileID: 3291650887395018459}
   confirmButton: {fileID: 4939279367604033362}
   heightText: {fileID: 8567766885981742227}
+  _SliderValue: 0
 --- !u!1 &2460070668872176991
 GameObject:
   m_ObjectHideFlags: 0

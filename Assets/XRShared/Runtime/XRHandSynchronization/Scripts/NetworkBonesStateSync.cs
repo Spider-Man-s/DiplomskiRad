@@ -104,8 +104,8 @@ namespace Fusion.Addons.HandsSync
         {
             networkHand = GetComponentInParent<INetworkHand>();
             bonesReader = GetComponentInChildren<IBonesReader>();
-            Debug.Log($"[INIT] networkHand: {networkHand}");
-            Debug.Log($"[INIT] bonesReader: {bonesReader}");
+            // Debug.Log($"[INIT] networkHand: {networkHand}");
+            // Debug.Log($"[INIT] bonesReader: {bonesReader}");
             _startTime = Time.time;
         }
 
@@ -124,12 +124,12 @@ namespace Fusion.Addons.HandsSync
                 networkHand.LocalHardwareRigPart != null &&
                 localBoneCollecter == null)
             {
-                Debug.Log("[DETECT] Trying to find IBonesCollecter...");
+                //  Debug.Log("[DETECT] Trying to find IBonesCollecter...");
 
                 localBoneCollecter = networkHand.LocalHardwareRigPart
                     .gameObject.GetComponentInChildren<IBonesCollecter>();
 
-                Debug.Log($"[DETECT] Collector found: {localBoneCollecter}");
+                //  Debug.Log($"[DETECT] Collector found: {localBoneCollecter}");
             }
         }
 
@@ -137,7 +137,7 @@ namespace Fusion.Addons.HandsSync
         {
             if (networkHand.Object.HasStateAuthority)
             {
-                Debug.Log($"[FUN] Authority TRUE");
+                //  Debug.Log($"[FUN] Authority TRUE");
 
                 if (localBoneCollecter == null)
                 {
@@ -149,22 +149,22 @@ namespace Fusion.Addons.HandsSync
 
                     if (localBoneCollecter == null)
                     {
-                        Debug.LogError("[FUN] Collector STILL NULL");
+                        //  Debug.LogError("[FUN] Collector STILL NULL");
                         return;
                     }
 
-                    Debug.Log("[FUN] Collector assigned in FixedUpdateNetwork");
+                    //Debug.Log("[FUN] Collector assigned in FixedUpdateNetwork");
                 }
 
-                Debug.Log($"[FUN] TrackingMode: {localBoneCollecter.CurrentHandTrackingMode}");
+                //Debug.Log($"[FUN] TrackingMode: {localBoneCollecter.CurrentHandTrackingMode}");
 
                 if (localBoneCollecter.CurrentBoneRotations == null)
                 {
-                    Debug.LogError("[FUN] BoneRotations NULL");
+                    //Debug.LogError("[FUN] BoneRotations NULL");
                     return;
                 }
 
-                Debug.Log($"[FUN] Bone count: {localBoneCollecter.CurrentBoneRotations.Count}");
+                // Debug.Log($"[FUN] Bone count: {localBoneCollecter.CurrentBoneRotations.Count}");
 
                 CurrentHandTrackingMode = localBoneCollecter.CurrentHandTrackingMode;
                 StoreRotations(localBoneCollecter.CurrentBoneRotations);
@@ -173,7 +173,7 @@ namespace Fusion.Addons.HandsSync
 
         void StoreRotations(Dictionary<HandSynchronizationBoneId, Quaternion> rotations)
         {
-            Debug.Log($"[STORE] Writing {rotations.Count} bones. Mode: {CurrentHandTrackingMode}");
+            // Debug.Log($"[STORE] Writing {rotations.Count} bones. Mode: {CurrentHandTrackingMode}");
             if (debugDisplayNetworkStateForLocaluser)
             {
                 debugStoredRotations.Clear();
@@ -267,17 +267,17 @@ namespace Fusion.Addons.HandsSync
         {
             if (bonesReader == null)
             {
-                Debug.LogError("[APPLY] bonesReader NULL");
+                //  Debug.LogError("[APPLY] bonesReader NULL");
                 return;
             }
 
             if (posesByboneId == null)
             {
-                Debug.LogError("[APPLY] poses NULL");
+                //  Debug.LogError("[APPLY] poses NULL");
                 return;
             }
 
-            Debug.Log($"[APPLY] Applying {posesByboneId.Count} bones");
+            //  Debug.Log($"[APPLY] Applying {posesByboneId.Count} bones");
 
             bonesReader.ApplyPoses(posesByboneId);
         }
@@ -335,8 +335,8 @@ namespace Fusion.Addons.HandsSync
             }
             else
             {
-                Debug.Log($"[REMOTE] Mode: {CurrentHandTrackingMode}");
-                Debug.Log($"[REMOTE] Bytes length: {CompressedBonesRotations.Length}");
+                // Debug.Log($"[REMOTE] Mode: {CurrentHandTrackingMode}");
+                // Debug.Log($"[REMOTE] Bytes length: {CompressedBonesRotations.Length}");
                 if (useRotationsInterpolation && TryGetSnapshotsBuffers(out var fromBuffer, out var toBuffer, out var alpha))
                 {
                     var trackingModeReader = GetPropertyReader<HandTrackingMode>(nameof(CurrentHandTrackingMode));

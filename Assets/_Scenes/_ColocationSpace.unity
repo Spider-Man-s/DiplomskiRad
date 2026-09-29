@@ -1729,10 +1729,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 662675609}
-  - component: {fileID: 662675608}
   - component: {fileID: 662675610}
+  - component: {fileID: 662675608}
+  - component: {fileID: 662675611}
   m_Layer: 0
-  m_Name: ColocationSessionState
+  m_Name: ColocationSessionState, Shared Space Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1787,7 +1788,20 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 662675608}
+  - {fileID: 662675611}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &662675611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662675607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1240a128f49a03499f66665672b3d7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &750122155
 GameObject:
   m_ObjectHideFlags: 0
@@ -2831,7 +2845,6 @@ GameObject:
   - component: {fileID: 1353991614}
   - component: {fileID: 1353991615}
   - component: {fileID: 1353991617}
-  - component: {fileID: 1353991618}
   - component: {fileID: 1353991619}
   - component: {fileID: 1353991620}
   m_Layer: 0
@@ -2874,7 +2887,6 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1353991617}
-  - {fileID: 1353991618}
   - {fileID: 1353991620}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &1353991617
@@ -2896,18 +2908,6 @@ MonoBehaviour:
   tableRotation: {x: 0, y: 0, z: 0}
   foldableBoxOffset: {x: 0.5093391, y: 0.055999883, z: 0.49135497}
   FoldableOrNot: 0
---- !u!114 &1353991618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353991613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1240a128f49a03499f66665672b3d7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1353991619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2920,7 +2920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b803587d6ab7dc948af27525ce4921a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sessionState: {fileID: 0}
+  sessionState: {fileID: 662675608}
   enableWhenReady: []
 --- !u!114 &1353991620
 MonoBehaviour:

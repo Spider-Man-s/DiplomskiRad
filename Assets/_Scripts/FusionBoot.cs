@@ -26,7 +26,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
     private SpawnPoint[] spawnPoints;
     private NetworkRunner _runner;
-
+    public NetworkRunner Runner => _runner;
     private bool _sceneReady;
     private bool _spawnedLocalPlayer;
 

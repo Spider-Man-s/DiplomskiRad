@@ -53,10 +53,12 @@ public class ColocationReadyGate : MonoBehaviour
         isCalibrated = true;
         SetTargets(true);
         Debug.Log("Co-location ready gate opened.");
-
-#if META_BUILD
+        if (FusionBoot.Instance == null || FusionBoot.Instance.Runner == null)
+            return;
+        if (!FusionBoot.Instance.Runner.IsSharedModeMasterClient) return;
+        Debug.Log("This client is the shared mode master client. Proceeding...");
         BeginConfig();
-#endif
+
     }
 
     private void SetTargets(bool active)
@@ -105,14 +107,12 @@ public class ColocationReadyGate : MonoBehaviour
             FloorCalibration.Instance.ShowFloor();
             StartCoroutine(WaitForCalibration());
         }
-
-        if (isCalibrated && floorCalibrated)
-        {
+        else
+        { //visak ali ajde
+            Debug.Log("Floor already calibrated. Spawning shared table.");
             if (tableSpawner != null)
                 tableSpawner.SpawnSharedTable();
-
         }
-
     }
 
     IEnumerator WaitForCalibration()
@@ -120,6 +120,14 @@ public class ColocationReadyGate : MonoBehaviour
         Debug.Log("Waiting for floor calibration...");
         yield return new WaitUntil(() => floorCalibrated == true);
         Debug.Log("Calibration complete! Advancing game state...");
+        if (isCalibrated && floorCalibrated)
+        {
+            Debug.Log("Both floor and device calibration complete. Spawning shared table.");
+            if (tableSpawner != null)
+                tableSpawner.SpawnSharedTable();
+
+        }
+
     }
 
 

@@ -14,29 +14,18 @@ public class TableSpawner : NetworkBehaviour
     public bool FoldableOrNot = false;
 
     private bool tableSpawned = false;
-    private SharedSpaceSpawner spawner;
 
-    private void Start()
-    {
-        spawner = GetComponent<SharedSpaceSpawner>();
-        if (spawner == null)
-            Debug.LogError("SharedSpaceSpawner component is missing.");
 
-    }
     public void SpawnSharedTable()
     {
         if (tableSpawned) return;
 
-        if (spawner == null)
-        {
-            Debug.LogError("SharedSpaceSpawner component is missing.");
-            return;
-        }
+
 
         NetworkObject prefab = FoldableOrNot ? foldableBoxPrefab : tablePrefab;
         Vector3 offset = FoldableOrNot ? foldableBoxOffset : tableOffset;
 
-        NetworkObject root = spawner.SpawnAtSharedPose(prefab, offset, tableRotation);
+        NetworkObject root = SharedSpaceSpawner.Instance.SpawnAtSharedPose(prefab, offset, tableRotation);
         if (root == null)
         {
             Debug.LogError($"Failed to spawn {prefab.name}.");
@@ -46,7 +35,7 @@ public class TableSpawner : NetworkBehaviour
         if (!FoldableOrNot)
         {
             foreach (BoxSideSpawn spawn in root.GetComponentsInChildren<BoxSideSpawn>())
-                Runner.Spawn(boxPartPrefab, spawn.transform.position, spawn.transform.rotation);
+                FusionBoot.Instance.Runner.Spawn(boxPartPrefab, spawn.transform.position, spawn.transform.rotation);
         }
 
         tableSpawned = true;

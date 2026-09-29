@@ -9,11 +9,21 @@ public class SharedSpaceSpawner : NetworkBehaviour
 {
     public NetworkObject SpawnAtSharedPose(NetworkObject prefab, Vector3 sharedPosition, Vector3 sharedEulerDegrees)
     {
+
+        if (Runner == null)
+        {
+            Debug.Log("SharedSpaceSpawner: NetworkRunner is not available.");
+        }
+        if (Object == null)
+        {
+            Debug.Log("SharedSpaceSpawner: NetworkObject is not spawned yet.");
+        }
         if (!Object.HasStateAuthority)
         {
             Debug.LogWarning("SharedSpaceSpawner: only State Authority may spawn through this helper.");
             return null;
         }
+
 
         SharedSpaceManager manager = SharedSpaceManager.Instance;
         if (manager == null || !manager.IsCalibrated)
@@ -35,4 +45,18 @@ public class SharedSpaceSpawner : NetworkBehaviour
 
         return spawned;
     }
+
+    public static SharedSpaceSpawner Instance { get; private set; }
+
+    public override void Spawned()
+    {
+        Instance = this;
+    }
+
+    public override void Despawned(NetworkRunner runner, bool hasState)
+    {
+        if (Instance == this)
+            Instance = null;
+    }
+
 }

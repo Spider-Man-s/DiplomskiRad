@@ -15,7 +15,6 @@ public class FloorCalibration : NetworkBehaviour
     private NetworkObject floorPlane;
     private NetworkObject UIHeightSlider;
     private NetworkObject UIXZ;
-    private SharedSpaceSpawner spawner;
     private bool floorVisible = false;
     private float startHeight = 0f;
 
@@ -33,15 +32,17 @@ public class FloorCalibration : NetworkBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    private void Start()
-    {
-        spawner = GetComponent<SharedSpaceSpawner>();
-        if (spawner == null)
-            Debug.LogError("SharedSpaceSpawner component is missing.");
 
-    }
     public void ShowFloor()
     {
+        var spawner = SharedSpaceSpawner.Instance;
+        if (spawner == null)
+        {
+            Debug.Log("FloorCalibration: SharedSpaceSpawner not attached to the network yet.");
+            return;
+        }
+        Debug.Log("Spawning floor plane and UI elements.");
+
         floorPlane = spawner.SpawnAtSharedPose(floorPlanePrefab, new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f));
         startHeight = floorPlane.transform.position.y;
         floorVisible = true;
@@ -57,19 +58,20 @@ public class FloorCalibration : NetworkBehaviour
             return;
         }
         float finalHeight = startHeight - BoxHeight / 2f - newHeight;
-
-        floorPlane.transform.position = new Vector3(floorPlane.transform.position.x, finalHeight, floorPlane.transform.position.z);
+        Debug.Log("Moving floor plane to height: " + finalHeight);
+        floorPlane.GetComponent<SharedSpaceNetworkTransform>().SetSharedPoseAsAuthority(new Pose(new Vector3(0, finalHeight, 0), floorPlane.transform.rotation));
     }
 
     public void ConfirmHeight()
     {
-        Runner.Despawn(UIHeightSlider);
-        UIXZ = spawner.SpawnAtSharedPose(UIXZPrefab, new Vector3(0f, 0.1f, 0f), new Vector3(0f, 0f, 0f));
+
+        FusionBoot.Instance.Runner.Despawn(UIHeightSlider);
+        UIXZ = SharedSpaceSpawner.Instance.SpawnAtSharedPose(UIXZPrefab, new Vector3(0f, 0.1f, 0f), new Vector3(0f, 0f, 0f));
     }
 
     public void ConfirmXZ()
     {
-        Runner.Despawn(UIXZ);
+        FusionBoot.Instance.Runner.Despawn(UIXZ);
         floorVisible = false;
         MeshRenderer meshRenderer = floorPlane.GetComponent<MeshRenderer>();
         meshRenderer.enabled = false;
@@ -87,9 +89,30 @@ public class FloorCalibration : NetworkBehaviour
 
     private void NudgePosition(Vector3 localAxis, float amount)
     {
+        if (floorPlane == null) return;
+
+        SharedSpaceManager manager = SharedSpaceManager.Instance;
+        if (manager == null || !manager.IsCalibrated)
+        {
+            Debug.LogWarning("SharedSpaceManager not calibrated.");
+            return;
+        }
+
         Transform root = floorPlane.transform;
         Vector3 worldDirection = root.TransformDirection(localAxis).normalized;
-        root.position += worldDirection * amount;
+        Vector3 newWorldPosition = root.position + worldDirection * amount;
+
+        var sharedTransform = floorPlane.GetComponent<SharedSpaceNetworkTransform>();
+        if (sharedTransform == null)
+        {
+            Debug.LogWarning("floorPlane has no SharedSpaceNetworkTransform.");
+            return;
+        }
+
+        Pose newWorldPose = new Pose(newWorldPosition, root.rotation);
+        Pose newSharedPose = manager.WorldToShared(newWorldPose);
+
+        sharedTransform.SetSharedPoseAsAuthority(newSharedPose);
     }
 
 
