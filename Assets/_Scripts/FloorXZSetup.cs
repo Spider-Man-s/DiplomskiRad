@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-public class FloorXZSetup : MonoBehaviour
+using Fusion;
+public class FloorXZSetup : NetworkBehaviour
 {
     public Button confirmButton;
     public Button xPlusButton;
@@ -10,10 +11,37 @@ public class FloorXZSetup : MonoBehaviour
 
     private void Start()
     {
-        confirmButton.onClick.AddListener(FloorCalibration.Instance.ConfirmXZ);
-        xPlusButton.onClick.AddListener(FloorCalibration.Instance.PositionXPlus);
-        xMinusButton.onClick.AddListener(FloorCalibration.Instance.PositionXMinus);
-        zPlusButton.onClick.AddListener(FloorCalibration.Instance.PositionZPlus);
-        zMinusButton.onClick.AddListener(FloorCalibration.Instance.PositionZMinus);
+        confirmButton.onClick.AddListener(() => RPC_ConfirmXZ());
+        xPlusButton.onClick.AddListener(() => RPC_PositionXPlus());
+        xMinusButton.onClick.AddListener(() => RPC_PositionXMinus());
+        zPlusButton.onClick.AddListener(() => RPC_PositionZPlus());
+        zMinusButton.onClick.AddListener(() => RPC_PositionZMinus());
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_PositionXPlus()
+    {
+        FloorCalibration.Instance.PositionXPlus();
+    }
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_PositionXMinus()
+    {
+        FloorCalibration.Instance.PositionXMinus();
+    }
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_PositionZPlus()
+    {
+        FloorCalibration.Instance.PositionZPlus();
+    }
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_PositionZMinus()
+    {
+        FloorCalibration.Instance.PositionZMinus();
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_ConfirmXZ()
+    {
+        FloorCalibration.Instance.ConfirmXZ();
     }
 }

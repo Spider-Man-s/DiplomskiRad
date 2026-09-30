@@ -30,7 +30,6 @@ public class FloorCalibration : NetworkBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     public void ShowFloor()
@@ -46,7 +45,7 @@ public class FloorCalibration : NetworkBehaviour
         floorPlane = spawner.SpawnAtSharedPose(floorPlanePrefab, new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f));
         startHeight = floorPlane.transform.position.y;
         floorVisible = true;
-        UIHeightSlider = spawner.SpawnAtSharedPose(UIHeightSliderPrefab, new Vector3(0f, 0.5f, 0f), new Vector3(0f, 0f, 0f));
+        UIHeightSlider = spawner.SpawnAtSharedPose(UIHeightSliderPrefab, new Vector3(0f, 0.2f, 0f), new Vector3(0f, 0f, 0f));
 
     }
 
@@ -59,12 +58,11 @@ public class FloorCalibration : NetworkBehaviour
         }
         float finalHeight = startHeight - BoxHeight / 2f - newHeight;
         Debug.Log("Moving floor plane to height: " + finalHeight);
-        floorPlane.GetComponent<SharedSpaceNetworkTransform>().SetSharedPoseAsAuthority(new Pose(new Vector3(0, finalHeight, 0), floorPlane.transform.rotation));
+        floorPlane.GetComponent<SharedSpaceNetworkTransform>().RequestSharedPose(new Pose(new Vector3(0, finalHeight, 0), floorPlane.transform.rotation));
     }
 
     public void ConfirmHeight()
     {
-
         FusionBoot.Instance.Runner.Despawn(UIHeightSlider);
         UIXZ = SharedSpaceSpawner.Instance.SpawnAtSharedPose(UIXZPrefab, new Vector3(0f, 0.1f, 0f), new Vector3(0f, 0f, 0f));
     }
@@ -73,8 +71,7 @@ public class FloorCalibration : NetworkBehaviour
     {
         FusionBoot.Instance.Runner.Despawn(UIXZ);
         floorVisible = false;
-        MeshRenderer meshRenderer = floorPlane.GetComponent<MeshRenderer>();
-        meshRenderer.enabled = false;
+        floorPlane?.GetComponent<SharedSpaceNetworkTransform>()?.RPC_SetVisible(false);
 
         ColocationReadyGate.Instance.SetFloorCalibrated(true);
     }
@@ -112,7 +109,7 @@ public class FloorCalibration : NetworkBehaviour
         Pose newWorldPose = new Pose(newWorldPosition, root.rotation);
         Pose newSharedPose = manager.WorldToShared(newWorldPose);
 
-        sharedTransform.SetSharedPoseAsAuthority(newSharedPose);
+        sharedTransform.RequestSharedPose(newSharedPose);
     }
 
 

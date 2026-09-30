@@ -20,7 +20,10 @@ public class TableSpawner : NetworkBehaviour
     {
         if (tableSpawned) return;
 
-
+        if (FoldableOrNot)
+        {
+            HandColliderManager.Instance.EnableAllHandColliders();
+        }
 
         NetworkObject prefab = FoldableOrNot ? foldableBoxPrefab : tablePrefab;
         Vector3 offset = FoldableOrNot ? foldableBoxOffset : tableOffset;
@@ -34,6 +37,7 @@ public class TableSpawner : NetworkBehaviour
 
         if (!FoldableOrNot)
         {
+            HandColliderManager.Instance.DisableAllHandColliders();
             foreach (BoxSideSpawn spawn in root.GetComponentsInChildren<BoxSideSpawn>())
                 FusionBoot.Instance.Runner.Spawn(boxPartPrefab, spawn.transform.position, spawn.transform.rotation);
         }

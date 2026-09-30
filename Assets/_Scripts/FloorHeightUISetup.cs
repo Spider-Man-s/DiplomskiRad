@@ -9,8 +9,8 @@ public class FloorHeightUISetup : NetworkBehaviour
     public Button confirmButton;
     public TMP_Text heightText;
 
-    [Networked, OnChangedRender(nameof(OnNetworkedValueChanged))]
-    public float SliderValue { get; set; }
+    [Networked, OnChangedRender(nameof(SnapSlider))]
+    private float NetworkedSliderValue { get; set; }
 
     private void Awake()
     {
@@ -19,37 +19,37 @@ public class FloorHeightUISetup : NetworkBehaviour
 
     private void Start()
     {
-        confirmButton.onClick.AddListener(FloorCalibration.Instance.ConfirmHeight);
-    }
-
-    public override void Spawned()
-    {
-        mySlider.SetValueWithoutNotify(SliderValue);
-        UpdateText(SliderValue);
+        confirmButton.onClick.AddListener(() => RPC_ConfirmHeight());
     }
 
     private void OnSliderChanged(float value)
     {
-        if (!Object.HasStateAuthority)
-        {
-            Object.RequestStateAuthority();
-        }
-
-        SliderValue = value;
         UpdateText(value);
-        FloorCalibration.Instance.MoveFloor(value / 100f);
-    }
-
-    private void OnNetworkedValueChanged()
-    {
-        if (Object.HasStateAuthority) return;
-
-        mySlider.SetValueWithoutNotify(SliderValue);
-        UpdateText(SliderValue);
+        RPC_SetFloorHeight(value);
     }
 
     private void UpdateText(float value)
     {
         heightText.text = "Set Table Height: " + value.ToString("F2") + " cm";
     }
+    private void SnapSlider()
+    {
+        mySlider.SetValueWithoutNotify(NetworkedSliderValue);
+        UpdateText(NetworkedSliderValue);
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    private void RPC_SetFloorHeight(float rawSliderValue)
+    {
+        NetworkedSliderValue = rawSliderValue;
+        FloorCalibration.Instance.MoveFloor(rawSliderValue / 100f);
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    private void RPC_ConfirmHeight()
+    {
+        FloorCalibration.Instance.ConfirmHeight();
+
+    }
+
 }

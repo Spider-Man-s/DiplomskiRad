@@ -124,6 +124,29 @@ public class SharedSpaceNetworkTransform : NetworkBehaviour
         }
     }
 
+    public void RequestSharedPose(Pose sharedPose)
+    {
+        if (Object == null) return;
+
+        if (Object.HasStateAuthority)
+        {
+            SetNetworkPoseAsAuthority(sharedPose);
+
+            SharedSpaceManager manager = SharedSpaceManager.Instance;
+            if (manager != null && manager.IsCalibrated)
+            {
+                Pose worldPose = manager.SharedToWorld(sharedPose);
+                transform.SetPositionAndRotation(worldPose.position, worldPose.rotation);
+            }
+        }
+        else
+        {
+            RPC_SubmitSharedPose(sharedPose.position, sharedPose.rotation);
+        }
+    }
+
+
+
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     private void RPC_SubmitSharedPose(Vector3 sharedPosition, Quaternion sharedRotation)
     {
@@ -132,7 +155,12 @@ public class SharedSpaceNetworkTransform : NetworkBehaviour
 
         SetNetworkPoseAsAuthority(new Pose(sharedPosition, sharedRotation));
     }
-
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_SetVisible(NetworkBool visible)
+    {
+        if (TryGetComponent(out MeshRenderer renderer))
+            renderer.enabled = visible;
+    }
     private void SetNetworkPoseAsAuthority(Pose sharedPose)
     {
         SharedPosition = sharedPose.position;
