@@ -16,7 +16,7 @@ public class FloorCalibration : NetworkBehaviour
     private NetworkObject UIHeightSlider;
     private NetworkObject UIXZ;
     private bool floorVisible = false;
-    private float startHeight = 0f;
+    // private float startHeight = 0f;
 
 
 
@@ -43,9 +43,10 @@ public class FloorCalibration : NetworkBehaviour
         Debug.Log("Spawning floor plane and UI elements.");
 
         floorPlane = spawner.SpawnAtSharedPose(floorPlanePrefab, new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f));
-        startHeight = floorPlane.transform.position.y;
+        // startHeight = floorPlane.transform.position.y;
         floorVisible = true;
         UIHeightSlider = spawner.SpawnAtSharedPose(UIHeightSliderPrefab, new Vector3(0f, 0.2f, 0f), new Vector3(0f, 0f, 0f));
+        MoveFloor(0f);
 
     }
 
@@ -56,9 +57,9 @@ public class FloorCalibration : NetworkBehaviour
             Debug.LogError("Floor plane is not spawned.");
             return;
         }
-        float finalHeight = startHeight - BoxHeight / 2f - newHeight;
+        float finalHeight = -BoxHeight / 2f - newHeight;
         Debug.Log("Moving floor plane to height: " + finalHeight);
-        floorPlane.GetComponent<SharedSpaceNetworkTransform>().RequestSharedPose(new Pose(new Vector3(0, finalHeight, 0), floorPlane.transform.rotation));
+        floorPlane.GetComponent<SharedSpaceNetworkTransform>().RequestSharedPose(new Pose(new Vector3(0, finalHeight, 0), new Quaternion(0, 0, 0, 1)));
     }
 
     public void ConfirmHeight()
