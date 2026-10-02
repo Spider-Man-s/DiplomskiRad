@@ -142,7 +142,7 @@ MonoBehaviour:
   - {fileID: 122857972151774147}
   - {fileID: 3113457963533825911}
   - {fileID: 8271953663483887815}
-  visibleMaterial: {fileID: 2100000, guid: 8cb10f49fc8744c4db04c0170c5f660d, type: 2}
+  visibleMaterial: {fileID: 2100000, guid: ad93ff7fb50147b40866385b889da79f, type: 2}
   hiddenMaterial: {fileID: 2100000, guid: 2b3e7f7d0a39e374c8e3d5230e431f69, type: 2}
 --- !u!114 &5510538001805999493
 MonoBehaviour:
@@ -917,6 +917,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Left Hand Remote Net
       objectReference: {fileID: 0}
+    - target: {fileID: 5739019889604807468, guid: 827365180285f0247b4f34fd2cd8f2c0, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ad93ff7fb50147b40866385b889da79f, type: 2}
     - target: {fileID: 5859151916719400916, guid: 827365180285f0247b4f34fd2cd8f2c0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1098,6 +1102,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7595974090082845558, guid: 529449d69b776ef4bbbb9422cdac0895, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ad93ff7fb50147b40866385b889da79f, type: 2}
     - target: {fileID: 7910949589353298178, guid: 529449d69b776ef4bbbb9422cdac0895, type: 3}
       propertyPath: m_Enabled
       value: 1

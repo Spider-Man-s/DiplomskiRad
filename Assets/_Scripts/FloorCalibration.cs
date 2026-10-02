@@ -45,7 +45,7 @@ public class FloorCalibration : NetworkBehaviour
         floorPlane = spawner.SpawnAtSharedPose(floorPlanePrefab, new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f));
         // startHeight = floorPlane.transform.position.y;
         floorVisible = true;
-        UIHeightSlider = spawner.SpawnAtSharedPose(UIHeightSliderPrefab, new Vector3(0f, 0.2f, 0f), new Vector3(0f, 0f, 0f));
+        UIHeightSlider = spawner.SpawnAtSharedPose(UIHeightSliderPrefab, new Vector3(0f, 0.2f, -0.4f), new Vector3(0f, 0f, 0f));
         MoveFloor(0f);
 
     }
@@ -65,7 +65,7 @@ public class FloorCalibration : NetworkBehaviour
     public void ConfirmHeight()
     {
         FusionBoot.Instance.Runner.Despawn(UIHeightSlider);
-        UIXZ = SharedSpaceSpawner.Instance.SpawnAtSharedPose(UIXZPrefab, new Vector3(0f, 0.1f, 0f), new Vector3(0f, 0f, 0f));
+        UIXZ = SharedSpaceSpawner.Instance.SpawnAtSharedPose(UIXZPrefab, new Vector3(0f, 0.2f, -0.4f), new Vector3(0f, 0f, 0f));
     }
 
     public void ConfirmXZ()

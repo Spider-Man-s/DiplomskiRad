@@ -118,6 +118,9 @@ public class BoxCalibrationController : MonoBehaviour
             Debug.LogError("BoxCalibrationController: SharedSpaceManager is missing.");
             return;
         }
+        //set the rotation of the calibration rig to have zero roll and pitch, keeping only the yaw
+        Vector3 euler = transform.eulerAngles;
+        transform.eulerAngles = new Vector3(euler.x, euler.y, 0f);
 
         Transform reference = calibrationRig.SharedReference;
         if (reference == null)
