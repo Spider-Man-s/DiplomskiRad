@@ -94,6 +94,29 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.microsoft.mixedreality.openxr": {
+      "version": "file:MixedReality/com.microsoft.mixedreality.openxr-1.11.2.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.unity.xr.arfoundation": "4.1.7",
+        "com.unity.xr.management": "4.2.0",
+        "com.unity.xr.openxr": "1.7.0",
+        "com.unity.xr.core-utils": "2.1.0"
+      }
+    },
+    "com.microsoft.mrtk.graphicstools.unity": {
+      "version": "file:MixedReality/com.microsoft.mrtk.graphicstools.unity-0.7.1.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {}
+    },
+    "com.microsoft.mrtk.tts.windows": {
+      "version": "file:MixedReality/com.microsoft.mrtk.tts.windows-1.0.4.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {}
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.7",
       "depth": 0,
@@ -104,12 +127,25 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.8.21",
-      "depth": 2,
+      "version": "1.8.30",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.mathematics": "1.2.1",
         "com.unity.modules.jsonserialize": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.cloud.gltfast": {
+      "version": "6.20.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.8.30",
+        "com.unity.collections": "2.6.8",
+        "com.unity.mathematics": "1.3.3",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
@@ -121,13 +157,14 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collections": {
-      "version": "2.5.1",
-      "depth": 2,
+      "version": "2.6.8",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.burst": "1.8.17",
-        "com.unity.test-framework": "1.4.5",
-        "com.unity.nuget.mono-cecil": "1.11.4",
+        "com.unity.burst": "1.8.29",
+        "com.unity.mathematics": "1.3.2",
+        "com.unity.test-framework": "1.4.6",
+        "com.unity.nuget.mono-cecil": "1.11.6",
         "com.unity.test-framework.performance": "3.0.3"
       },
       "url": "https://packages.unity.com"
@@ -183,7 +220,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.mathematics": {
-      "version": "1.3.2",
+      "version": "1.3.3",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -198,8 +235,8 @@
       }
     },
     "com.unity.nuget.mono-cecil": {
-      "version": "1.11.4",
-      "depth": 3,
+      "version": "1.11.6",
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -282,7 +319,7 @@
     },
     "com.unity.test-framework.performance": {
       "version": "3.1.0",
-      "depth": 3,
+      "depth": 2,
       "source": "registry",
       "dependencies": {
         "com.unity.test-framework": "1.1.33",
@@ -459,6 +496,135 @@
         "com.unity.xr.core-utils": "2.2.0"
       },
       "hash": "179c5383268daa8c956594a6eb258726a8281722"
+    },
+    "org.mixedrealitytoolkit.accessibility": {
+      "version": "file:MixedReality/org.mixedrealitytoolkit.accessibility-1.0.3-pre.20.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.microsoft.mrtk.graphicstools.unity": "0.5.12",
+        "org.mixedrealitytoolkit.core": "3.0.0",
+        "com.unity.textmeshpro": "3.0.6"
+      }
+    },
+    "org.mixedrealitytoolkit.audio": {
+      "version": "file:MixedReality/org.mixedrealitytoolkit.audio-3.0.4.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "org.mixedrealitytoolkit.core": "3.0.0"
+      }
+    },
+    "org.mixedrealitytoolkit.core": {
+      "version": "file:MixedReality/org.mixedrealitytoolkit.core-4.0.0-pre.1.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.unity.xr.interaction.toolkit": "3.0.3",
+        "com.unity.xr.management": "4.2.1",
+        "com.unity.xr.core-utils": "2.1.0"
+      }
+    },
+    "org.mixedrealitytoolkit.diagnostics": {
+      "version": "file:MixedReality/org.mixedrealitytoolkit.diagnostics-3.0.2.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "org.mixedrealitytoolkit.core": "3.0.0",
+        "com.unity.xr.management": "4.2.1"
+      }
+    },
+    "org.mixedrealitytoolkit.extendedassets": {
+      "version": "file:MixedReality/org.mixedrealitytoolkit.extendedassets-3.0.3.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "org.mixedrealitytoolkit.standardassets": "3.1.0"
+      }
+    },
+    "org.mixedrealitytoolkit.input": {
+      "version": "file:MixedReality/org.mixedrealitytoolkit.input-4.0.0-pre.1.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.microsoft.mrtk.graphicstools.unity": "0.5.12",
+        "com.unity.inputsystem": "1.6.1",
+        "com.unity.xr.arfoundation": "5.0.5",
+        "com.unity.xr.core-utils": "2.1.0",
+        "com.unity.xr.hands": "1.3.0",
+        "com.unity.xr.interaction.toolkit": "3.0.3",
+        "org.mixedrealitytoolkit.core": "4.0.0"
+      }
+    },
+    "org.mixedrealitytoolkit.spatialmanipulation": {
+      "version": "file:MixedReality/org.mixedrealitytoolkit.spatialmanipulation-4.0.0-pre.1.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "org.mixedrealitytoolkit.core": "4.0.0",
+        "org.mixedrealitytoolkit.uxcore": "4.0.0",
+        "com.unity.inputsystem": "1.6.1",
+        "com.unity.xr.interaction.toolkit": "3.0.3"
+      }
+    },
+    "org.mixedrealitytoolkit.standardassets": {
+      "version": "file:MixedReality/org.mixedrealitytoolkit.standardassets-3.2.0.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.microsoft.mrtk.graphicstools.unity": "0.5.12"
+      }
+    },
+    "org.mixedrealitytoolkit.tools": {
+      "version": "file:MixedReality/org.mixedrealitytoolkit.tools-3.0.4.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "org.mixedrealitytoolkit.core": "3.0.0"
+      }
+    },
+    "org.mixedrealitytoolkit.uxcomponents": {
+      "version": "file:MixedReality/org.mixedrealitytoolkit.uxcomponents-4.0.0-pre.1.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.microsoft.mrtk.graphicstools.unity": "0.5.12",
+        "org.mixedrealitytoolkit.uxcore": "4.0.0",
+        "org.mixedrealitytoolkit.spatialmanipulation": "4.0.0",
+        "org.mixedrealitytoolkit.standardassets": "3.1.0",
+        "com.unity.xr.interaction.toolkit": "3.0.3"
+      }
+    },
+    "org.mixedrealitytoolkit.uxcomponents.noncanvas": {
+      "version": "file:MixedReality/org.mixedrealitytoolkit.uxcomponents.noncanvas-4.0.0-pre.1.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "org.mixedrealitytoolkit.uxcore": "4.0.0",
+        "org.mixedrealitytoolkit.spatialmanipulation": "4.0.0",
+        "org.mixedrealitytoolkit.standardassets": "3.1.0"
+      }
+    },
+    "org.mixedrealitytoolkit.uxcore": {
+      "version": "file:MixedReality/org.mixedrealitytoolkit.uxcore-4.0.0-pre.1.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.microsoft.mrtk.graphicstools.unity": "0.5.12",
+        "org.mixedrealitytoolkit.core": "4.0.0",
+        "com.unity.inputsystem": "1.6.1",
+        "com.unity.textmeshpro": "3.0.6",
+        "com.unity.xr.interaction.toolkit": "3.0.3"
+      }
+    },
+    "org.mixedrealitytoolkit.windowsspeech": {
+      "version": "file:MixedReality/org.mixedrealitytoolkit.windowsspeech-3.0.3.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.microsoft.mrtk.tts.windows": "1.0.1",
+        "org.mixedrealitytoolkit.core": "3.0.0"
+      }
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
