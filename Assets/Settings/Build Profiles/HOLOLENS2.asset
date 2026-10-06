@@ -21,8 +21,12 @@ MonoBehaviour:
   m_OverrideGlobalSceneList: 1
   m_Scenes:
   - m_enabled: 1
-    m_path: Assets/_Scenes/MetaSandbox.unity
-  m_ScriptingDefines: []
+    m_path: Assets/_Scenes/_HololensSpace.unity
+  - m_enabled: 1
+    m_path: Assets/_Scenes/_ColocationSpace.unity
+  m_ScriptingDefines:
+  - META_BUILD
+  - HOLOLENS_BUILD
   m_PlayerSettingsYaml:
     m_Settings:
     - line: '| PlayerSettings:'
@@ -107,7 +111,7 @@ MonoBehaviour:
     - line: '|   androidApplicationEntry: 1'
     - line: '|   defaultIsNativeResolution: 1'
     - line: '|   macRetinaSupport: 1'
-    - line: '|   runInBackground: 1'
+    - line: '|   runInBackground: 0'
     - line: '|   muteOtherAudioSources: 0'
     - line: '|   Prepare IOS For Recording: 0'
     - line: '|   Force IOS Speakers When Recording: 0'
@@ -170,13 +174,15 @@ MonoBehaviour:
     - line: '|   - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b,
         type: 3}'
     - line: '|   - {instanceID: 0}'
-    - line: '|   - {fileID: 11400000, guid: 140ee1005e951224a86fdab81d280d3a, type:
+    - line: '|   - {fileID: 11400000, guid: ae382b67ff8296645b7a2636b4838e49, type:
         2}'
-    - line: '|   - {fileID: 7923946338316257356, guid: 6f479c6edfef7e545b7fe10834dfe430,
-        type: 2}'
     - line: '|   - {fileID: 11400000, guid: 98cb777ea5f8f8d42a04a3807cd9f221, type:
         2}'
-    - line: '|   - {fileID: 1513077798143829932, guid: b548ed905e7e44c488d22540c084eb29,
+    - line: '|   - {fileID: 11400000, guid: c677e5c4eb85b7849a8da406775c299d, type:
+        2}'
+    - line: '|   - {fileID: -2980406040667217593, guid: b548ed905e7e44c488d22540c084eb29,
+        type: 2}'
+    - line: '|   - {fileID: -4539175032574698895, guid: 6f479c6edfef7e545b7fe10834dfe430,
         type: 2}'
     - line: '|   metroInputSource: 0'
     - line: '|   wsaTransparentSwapchain: 0'
@@ -557,8 +563,12 @@ MonoBehaviour:
     - line: '|   m_BuildTargetGraphicsJobs:'
     - line: '|   - m_BuildTarget: AndroidPlayer'
     - line: '|     m_GraphicsJobs: 1'
+    - line: '|   - m_BuildTarget: MetroSupport'
+    - line: '|     m_GraphicsJobs: 1'
     - line: '|   m_BuildTargetGraphicsJobMode:'
     - line: '|   - m_BuildTarget: AndroidPlayer'
+    - line: '|     m_GraphicsJobMode: 1'
+    - line: '|   - m_BuildTarget: MetroSupport'
     - line: '|     m_GraphicsJobMode: 1'
     - line: '|   m_BuildTargetGraphicsAPIs:'
     - line: '|   - m_BuildTarget: iOSSupport'
@@ -566,6 +576,9 @@ MonoBehaviour:
     - line: '|     m_Automatic: 1'
     - line: '|   - m_BuildTarget: AndroidPlayer'
     - line: '|     m_APIs: 150000000b000000'
+    - line: '|     m_Automatic: 0'
+    - line: '|   - m_BuildTarget: MetroSupport'
+    - line: '|     m_APIs: 02000000'
     - line: '|     m_Automatic: 0'
     - line: '|   m_BuildTargetVRSettings: []'
     - line: '|   m_DefaultShaderChunkSizeInMB: 16'
@@ -582,6 +595,9 @@ MonoBehaviour:
     - line: '|   - serializedVersion: 2'
     - line: '|     m_BuildTarget: Android'
     - line: '|     m_EncodingQuality: 1'
+    - line: '|   - serializedVersion: 2'
+    - line: '|     m_BuildTarget: WindowsStoreApps'
+    - line: '|     m_EncodingQuality: 2'
     - line: '|   m_BuildTargetGroupLightmapSettings: []'
     - line: '|   m_BuildTargetGroupLoadStoreDebugModeSettings: []'
     - line: '|   m_BuildTargetNormalMapEncoding:'
@@ -896,11 +912,11 @@ MonoBehaviour:
     - line: '|   m_MobileRenderingPath: 1'
     - line: '|   metroPackageName: MRSpace'
     - line: '|   metroPackageVersion: 1.0.0.0'
-    - line: '|   metroCertificatePath: '
+    - line: '|   metroCertificatePath: Assets/WSATestCertificate.pfx'
     - line: '|   metroCertificatePassword: '
-    - line: '|   metroCertificateSubject: '
-    - line: '|   metroCertificateIssuer: '
-    - line: '|   metroCertificateNotAfter: 0000000000000000'
+    - line: '|   metroCertificateSubject: DefaultCompany'
+    - line: '|   metroCertificateIssuer: DefaultCompany'
+    - line: '|   metroCertificateNotAfter: 00b9014c9b73de01'
     - line: '|   metroApplicationDescription: MRSpace'
     - line: '|   wsaImages: {}'
     - line: '|   metroTileShortName: MRSpace'
@@ -1015,7 +1031,7 @@ MonoBehaviour:
         m_BuildConfiguration: 1
         m_WsaArchitecture: ARM64
         m_WsaUWPVisualStudioVersion: 
-        m_WsaUWPSDK: 
+        m_WsaUWPSDK: Latest installed
         m_WsaMinUWPSDK: 10.0.19041.0
         m_WsaUWPBuildType: 1
         m_WsaBuildAndRunDeployTarget: 0
