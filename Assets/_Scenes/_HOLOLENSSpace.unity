@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &47753618
 Transform:
   m_ObjectHideFlags: 0
@@ -167,10 +167,9 @@ MonoBehaviour:
   localOffset: {x: 0, y: 0, z: 0}
   followEveryFrame: 0
   maxLines: 150
-  panelWidthMeters: 0.6
-  panelHeightMeters: 0.35
+  panelWidthMeters: 1
+  panelHeightMeters: 1
   fontSize: 28
-  toggleKey: 290
   startVisible: 1
 --- !u!1 &257810521
 GameObject:
@@ -422,6 +421,10 @@ PrefabInstance:
       propertyPath: handVisualizationMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2991305379227671139, guid: 55fe118f63c55e540923112274c06b39, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3811596598756183297, guid: 55fe118f63c55e540923112274c06b39, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -516,6 +519,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8452636928567300021, guid: 55fe118f63c55e540923112274c06b39, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807748250962748306, guid: 55fe118f63c55e540923112274c06b39, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
