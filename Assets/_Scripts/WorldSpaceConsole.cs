@@ -9,9 +9,10 @@ using TMPro;
 /// Drop this on any empty GameObject in your scene (or let it live as a prefab).
 /// Builds its own world-space canvas at runtime, follows the camera, and mirrors
 /// every Debug.Log / Warning / Error into it. No manual UI setup required.
+/// Always auto-scrolls to the newest line, so no scrolling input is needed in VR.
 ///
-/// On-device, there's no physical keyboard, so wire a world-space button's
-/// OnClick to WorldSpaceConsole.Instance.ToggleVisible() to show/hide it.
+/// Wire a world-space button's OnClick to WorldSpaceConsole.Instance.ToggleVisible()
+/// if you want to show/hide it on-device.
 /// </summary>
 public class WorldSpaceConsole : MonoBehaviour
 {
@@ -27,8 +28,7 @@ public class WorldSpaceConsole : MonoBehaviour
     [SerializeField] private float panelHeightMeters = 0.35f;
     [SerializeField] private int fontSize = 28;
 
-    [Header("Editor/dev toggle")]
-    [Tooltip("Keyboard toggle for editor testing. No effect on devices without a keyboard.")]
+    [Header("Visibility")]
     [SerializeField] private bool startVisible = true;
 
     public static WorldSpaceConsole Instance { get; private set; }
@@ -40,6 +40,7 @@ public class WorldSpaceConsole : MonoBehaviour
     private readonly Queue<string> lines = new Queue<string>();
     private readonly StringBuilder builder = new StringBuilder();
     private bool visible;
+    private bool dirty;
 
     private void Awake()
     {
@@ -60,7 +61,6 @@ public class WorldSpaceConsole : MonoBehaviour
 
     private void Update()
     {
-
         if (!followEveryFrame) return;
 
         Transform t = followTarget != null ? followTarget : (Camera.main != null ? Camera.main.transform : null);
@@ -70,18 +70,34 @@ public class WorldSpaceConsole : MonoBehaviour
         transform.rotation = t.rotation;
     }
 
+    // Text/scroll update happens at most once per frame, and only while visible.
+    private void LateUpdate()
+    {
+        if (!dirty || !visible || text == null) return;
+        dirty = false;
+
+        builder.Clear();
+        foreach (string line in lines)
+            builder.AppendLine(line);
+        text.text = builder.ToString();
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(content);
+        scrollRect.verticalNormalizedPosition = 0f; // snap to newest line
+    }
+
     public void ToggleVisible() => SetVisible(!visible);
 
     public void SetVisible(bool value)
     {
         visible = value;
         canvas.gameObject.SetActive(visible);
+        if (visible) dirty = true; // refresh with anything logged while hidden
     }
 
     public void Clear()
     {
         lines.Clear();
-        RefreshText();
+        dirty = true;
     }
 
     private void HandleLog(string message, string stackTrace, LogType type)
@@ -97,20 +113,7 @@ public class WorldSpaceConsole : MonoBehaviour
         while (lines.Count > maxLines)
             lines.Dequeue();
 
-        RefreshText();
-    }
-
-    private void RefreshText()
-    {
-        builder.Clear();
-        foreach (string line in lines)
-            builder.AppendLine(line);
-
-        text.text = builder.ToString();
-
-        Canvas.ForceUpdateCanvases();
-        if (scrollRect != null)
-            scrollRect.verticalNormalizedPosition = 0f;
+        dirty = true;
     }
 
     private void BuildUI()
@@ -155,6 +158,14 @@ public class WorldSpaceConsole : MonoBehaviour
         content.anchorMax = new Vector2(1f, 1f);
         content.pivot = new Vector2(0.5f, 1f);
         content.sizeDelta = new Vector2(0f, refHeight);
+
+        // Layout group gives Content a real height from the text, so the ScrollRect has something to scroll.
+        VerticalLayoutGroup layout = contentGO.AddComponent<VerticalLayoutGroup>();
+        layout.childControlWidth = true;
+        layout.childControlHeight = true;
+        layout.childForceExpandWidth = true;
+        layout.childForceExpandHeight = false;
+
         ContentSizeFitter fitter = contentGO.AddComponent<ContentSizeFitter>();
         fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
 
@@ -165,12 +176,6 @@ public class WorldSpaceConsole : MonoBehaviour
         text.enableWordWrapping = true;
         text.richText = true;
         text.text = string.Empty;
-        RectTransform textRect = textGO.GetComponent<RectTransform>();
-        textRect.anchorMin = new Vector2(0f, 1f);
-        textRect.anchorMax = new Vector2(1f, 1f);
-        textRect.pivot = new Vector2(0.5f, 1f);
-        textRect.offsetMin = Vector2.zero;
-        textRect.offsetMax = Vector2.zero;
 
         scrollRect.content = content;
         scrollRect.viewport = viewportRect;

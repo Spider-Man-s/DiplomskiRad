@@ -93,7 +93,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
         if (_runner == null)
         {
-            Debug.LogError("RunnerPrefab missing NetworkRunner");
+            Debug.Log("RunnerPrefab missing NetworkRunner");
             return;
         }
 
@@ -112,7 +112,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
         if (recorder == null)
         {
-            Debug.LogWarning("No Photon Voice Recorder found.");
+            Debug.Log("No Photon Voice Recorder found.");
             return;
         }
 
@@ -140,7 +140,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
         if (joinButtonColocation != null)
             joinButtonColocation.interactable = false;
-
+        Debug.Log("FusionBoot: Button clicked, Starting Colocation Game");
         StartGame(2);
     }
 
@@ -148,7 +148,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
     {
         if (playerPrefab == null)
         {
-            Debug.LogError("FusionBoot: playerPrefab not assigned.");
+            Debug.Log("FusionBoot: playerPrefab not assigned.");
 
             if (joinButtonRemote != null)
                 joinButtonRemote.interactable = true;
@@ -158,17 +158,29 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
             return;
         }
-
+        Debug.Log($"FusionBoot: Checkpoint 1 - Starting game with sceneIndex {sceneIndex}");
         if (_runner != null && _runner.IsRunning)
             return;
 
         _sceneReady = false;
         _spawnedLocalPlayer = false;
-
+        Debug.Log("FusionBoot: Checkpoint 2 - Ensuring runner");
         EnsureRunner();
-
+        Debug.Log("FusionBoot: Checkpoint 3 - Getting scene manager");
         var sceneManager = _runner.GetComponent<NetworkSceneManagerDefault>();
+        Debug.Log($"FusionBoot: DNS test");
+        try
+        {
+            var entry = await System.Net.Dns.GetHostEntryAsync("ns.photonengine.io");
+            Debug.Log($"DNS OK: {entry.AddressList.Length} addresses, first = {entry.AddressList[0]}");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"DNS FAIL: {e}");
+        }
 
+
+        Debug.Log("FusionBoot: Checkpoint 4 - Starting game");
         var result = await _runner.StartGame(new StartGameArgs
         {
             GameMode = GameMode.Shared,
@@ -176,10 +188,10 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
             Scene = SceneRef.FromIndex(sceneIndex),
             SceneManager = sceneManager
         });
-
+        Debug.Log($"FusionBoot: StartGame result: {result.Ok}, {result.ShutdownReason}");
         if (!result.Ok)
         {
-            Debug.LogError($"FusionBoot: StartGame failed: {result.ShutdownReason}");
+            Debug.Log($"FusionBoot: StartGame failed: {result.ErrorMessage}");
 
             if (joinButtonRemote != null)
                 joinButtonRemote.interactable = true;
@@ -189,10 +201,10 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
             return;
         }
-
+        Debug.Log("FusionBoot: Checkpoint 5 - StartGame succeeded");
         if (menuRigRoot != null)
             Destroy(menuRigRoot);
-
+        Debug.Log("FusionBoot: Checkpoint 6 - Destroyed menuRigRoot");
         ApplyVoiceSettings();
     }
 
@@ -241,7 +253,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
         spawn = xrealSpawn.transform;
 
 #else
-        Debug.LogWarning("No build symbol defined. Using first SpawnPoint.");
+        Debug.Log("No build symbol defined. Using first SpawnPoint.");
 
         if (spawnPoints != null && spawnPoints.Length > 0)
             spawn = spawnPoints[0].transform;
@@ -249,7 +261,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
         if (spawn == null)
         {
-            Debug.LogError("Could not find spawn point for this platform.");
+            Debug.Log("Could not find spawn point for this platform.");
             return;
         }
 
