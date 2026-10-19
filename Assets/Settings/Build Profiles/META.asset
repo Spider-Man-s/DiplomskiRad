@@ -22,8 +22,6 @@ MonoBehaviour:
   m_Scenes:
   - m_enabled: 1
     m_path: Assets/_Scenes/_MetaSpace.unity
-  - m_enabled: 0
-    m_path: Assets/_Scenes/_HololensSpace.unity
   - m_enabled: 1
     m_path: Assets/_Scenes/_RemoteSpace.unity
   - m_enabled: 1

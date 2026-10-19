@@ -467,7 +467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3811596598756183298, guid: 55fe118f63c55e540923112274c06b39, type: 3}
       propertyPath: m_Name
-      value: MetaQuestPlayer
+      value: HololensPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 3811596598756183298, guid: 55fe118f63c55e540923112274c06b39, type: 3}
       propertyPath: m_IsActive

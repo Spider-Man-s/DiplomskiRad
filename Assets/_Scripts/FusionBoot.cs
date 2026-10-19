@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Voice.Unity;
+using System.Linq;
 
 public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbacks
 {
@@ -140,7 +141,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
         if (joinButtonColocation != null)
             joinButtonColocation.interactable = false;
-        Debug.Log("FusionBoot: Button clicked, Starting Colocation Game");
+        // Debug.Log("FusionBoot: Button clicked, Starting Colocation Game");
         StartGame(2);
     }
 
@@ -148,7 +149,7 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
     {
         if (playerPrefab == null)
         {
-            Debug.Log("FusionBoot: playerPrefab not assigned.");
+            //  Debug.Log("FusionBoot: playerPrefab not assigned.");
 
             if (joinButtonRemote != null)
                 joinButtonRemote.interactable = true;
@@ -158,29 +159,18 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
             return;
         }
-        Debug.Log($"FusionBoot: Checkpoint 1 - Starting game with sceneIndex {sceneIndex}");
+        // Debug.Log($"FusionBoot: Checkpoint 1 - Starting game with sceneIndex {sceneIndex}");
         if (_runner != null && _runner.IsRunning)
             return;
 
         _sceneReady = false;
         _spawnedLocalPlayer = false;
-        Debug.Log("FusionBoot: Checkpoint 2 - Ensuring runner");
+        // Debug.Log("FusionBoot: Checkpoint 2 - Ensuring runner");
         EnsureRunner();
-        Debug.Log("FusionBoot: Checkpoint 3 - Getting scene manager");
+        // Debug.Log("FusionBoot: Checkpoint 3 - Getting scene manager");
         var sceneManager = _runner.GetComponent<NetworkSceneManagerDefault>();
-        Debug.Log($"FusionBoot: DNS test");
-        try
-        {
-            var entry = await System.Net.Dns.GetHostEntryAsync("ns.photonengine.io");
-            Debug.Log($"DNS OK: {entry.AddressList.Length} addresses, first = {entry.AddressList[0]}");
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError($"DNS FAIL: {e}");
-        }
 
-
-        Debug.Log("FusionBoot: Checkpoint 4 - Starting game");
+        //  Debug.Log("FusionBoot: Checkpoint 4 - Starting game");
         var result = await _runner.StartGame(new StartGameArgs
         {
             GameMode = GameMode.Shared,
@@ -201,19 +191,23 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
             return;
         }
-        Debug.Log("FusionBoot: Checkpoint 5 - StartGame succeeded");
+        // Debug.Log("FusionBoot: Checkpoint 5 - StartGame succeeded");
         if (menuRigRoot != null)
             Destroy(menuRigRoot);
-        Debug.Log("FusionBoot: Checkpoint 6 - Destroyed menuRigRoot");
+        // Debug.Log("FusionBoot: Checkpoint 6 - Destroyed menuRigRoot");
         ApplyVoiceSettings();
     }
 
     public void OnSceneLoadDone(NetworkRunner runner)
     {
-        spawnPoints = FindObjectsOfType<SpawnPoint>(true);
-        _sceneReady = spawnPoints != null && spawnPoints.Length > 0;
+        spawnPoints = FindObjectsOfType<SpawnPoint>(true)
+      .OrderBy(s => s.name)   // SP1, SP2, ... SP5
+      .ToArray();
+
+        _sceneReady = spawnPoints.Length > 0;
 
         ApplyVoiceSettings();
+        TrySpawnLocalPlayer(runner);
     }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
@@ -232,64 +226,21 @@ public class FusionBoot : SingletonPersistent<FusionBoot>, INetworkRunnerCallbac
 
     private void TrySpawnLocalPlayer(NetworkRunner runner)
     {
-        if (_spawnedLocalPlayer)
+        if (_spawnedLocalPlayer || !_sceneReady)
             return;
 
-        if (!_sceneReady)
-            return;
+        int count = spawnPoints.Length;
+        int index = ((runner.LocalPlayer.PlayerId - 1) % count + count) % count;
+        Transform spawn = spawnPoints[index].transform;
 
-        Transform spawn = null;
-
-#if META_BUILD
-    GameObject metaSpawn = GameObject.Find("MetaSpawn");
-
-    if (metaSpawn != null)
-        spawn = metaSpawn.transform;
-
-#elif XREAL_BUILD
-    GameObject xrealSpawn = GameObject.Find("XrealSpawn");
-
-    if (xrealSpawn != null)
-        spawn = xrealSpawn.transform;
-
-#else
-        Debug.Log("No build symbol defined. Using first SpawnPoint.");
-
-        if (spawnPoints != null && spawnPoints.Length > 0)
-            spawn = spawnPoints[0].transform;
-#endif
-
-        if (spawn == null)
-        {
-            Debug.Log("Could not find spawn point for this platform.");
-            return;
-        }
-
-        Debug.Log($"Spawning player at {spawn.name}");
-
-        var playerObj = runner.Spawn(
-            playerPrefab,
-            spawn.position,
-            spawn.rotation
-        );
-
+        var playerObj = runner.Spawn(playerPrefab, spawn.position, spawn.rotation);
         runner.SetPlayerObject(runner.LocalPlayer, playerObj);
 
         _spawnedLocalPlayer = true;
-
         ApplyVoiceSettings();
     }
 
-    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
-    {
-        if (runner.TryGetPlayerObject(player, out var obj))
-        {
-            if (obj != null && obj.HasStateAuthority)
-            {
-                runner.Despawn(obj);
-            }
-        }
-    }
+    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player) { }
 
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {
