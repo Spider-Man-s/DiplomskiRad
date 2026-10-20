@@ -12,10 +12,6 @@ public class BoxCalibrationController : MonoBehaviour
     [Header("References")]
     [SerializeField] private BoxCalibrationRig calibrationRig;
     [SerializeField] private SharedSpaceManager sharedSpaceManager;
-    [SerializeField] private ColocationSessionState sessionState;
-
-    [Header("Build/device role")]
-    [SerializeField] private ColocationDeviceRole editorFallbackRole = ColocationDeviceRole.Meta;
 
     [Header("Fine adjustment")]
     [SerializeField, Min(0.0001f)] private float positionStepMeters = 0.005f;
@@ -107,6 +103,7 @@ public class BoxCalibrationController : MonoBehaviour
 
     /// <summary>
     /// Call after the virtual box is visually aligned with the physical Quest 3 box.
+    /// Also marks the local player as ready.
     /// </summary>
     public void ConfirmAlignment()
     {
@@ -131,8 +128,10 @@ public class BoxCalibrationController : MonoBehaviour
 
         sharedSpaceManager.CalibrateFromWorldReference(reference);
 
-        if (sessionState != null)
-            sessionState.ReportLocalCalibration(ResolveDeviceRole());
+        if (ReadyManager.Instance != null)
+            ReadyManager.Instance.SetLocalReady(true);
+        else
+            Debug.LogWarning("BoxCalibrationController: ReadyManager not spawned yet.");
 
         if (hideCalibrationBoxAfterConfirm)
             calibrationRig.gameObject.SetActive(false);
@@ -148,16 +147,5 @@ public class BoxCalibrationController : MonoBehaviour
     private void NudgeRotation(Vector3 localAxis, float degrees)
     {
         calibrationRig.transform.Rotate(localAxis, degrees, Space.Self);
-    }
-
-    private ColocationDeviceRole ResolveDeviceRole()
-    {
-#if META_BUILD
-        return ColocationDeviceRole.Meta;
-#elif XREAL_BUILD
-        return ColocationDeviceRole.Xreal;
-#else
-        return editorFallbackRole;
-#endif
     }
 }

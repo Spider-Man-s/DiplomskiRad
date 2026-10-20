@@ -1,20 +1,20 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+
 /// <summary>
-/// Optional gate that enables gameplay objects only after this client is calibrated AND Fusion
-/// reports that both Meta and XREAL have confirmed calibration.
+/// Gate that enables gameplay only after this client is calibrated AND every player in the
+/// session has confirmed their calibration (tracked by ReadyManager).
 /// </summary>
 public class ColocationReadyGate : MonoBehaviour
 {
-    [SerializeField] private ColocationSessionState sessionState;
-    [SerializeField] private GameObject[] enableWhenReady;
+    [SerializeField, Min(1)] private int minPlayers = 1;
 
     TableSpawner tableSpawner;
 
     private bool opened;
+    private bool sessionStarted;     // floor calibration + table spawn only run once
     private bool floorCalibrated = false;
     private bool isCalibrated = false;
-
 
     public static ColocationReadyGate Instance { get; private set; }
 
@@ -27,13 +27,22 @@ public class ColocationReadyGate : MonoBehaviour
         }
         Instance = this;
     }
+
+    private void OnEnable() => ReadyManager.ResetBroadcast += OnResetBroadcast;
+    private void OnDisable() => ReadyManager.ResetBroadcast -= OnResetBroadcast;
+
     private void Start()
     {
-        SetTargets(false);
         tableSpawner = GetComponent<TableSpawner>();
         if (tableSpawner == null)
             Debug.LogError("TableSpawner component is missing.");
+    }
 
+    private void OnResetBroadcast()
+    {
+        // Gate can open again once everyone has recalibrated.
+        opened = false;
+        isCalibrated = false;
     }
 
     private void Update()
@@ -45,61 +54,33 @@ public class ColocationReadyGate : MonoBehaviour
         if (manager == null || !manager.IsCalibrated)
             return;
 
-        if (sessionState != null && !sessionState.BothReady)
+        if (FusionBoot.Instance == null || FusionBoot.Instance.Runner == null)
+            return;
+
+        var runner = FusionBoot.Instance.Runner;
+
+        if (ReadyManager.Instance == null || !ReadyManager.Instance.AllReady(minPlayers))
             return;
 
         opened = true;
         isCalibrated = true;
-        SetTargets(true);
         Debug.Log("Co-location ready gate opened.");
-        if (FusionBoot.Instance == null || FusionBoot.Instance.Runner == null)
+
+        if (!runner.IsSharedModeMasterClient || sessionStarted)
             return;
-        if (!FusionBoot.Instance.Runner.IsSharedModeMasterClient) return;
+
         Debug.Log("This client is the shared mode master client. Proceeding...");
+        sessionStarted = true;
         BeginConfig();
-
     }
-
-    private void SetTargets(bool active)
-    {
-        if (enableWhenReady == null)
-            return;
-
-        foreach (GameObject target in enableWhenReady)
-        {
-            if (target != null)
-                target.SetActive(active);
-        }
-    }
-
 
     public void SetFloorCalibrated(bool calibrated)
     {
         floorCalibrated = calibrated;
     }
 
-
-
-
-
-
-
-
-    //////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
     private void BeginConfig()
     {
-
         if (!floorCalibrated)
         {
             Debug.Log("Floor not calibrated. Showing floor calibration UI.");
@@ -107,7 +88,7 @@ public class ColocationReadyGate : MonoBehaviour
             StartCoroutine(WaitForCalibration());
         }
         else
-        { //visak ali ajde
+        {
             Debug.Log("Floor already calibrated. Spawning shared table.");
             if (tableSpawner != null)
                 tableSpawner.SpawnSharedTable();
@@ -117,17 +98,13 @@ public class ColocationReadyGate : MonoBehaviour
     IEnumerator WaitForCalibration()
     {
         Debug.Log("Waiting for floor calibration...");
-        yield return new WaitUntil(() => floorCalibrated == true);
+        yield return new WaitUntil(() => floorCalibrated);
         Debug.Log("Calibration complete! Advancing game state...");
-        if (isCalibrated && floorCalibrated)
+
+        if (isCalibrated && floorCalibrated && tableSpawner != null)
         {
             Debug.Log("Both floor and device calibration complete. Spawning shared table.");
-            if (tableSpawner != null)
-                tableSpawner.SpawnSharedTable();
-
+            tableSpawner.SpawnSharedTable();
         }
-
     }
-
-
 }

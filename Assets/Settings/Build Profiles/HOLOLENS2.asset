@@ -28,7 +28,6 @@ MonoBehaviour:
     m_path: Assets/_Scenes/_ColocationSpace.unity
   m_ScriptingDefines:
   - META_BUILD
-  - HOLOLENS_BUILD
   m_PlayerSettingsYaml:
     m_Settings:
     - line: '| PlayerSettings:'
