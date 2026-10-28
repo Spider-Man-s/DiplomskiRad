@@ -25,7 +25,7 @@
     "com.unity.xr.interaction.toolkit": "3.0.10",
     "com.unity.xr.management": "4.5.4",
     "com.unity.xr.meta-openxr": "2.5.0",
-    "com.unity.xr.openxr": "file:C:/Users/Win11/Downloads/com.unity.xr.openxr-c272e156febf5c31534e7510ce515750d6087b2b",
+    "com.unity.xr.openxr": "1.14.3",
     "com.varjo.xr": "https://github.com/varjocom/VarjoUnityXRPlugin.git",
     "com.veriorpies.parrelsync": "https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync",
     "com.xreal.xr": "https://github.com/Spider-Man-s/XrealSDK3.1.git#master",

@@ -469,15 +469,16 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.openxr": {
-      "version": "file:C:/Users/Win11/Downloads/com.unity.xr.openxr-c272e156febf5c31534e7510ce515750d6087b2b",
-      "depth": 0,
-      "source": "local",
+      "version": "1.15.1",
+      "depth": 1,
+      "source": "registry",
       "dependencies": {
-        "com.unity.xr.management": "4.4.0",
-        "com.unity.xr.legacyinputhelpers": "2.1.2",
         "com.unity.inputsystem": "1.6.3",
-        "com.unity.xr.core-utils": "2.3.0"
-      }
+        "com.unity.xr.core-utils": "2.3.0",
+        "com.unity.xr.management": "4.4.0",
+        "com.unity.xr.legacyinputhelpers": "2.1.2"
+      },
+      "url": "https://packages.unity.com"
     },
     "com.varjo.xr": {
       "version": "https://github.com/varjocom/VarjoUnityXRPlugin.git",

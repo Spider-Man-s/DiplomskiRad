@@ -17,13 +17,13 @@ MonoBehaviour:
   FoveatedRendering: 1
   ContextScalingFactor: 1
   FocusScalingFactor: 1
-  Opaque: 1
+  Opaque: 0
   FaceLocked: 0
   FlipY: 0
   OcclusionMesh: 1
   SessionPriority: 0
   SubmitDepth: 1
   DepthSorting: 0
-  DepthTestRange: 0
+  DepthTestRange: 1
   DepthTestNearZ: 0
-  DepthTestFarZ: 1
+  DepthTestFarZ: 0.800000011920929

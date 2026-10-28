@@ -47,7 +47,7 @@ MonoBehaviour:
     - line: '|   cursorHotspot: {x: 0, y: 0}'
     - line: '|   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b:
         0.1254902, a: 1}'
-    - line: '|   m_ShowUnitySplashScreen: 1'
+    - line: '|   m_ShowUnitySplashScreen: 0'
     - line: '|   m_ShowUnitySplashLogo: 1'
     - line: '|   m_SplashScreenOverlayOpacity: 1'
     - line: '|   m_SplashScreenAnimation: 1'
@@ -175,13 +175,17 @@ MonoBehaviour:
     - line: '|   - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b,
         type: 3}'
     - line: '|   - {instanceID: 0}'
-    - line: '|   - {fileID: 11400000, guid: 140ee1005e951224a86fdab81d280d3a, type:
+    - line: '|   - {fileID: 11400000, guid: ae382b67ff8296645b7a2636b4838e49, type:
         2}'
-    - line: '|   - {fileID: 7923946338316257356, guid: 6f479c6edfef7e545b7fe10834dfe430,
-        type: 2}'
+    - line: '|   - {fileID: 11400000, guid: c677e5c4eb85b7849a8da406775c299d, type:
+        2}'
     - line: '|   - {fileID: 11400000, guid: 98cb777ea5f8f8d42a04a3807cd9f221, type:
         2}'
-    - line: '|   - {fileID: 1513077798143829932, guid: b548ed905e7e44c488d22540c084eb29,
+    - line: '|   - {fileID: -3139861315925369827, guid: 6f479c6edfef7e545b7fe10834dfe430,
+        type: 2}'
+    - line: '|   - {fileID: 11400000, guid: 6281a542202beb840828d1e29423f6d5, type:
+        2}'
+    - line: '|   - {fileID: -1068263230292757231, guid: b548ed905e7e44c488d22540c084eb29,
         type: 2}'
     - line: '|   metroInputSource: 0'
     - line: '|   wsaTransparentSwapchain: 0'
@@ -889,6 +893,7 @@ MonoBehaviour:
     - line: '|   platformArchitecture: {}'
     - line: '|   scriptingBackend:'
     - line: '|     Android: 1'
+    - line: '|     Standalone: 0'
     - line: '|   il2cppCompilerConfiguration: {}'
     - line: '|   il2cppCodeGeneration: {}'
     - line: '|   il2cppStacktraceInformation: {}'
