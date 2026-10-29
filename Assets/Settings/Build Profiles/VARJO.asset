@@ -177,16 +177,6 @@ MonoBehaviour:
     - line: '|   - {instanceID: 0}'
     - line: '|   - {fileID: 11400000, guid: ae382b67ff8296645b7a2636b4838e49, type:
         2}'
-    - line: '|   - {fileID: 11400000, guid: c677e5c4eb85b7849a8da406775c299d, type:
-        2}'
-    - line: '|   - {fileID: 11400000, guid: 98cb777ea5f8f8d42a04a3807cd9f221, type:
-        2}'
-    - line: '|   - {fileID: -3139861315925369827, guid: 6f479c6edfef7e545b7fe10834dfe430,
-        type: 2}'
-    - line: '|   - {fileID: 11400000, guid: 6281a542202beb840828d1e29423f6d5, type:
-        2}'
-    - line: '|   - {fileID: -1068263230292757231, guid: b548ed905e7e44c488d22540c084eb29,
-        type: 2}'
     - line: '|   metroInputSource: 0'
     - line: '|   wsaTransparentSwapchain: 0'
     - line: '|   m_HolographicPauseOnTrackingLoss: 1'
